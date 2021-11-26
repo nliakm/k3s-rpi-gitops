@@ -19,12 +19,13 @@ spec:
     installCRDs: false
     webhook:
       enabled: true
-    extraArgs:
-      - --dns01-recursive-nameservers=1.1.1.1:53,9.9.9.9:53
-      - --dns01-recursive-nameservers-only
+    # extraArgs:
+    #   - --dns01-recursive-nameservers=192.168.178.10:53,1.1.1.1:53,9.9.9.9:53
+    #   - --dns01-recursive-nameservers-only
     replicaCount: 1
     podDnsPolicy: "None"
     podDnsConfig:
       nameservers:
+        - "192.168.178.10"
         - "1.1.1.1"
         - "9.9.9.9"
