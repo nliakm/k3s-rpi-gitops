@@ -19,9 +19,9 @@ spec:
     image:
       repository: k8s-sigs.io/nfs-subdir-external-provisioner
       tag: v4.0.2    
-      # namespaceSelector:
-      #   matchNames:
-      #     - default
+      namespaceSelector:
+        matchNames:
+          - nfs-system
     nfs:
       server: ${NFS_SERVER}
       path: ${NFS_PATH}
