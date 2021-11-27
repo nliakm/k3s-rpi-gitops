@@ -16,16 +16,15 @@ spec:
         name: nfs-subdir-external-provisioner-charts
         namespace: flux-system
   values:
-    # nfs-subdir-external-provisioner:
     image:
-      repository: k8s.gcr.io/sig-storage/nfs-subdir-external-provisioner
+      repository: k8s-sigs.io/nfs-subdir-external-provisioner
       tag: v4.0.2    
       # namespaceSelector:
       #   matchNames:
       #     - default
     nfs:
-      server: 192.168.178.86
-      path: /volume1/k3s-nfs
+      server: ${NFS_SERVER}
+      path: ${NFS_PATH}
       mountOptions: nfsvers=3
       volumeName: nfs-subdir-external-provisioner-root
       reclaimPolicy: Retain
