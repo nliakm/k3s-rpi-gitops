@@ -5,7 +5,7 @@ metadata:
   name: nfs-subdir-external-provisioner
   namespace: nfs-system
 spec:
-  interval: 5m
+  interval: 1m
   chart:
     spec:
       # renovate: registryUrl=https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
@@ -30,7 +30,7 @@ spec:
       reclaimPolicy: Retain
     storageClass:
       create: true
-      defaultClass: true
+      defaultClass: false
       name: nfs-client
       allowVolumeExpansion: true
       reclaimPolicy: Delete
