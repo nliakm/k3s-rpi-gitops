@@ -25,7 +25,6 @@ spec:
     nfs:
       server: ${NFS_SERVER}
       path: ${NFS_PATH}
-      mountOptions: nfsvers=3
       volumeName: nfs-subdir-external-provisioner-root
       reclaimPolicy: Retain
     storageClass:
