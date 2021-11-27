@@ -17,8 +17,9 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: k8s-sigs.io/nfs-subdir-external-provisioner
-      tag: v4.0.2    
+      repository: k8s.gcr.io/sig-storage/nfs-subdir-external-provisioner
+      tag: v4.0.2
+      imagePullPolicy: IfNotPresent
       # namespaceSelector:
       #   matchNames:
       #     - nfs-system
@@ -27,15 +28,18 @@ spec:
       path: ${NFS_PATH}
       volumeName: nfs-subdir-external-provisioner-root
       reclaimPolicy: Retain
+      mountOptions:
+        - nfsvers=3
+        - nolock
+        - soft
+        - rw      
     storageClass:
       create: true
-      defaultClass: false
+      defaultClass: true
       name: nfs-client
       allowVolumeExpansion: true
       reclaimPolicy: Delete
       archiveOnDelete: true
-      onDelete:
-      pathPattern:
       accessModes: ReadWriteOnce
       annotations: {}
     leaderElection:
