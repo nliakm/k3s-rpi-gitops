@@ -8,3 +8,5 @@ resources:
   - ./charts/helm/traefik-charts.yaml
   - ./charts/helm/hajimari-charts.yaml
   - ./charts/helm/jetstack-charts.yaml
+  - ./charts/helm/metrics-server-charts.yaml
+  - ./charts/helm/stakater-charts.yaml
