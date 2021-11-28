@@ -67,7 +67,7 @@ spec:
         tls:
           - hosts:
               - "start.${SECRET_DOMAIN}"
-            secretName: "root-secret"
+            secretName: "hajimari-tls-secret"
     persistence:
       data:
         enabled: true
