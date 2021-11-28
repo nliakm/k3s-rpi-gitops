@@ -7,8 +7,11 @@ metadata:
 spec:
   isCA: true
   commonName: osm-system
-  secretName: selfsigned-ca
+  secretName: root-secret
+  privateKey:
+    algorithm: ECDSA
+    size: 256
   issuerRef:
-    name: selfsigned-cluster-issue
+    name: selfsigned-cluster-issuer
     kind: ClusterIssuer
     group: cert-manager.io
