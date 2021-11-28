@@ -144,7 +144,7 @@ spec:
             scheme: https
             metrics_path: /api/prometheus
             tls_config:
-              insecureSkipVerify: true
+              insecure_skip_verify: true
             authorization:
               type: Bearer
               secret: "${HOME_ASSISTANT_BEARER}"
