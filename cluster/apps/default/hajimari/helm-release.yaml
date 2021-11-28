@@ -55,7 +55,7 @@ spec:
         ingressClassName: "traefik"
         annotations:
           cert-manager.io/cluster-issuer: "selfsigned-cluster-issuer"
-          hajimari.io/enable: "true"
+          hajimari.io/enable: "false"
           hajimari.io/icon: "weather-sunset"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:

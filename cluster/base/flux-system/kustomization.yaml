@@ -10,3 +10,6 @@ resources:
   - ./charts/helm/jetstack-charts.yaml
   - ./charts/helm/metrics-server-charts.yaml
   - ./charts/helm/stakater-charts.yaml
+  - ./charts/helm/prometheus-community-charts.yaml
+  - ./charts/helm/grafana-charts.yaml
+  - ./charts/helm/bitnami-charts.yaml
