@@ -12,7 +12,7 @@ spec:
     size: 256
   commonName: k3s.fritz.box
   organization:
-  - FRITZ.BOS
+  - FRITZ.BOX
   dnsNames:
   - start.fritz.box
   - grafana.fritz.box
