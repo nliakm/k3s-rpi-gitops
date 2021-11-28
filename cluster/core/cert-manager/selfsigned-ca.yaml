@@ -6,11 +6,18 @@ metadata:
   namespace: cert-manager
 spec:
   isCA: true
-  commonName: osm-system
   secretName: root-secret
   privateKey:
     algorithm: ECDSA
     size: 256
+  commonName: k3s.fritz.box
+  organization:
+  - FRITZ.BOS
+  dnsNames:
+  - start.fritz.box
+  - grafana.fritz.box
+  - prometheus.fritz.box
+  - alert-manager.fritz.box
   issuerRef:
     name: selfsigned-cluster-issuer
     kind: ClusterIssuer
