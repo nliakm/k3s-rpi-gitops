@@ -65,6 +65,11 @@ spec:
     persistence:
       enabled: true
       existingClaim: grafana-config
+    initChownData:
+      ## If false, data ownership will not be reset at startup
+      ## This allows the prometheus-server to be run with an arbitrary user
+      ## https://www.reddit.com/r/grafana/comments/nj0p31/grafana_pod_is_in_init_error_state_after_adding/
+      enabled: false      
     plugins:
     - natel-discrete-panel
     - pr0ps-trackmap-panel
