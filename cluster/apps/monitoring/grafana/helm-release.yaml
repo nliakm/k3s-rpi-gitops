@@ -18,8 +18,8 @@ spec:
   values:
     image:
       repository: ghcr.io/k8s-at-home/grafana
-      # tag: 8.2.5
-      # pullPolicy: IfNotPresent      
+      tag: 8.2.5
+      pullPolicy: IfNotPresent      
     deploymentStrategy:
       type: Recreate
     env:
