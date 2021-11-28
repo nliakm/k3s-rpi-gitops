@@ -67,7 +67,7 @@ spec:
         tls:
           - hosts:
               - "start.${SECRET_DOMAIN}"
-            secretName: "start-tls"
+            secretName: "root-secret"
     persistence:
       data:
         enabled: true
