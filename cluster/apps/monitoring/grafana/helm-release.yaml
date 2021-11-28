@@ -56,7 +56,8 @@ spec:
         hajimari.io/enable: "true"
         hajimari.io/icon: "chart-areaspline"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-        cert-manager.io/cluster-issuer: "selfsigned-cluster-issuer"         
+        cert-manager.io/cluster-issuer: "selfsigned-cluster-issuer"  
+        cert-manager.io/private-key-secret-name: "selfsigned-ca"       
       hosts:
         - host: "grafana.${SECRET_DOMAIN}"
           paths:
