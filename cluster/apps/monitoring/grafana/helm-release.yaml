@@ -61,11 +61,11 @@ spec:
       hosts:
         - host: "grafana.${SECRET_DOMAIN}"
           paths:
-          - path: /
-            pathType: Prefix      
+            - path: /
+              pathType: Prefix      
       tls:
-      - hosts:
-        - "grafana.${SECRET_DOMAIN}"
+        - hosts:
+          - "grafana.${SECRET_DOMAIN}"
     persistence:
       enabled: true
       existingClaim: grafana-config
