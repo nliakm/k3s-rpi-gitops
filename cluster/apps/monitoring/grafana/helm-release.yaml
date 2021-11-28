@@ -65,6 +65,7 @@ spec:
       tls:
         - hosts:
           - "grafana.${SECRET_DOMAIN}"
+          secretName: "root-secret"
     persistence:
       enabled: true
       existingClaim: grafana-config
