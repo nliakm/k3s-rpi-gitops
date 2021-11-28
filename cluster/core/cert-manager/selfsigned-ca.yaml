@@ -11,8 +11,6 @@ spec:
     algorithm: ECDSA
     size: 256
   commonName: k3s.fritz.box
-  organization:
-  - FRITZ.BOX
   dnsNames:
   - start.fritz.box
   - grafana.fritz.box
