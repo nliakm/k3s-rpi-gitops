@@ -1,8 +1,8 @@
 # Quick note
-This repo was emplated from https://github.com/k8s-at-home/template-cluster-k3s and reduced/modified to match my own needs.
+This repo was templated from https://github.com/k8s-at-home/template-cluster-k3s and reduced/modified to match my own needs.
 ## :wave:&nbsp; Introduction
 
-The following components will be installed in your [k3s](https://k3s.io/) cluster by default. 
+The following components will be installed in the [k3s](https://k3s.io/) cluster by default. 
 
 - [cert-manager](https://cert-manager.io/) - SSL certificates - with Cloudflare DNS challenge
 - [calico](https://www.tigera.io/project-calico/) - CNI (container network interface)
@@ -35,7 +35,7 @@ For provisioning the following tools will be used:
 
 ### :wrench:&nbsp; Tools
 
-:round_pushpin: You should install the below CLI tools on your workstation. Make sure you pull in the latest versions.
+Tools that needs to be installed on the local workstation.
 
 #### Required
 
@@ -173,6 +173,7 @@ kubectl --kubeconfig=./provision/kubeconfig get nodes
 # NAME           STATUS   ROLES                       AGE     VERSION
 # k8s-0          Ready    control-plane,master      4d20h   v1.21.5+k3s1
 # k8s-1          Ready    worker                    4d20h   v1.21.5+k3s1
+# k8s-2          Ready    worker                    4d20h   v1.21.5+k3s1
 ```
 
 ### :small_blue_diamond:&nbsp; GitOps with Flux
@@ -249,6 +250,3 @@ kubectl --kubeconfig=./provision/kubeconfig get pods -n flux-system
 # notification-controller-7c46575844-k4bvr   1/1     Running   0          1h
 # source-controller-7d6875bcb4-zqw9f         1/1     Running   0          1h
 ```
-
-:tada: **Congratulations** you have a Kubernetes cluster managed by Flux, your Git repository is driving the state of your cluster.
-
