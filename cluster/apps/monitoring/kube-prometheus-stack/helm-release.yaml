@@ -51,6 +51,7 @@ spec:
           #         description: "A Prometheus job does not have living target anymore.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
     alertmanager:
+      enabled: false
       config:
         global:
           resolve_timeout: 5m
