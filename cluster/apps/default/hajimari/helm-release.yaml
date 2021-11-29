@@ -33,7 +33,7 @@ spec:
       name: "you"
       customApps:
         - name: Router
-          url: "https://${GATEWAY_ADDR}"
+          url: "http://${GATEWAY_ADDR}"
           icon: router-wireless
         - name: Smart Home
           url: "https://${HOME_ASSISTANT_SERVER}:8123"
