@@ -32,14 +32,17 @@ spec:
           - monitoring
       name: "you"
       customApps:
+        - name: Router
+          url: "https://${GATEWAY_ADDR}"
+          icon: router-wireless
         - name: Smart Home
-          url: "https://192.168.178.4:8123"
+          url: "https://${HOME_ASSISTANT_SERVER}:8123"
           icon: home-assistant
         - name: PiHole
-          url: "http://192.168.178.10/admin/"
+          url: "http://${PIHOLE_SERVER}/admin/"
           icon: pi-hole
         - name: Synology NAS
-          url: "https://192.168.178.86:5001"
+          url: "https://${NFS_SERVER}:5001"
           icon: nas
       groups:
         - name: Tech
