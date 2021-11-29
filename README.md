@@ -1,6 +1,8 @@
-# Quick note
+# Documentation
+
+## Quick note
 This repo was templated from https://github.com/k8s-at-home/template-cluster-k3s and reduced/modified to match my own needs.
-## :wave:&nbsp; Introduction
+## Cluster components
 
 The following components will be installed in the [k3s](https://k3s.io/) cluster by default. 
 
@@ -24,20 +26,17 @@ For provisioning the following tools will be used:
 
 - [Ubuntu](https://ubuntu.com/download/server) - this is a pretty universal operating system that supports running all kinds of home related workloads in Kubernetes
 - [Ansible](https://www.ansible.com) - this will be used to provision the Ubuntu operating system to be ready for Kubernetes and also to install k3s
-- [Terraform](https://www.terraform.io) - in order to help with the DNS settings this will be used to provision an already existing Cloudflare domain and DNS settings
 
-## :memo:&nbsp; Prerequisites
+## Prerequisites
 
-### :computer:&nbsp; Systems
+### Systems
 
 - One or more raspberry pis with a fresh install of [Ubuntu Server 20.04](https://ubuntu.com/download/server).
 - Some experience in debugging problems and a positive attitude ;)
 
-### :wrench:&nbsp; Tools
+### Tools
 
 Tools that needs to be installed on the local workstation.
-
-#### Required
 
 | Tool                                                   | Purpose                                                                                                                                 |
 |--------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
@@ -55,7 +54,7 @@ Tools that needs to be installed on the local workstation.
 | [pre-commit](https://github.com/pre-commit/pre-commit) | Runs checks pre `git commit`                                                                                                            |
 | [prettier](https://github.com/prettier/prettier)       | Prettier is an opinionated code formatter.                                                                                              |
 
-### :warning:&nbsp; pre-commit
+#### pre-commit
 
 It is advisable to install [pre-commit](https://pre-commit.com/) and the pre-commit hooks that come with this repository.
 [sops-pre-commit](https://github.com/k8s-at-home/sops-pre-commit) will check to make sure you are not by accident committing your secrets un-encrypted.
@@ -66,7 +65,7 @@ After pre-commit is installed on your machine run:
 pre-commit install-hooks
 ```
 
-## :open_file_folder:&nbsp; Repository structure
+## Repository structure
 
 The Git repository contains the following directories under `cluster` and are ordered below by how Flux will apply them.
 
@@ -79,6 +78,8 @@ The Git repository contains the following directories under `cluster` and are or
 cluster
 ├── apps
 │   ├── default
+|   ├── kube-system
+|   ├── monitoring
 │   ├── networking
 │   └── system-upgrade
 ├── base
@@ -87,18 +88,18 @@ cluster
 │   ├── cert-manager
 │   ├── metallb-system
 │   ├── namespaces
+|   ├── nfs-subdir-external-provisioner
 │   └── system-upgrade
 └── crds
+    ├── traefik
     └── cert-manager
 ```
 
-## :rocket:&nbsp; Installation
+## Installation
 
+### Setting up Age
 
-
-### :closed_lock_with_key:&nbsp; Setting up Age
-
-:round_pushpin: Here we will create a Age Private and Public key. Using SOPS with Age allows us to encrypt and decrypt secrets.
+Create a Age Private and Public key for encrypting and decrypting secrets.
 
 1. Create a Age Private / Public Key
 
@@ -113,7 +114,7 @@ mkdir -p ~/.config/sops/age
 mv age.agekey ~/.config/sops/age/keys.txt
 ```
 
-3. Export the `SOPS_AGE_KEY_FILE` in`zshrc` and source it
+3. Export the `SOPS_AGE_KEY_FILE` in `zshrc` and source it
 
 ```sh
 echo "export SOPS_AGE_KEY_FILE=~/.config/sops/age/keys.txt" >> ~/.zshrc
@@ -122,39 +123,40 @@ source ~/.zshrc
 
 4. Fill out the Age public key in the `.config.env` under `BOOTSTRAP_AGE_PUBLIC_KEY`, **note** the public key should start with `age`...
 
-### :page_facing_up:&nbsp; Configuration
+### Configuration
 
-:round_pushpin: The `.config.env` file contains necessary configuration files that are needed by Ansible and Flux.
+The `.config.env` file contains necessary configuration files that are needed by Ansible and Flux.
 
 1. Start filling out all the environment variables. **All are required** and read the comments they will explain further what is required.
 
-2. Once that is done, verify the configuration is correct by running `./configure.sh --verify`
+2. Copy tmpl folder from [k8s-at-home/template-cluster-k3s](https://github.com/k8s-at-home/template-cluster-k3s) into the root directory of that repository
+
+3. Verify the configuration is correct:
+ ```sh
+ ./configure.sh --verify
+ ````
 (If ssh test failed, make sure the ssh key is copied onto the servers)
 
-3. If you do not encounter any errors run `./configure.sh` to start having the script wire up the templated files and place them where they need to be.
+4. Run `./configure.sh` to start having the script wire up the templated files and place them where they need to be.
 
-### :zap:&nbsp; Preparing Ubuntu with Ansible
+### Preparing Ubuntu with Ansible
 
-:round_pushpin: Here we will be running a Ansible Playbook to prepare Ubuntu for running a Kubernetes cluster.
+(Nodes are not security hardened by default, you can do this with [dev-sec/ansible-collection-hardening](https://github.com/dev-sec/ansible-collection-hardening) or something similar.)
 
-:round_pushpin: Nodes are not security hardened by default, you can do this with [dev-sec/ansible-collection-hardening](https://github.com/dev-sec/ansible-collection-hardening) or something similar.
+1. Install the deps by running `task ansible:deps`
 
-1. Ensure you are able to SSH into you nodes from your workstation with using your private ssh key. This is how Ansible is able to connect to your remote nodes.
+2. Verify Ansible can view your config by running `task ansible:list`
 
-2. Install the deps by running `task ansible:deps`
+3. Verify Ansible can ping your nodes by running `task ansible:adhoc:ping`
 
-3. Verify Ansible can view your config by running `task ansible:list`
+4. Finally, run the Ubuntu Prepare playbook by running `task ansible:playbook:ubuntu-prepare`
 
-4. Verify Ansible can ping your nodes by running `task ansible:adhoc:ping`
+5. If everything goes as planned you should see Ansible running the Ubuntu Prepare Playbook against your nodes.
 
-5. Finally, run the Ubuntu Prepare playbook by running `task ansible:playbook:ubuntu-prepare`
-
-6. If everything goes as planned you should see Ansible running the Ubuntu Prepare Playbook against your nodes.
-
-7. Must be done manually for now. Open /boot/firmware/cmdline.txt and add `cgroup_enable=memory cgroup_memory=1` to all raspberry pis. Reboot afterwards.
+6. Must be done manually for now. Open /boot/firmware/cmdline.txt and add `cgroup_enable=memory cgroup_memory=1` to all raspberry pis. Reboot afterwards.
 https://rancher.com/docs/k3s/latest/en/advanced/#enabling-cgroups-for-raspbian-buster
 
-### :sailboat:&nbsp; Installing k3s with Ansible
+### Installing k3s with Ansible
 
 :round_pushpin: Here we will be running a Ansible Playbook to install [k3s](https://k3s.io/) with [this](https://galaxy.ansible.com/xanmanning/k3s) wonderful k3s Ansible galaxy role. After completion, Ansible will drop a `kubeconfig` in `./provision/kubeconfig` for use with interacting with your cluster with `kubectl`. Copy kubeconfig to ~/.kube/
 
@@ -164,9 +166,7 @@ https://rancher.com/docs/k3s/latest/en/advanced/#enabling-cgroups-for-raspbian-b
 
 3. Run the k3s install playbook by running `task ansible:playbook:k3s-install`
 
-4. If everything goes as planned you should see Ansible running the k3s install Playbook against your nodes.
-
-5. Verify the nodes are online
+4. Verify the nodes are online
    
 ```sh
 kubectl --kubeconfig=./provision/kubeconfig get nodes
@@ -176,9 +176,7 @@ kubectl --kubeconfig=./provision/kubeconfig get nodes
 # k8s-2          Ready    worker                    4d20h   v1.21.5+k3s1
 ```
 
-### :small_blue_diamond:&nbsp; GitOps with Flux
-
-:round_pushpin: Here we will be installing [flux](https://toolkit.fluxcd.io/) after some quick bootstrap steps.
+### GitOps with Flux
 
 1. Verify Flux can be installed
 
@@ -204,8 +202,6 @@ cat ~/.config/sops/age/keys.txt |
     --from-file=age.agekey=/dev/stdin
 ```
 
-:round_pushpin: Variables defined in `./cluster/base/cluster-secrets.sops.yaml` and `./cluster/base/cluster-settings.sops.yaml` will be usable anywhere in your YAML manifests under `./cluster`
-
 4. **Verify** all the above files are **encrypted** with SOPS
 Commands for encryption / decryption:
 ```sh
@@ -225,7 +221,7 @@ git push
 
 7. Install Flux
 
-:round_pushpin: Due to race conditions with the Flux CRDs you will have to run the below command twice. There should be no errors on this second run.
+Due to race conditions with the Flux CRDs you will have to run the below command twice. There should be no errors on this second run.
 
 ```sh
 kubectl --kubeconfig=./provision/kubeconfig apply --kustomize=./cluster/base/flux-system
@@ -249,4 +245,12 @@ kubectl --kubeconfig=./provision/kubeconfig get pods -n flux-system
 # kustomize-controller-7b67b6b77d-nqc67      1/1     Running   0          1h
 # notification-controller-7c46575844-k4bvr   1/1     Running   0          1h
 # source-controller-7d6875bcb4-zqw9f         1/1     Running   0          1h
+```
+## Post installation
+
+### helpful commands
+ **TODO**
+```sh
+flux reconsile helmrelease -n <NAMESPACE>
+flux reconsile kustomization apps
 ```
