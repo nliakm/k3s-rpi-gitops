@@ -4,13 +4,13 @@ This repo was templated from https://github.com/k8s-at-home/template-cluster-k3s
 
 The following components will be installed in the [k3s](https://k3s.io/) cluster by default. 
 
-- [cert-manager](https://cert-manager.io/) - SSL certificates - with Cloudflare DNS challenge
+- [cert-manager](https://cert-manager.io/) - SSL selfsigned certificates
 - [calico](https://www.tigera.io/project-calico/) - CNI (container network interface)
 - [flux](https://toolkit.fluxcd.io/) - GitOps tool for deploying manifests from the `cluster` directory
 - [hajimari](https://github.com/toboshii/hajimari) - start page with ingress discovery
 - [kube-vip](https://kube-vip.io/) - layer 2 load balancer for the Kubernetes control plane
 - [local-path-provisioner](https://github.com/rancher/local-path-provisioner) - local storage class provided by k3s
-- [nfs-subdir-external-provisioner](https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/) - nfs storage class provided by k3s (existing NFS server must be setup beforehand)
+- [nfs-subdir-external-provisioner](https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/) - nfs default storage class provided by k3s (existing NFS server must be setup beforehand)
 - [metallb](https://metallb.universe.tf/) - bare metal load balancer
 - [reloader](https://github.com/stakater/Reloader) - restart pods when Kubernetes `configmap` or `secret` changes
 - [system-upgrade-controller](https://github.com/rancher/system-upgrade-controller) - upgrade k3s
