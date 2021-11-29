@@ -83,9 +83,9 @@ spec:
             - receiver: "null"
               match:
                 alertname: Watchdog
-            - receiver: "discord"
+            - receiver: 'discord'
               match_re:
-                severity: critical
+                severity: critical|warning|error
               continue: true
         inhibit_rules:
           - source_match:
