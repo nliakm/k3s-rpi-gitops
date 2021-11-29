@@ -18,6 +18,38 @@ spec:
       interval: 5m
   values:
     fullnameOverride: prometheus
+    additionalPrometheusRulesMap:
+      rule-name:
+        groups:
+          - name: home-assistant
+            rules:
+              - alert: BatteryLow
+                expr: battery_level_percent < 3
+                for: 5m
+                labels:
+                  severity: critical
+                annotations:
+                  summary: Battery low for entity {{ $labels.friendly_name }}
+                  description: "An entity is low on battery\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+          #     - alert: PrometheusTargetMissing
+          #       expr: up == 0
+          #       for: 0m
+          #       labels:
+          #         severity: critical
+          #       annotations:
+          #         summary: Prometheus target missing (instance {{ $labels.instance }})
+          #         description: "A Prometheus target has disappeared. An exporter might be crashed.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+          # - name: ruleset_2
+          #   rules:
+          #     - alert: PrometheusAllTargetsMissing
+          #       expr: count by (job) (up) == 0
+          #       for: 0m
+          #       labels:
+          #         severity: critical
+          #       annotations:
+          #         summary: Prometheus all targets missing (instance {{ $labels.instance }})
+          #         description: "A Prometheus job does not have living target anymore.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
     alertmanager:
       config:
         global:
