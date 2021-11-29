@@ -3,5 +3,6 @@ kind: Kustomization
 resources:
   - kube-prometheus-stack
   - blackbox-exporter
+  - alertmanager-discord
 #  - loki
   - grafana
