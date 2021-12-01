@@ -36,13 +36,13 @@ spec:
           url: "http://${GATEWAY_ADDR}"
           icon: router-wireless
         - name: Smart Home
-          url: "https://${HOME_ASSISTANT_SERVER}:8123"
+          url: "https://homeassistant.fritz.box:8123"
           icon: home-assistant
         - name: PiHole
-          url: "http://${PIHOLE_SERVER}/admin/"
+          url: "http://pihole.fritz.box/admin/"
           icon: pi-hole
         - name: Synology NAS
-          url: "https://${NFS_SERVER}:5001"
+          url: "https://nas.fritz.box:5001"
           icon: nas
       groups:
         - name: Tech
