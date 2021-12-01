@@ -99,6 +99,9 @@ spec:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           cert-manager.io/cluster-issuer: "selfsigned-cluster-issuer"
           cert-manager.io/private-key-secret-name: "root-secret"
+          hajimari.io/enable: true
+          hajimari.io/group: monitoring
+          hajimari.io/icon: email-alert
         hosts:
           - "alert-manager.${SECRET_DOMAIN}"
         tls:
@@ -150,6 +153,9 @@ spec:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           cert-manager.io/cluster-issuer: "selfsigned-cluster-issuer"
           cert-manager.io/private-key-secret-name: "root-secret"
+          hajimari.io/enable: true
+          hajimari.io/group: monitoring
+          hajimari.io/icon: torch
         hosts:
           - "prometheus.${SECRET_DOMAIN}"
         tls:
