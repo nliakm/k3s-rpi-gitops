@@ -100,6 +100,7 @@ spec:
           cert-manager.io/cluster-issuer: "selfsigned-cluster-issuer"
           cert-manager.io/private-key-secret-name: "root-secret"
           hajimari.io/enable: "true"
+          hajimari.io/appName: "Alertmanager"
           hajimari.io/group: "monitoring"
           hajimari.io/icon: "email-alert"
         hosts:
@@ -154,6 +155,7 @@ spec:
           cert-manager.io/cluster-issuer: "selfsigned-cluster-issuer"
           cert-manager.io/private-key-secret-name: "root-secret"
           hajimari.io/enable: "true"
+          hajimari.io/appName: "Prometheus"
           hajimari.io/group: "monitoring"
           hajimari.io/icon: "torch"
         hosts:
