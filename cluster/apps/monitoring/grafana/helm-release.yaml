@@ -55,6 +55,7 @@ spec:
       annotations:
         hajimari.io/enable: "true"
         hajimari.io/icon: "chart-areaspline"
+        hajimari.io/group: monitoring
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         cert-manager.io/cluster-issuer: "selfsigned-cluster-issuer"  
         cert-manager.io/private-key-secret-name: "root-secret"
