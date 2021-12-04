@@ -196,9 +196,7 @@ spec:
               insecure_skip_verify: true
             authorization:
               type: Bearer
-              credentials:
-                name: monitoring-secrets
-                key: HOME_ASSISTANT_BEARER
+              credentials: "${HOME_ASSISTANT_BEARER}"
             static_configs:
               - targets:
                 - "${HOME_ASSISTANT_SERVER}:8123"
