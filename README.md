@@ -272,5 +272,8 @@ klf -n flux-system helm-controller-55896d6ccf-d9w8p
 
 # Fix message: "Helm upgrade failed: another operation (install/upgrade/rollback) is in progress"
 helm delete <HELMRELEASE> -n <NAMESPACE>
+# or
+flux delete helmrelease gra<HELMRELEASE>fana -n <NAMESPACE>
 flux reconcile helmrelease <HELMRELEASE> -n <NAMESPACE>
+
 ```
