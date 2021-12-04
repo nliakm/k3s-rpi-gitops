@@ -50,13 +50,12 @@ spec:
         org_role: Viewer
       security:
         allow_embedding: true
-    adminUser: admin
-    adminPassword: test-pw
     # adminUser: admin
-    # admin:
-    #   existingSecret: monitoring-secrets
-    #   userKey: SECRET_GRAFANA_ADMIN_USER
-    #   passwordKey: SECRET_GRAFANA_ADMIN_PASSWORD
+    # adminPassword: test-pw
+    admin:
+      existingSecret: grafana-secrets
+      userKey: GRAFANA_ADMIN_USER
+      passwordKey: GRAFANA_ADMIN_PASSWORD
     ingress:
       enabled: true
       hostname: "grafana.${SECRET_DOMAIN}"
