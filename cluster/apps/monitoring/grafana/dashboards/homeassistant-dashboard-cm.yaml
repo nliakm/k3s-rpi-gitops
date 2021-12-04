@@ -4,6 +4,8 @@ kind: ConfigMap
 metadata:
   name: homeassistant-dashboard
   namespace: monitoring
+  annotations:
+    dashboardfolder: "Smarthome"
   labels:
     grafana_dashboard: "1"
 data:

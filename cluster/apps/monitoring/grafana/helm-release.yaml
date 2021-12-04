@@ -90,26 +90,72 @@ spec:
     - grafana-clock-panel
     - vonage-status-panel
     - grafana-worldmap-panel
-    dashboardProviders:
-      dashboardproviders.yaml:
-        apiVersion: 1
-        providers:
-        - name: 'default'
-          orgId: 1
-          folder: 'Default'
+    sidecar:
+      image:
+        repository: quay.io/kiwigrid/k8s-sidecar
+        tag: 1.14.2
+        sha: ""
+      imagePullPolicy: IfNotPresent
+      resources: {}
+      limits:
+        cpu: 100m
+        memory: 100Mi
+      requests:
+        cpu: 50m
+        memory: 50Mi
+      enableUniqueFilenames: false
+      dashboards:
+        enabled: true
+        SCProvider: true
+        # label that the configmaps with dashboards are marked with
+        label: grafana_dashboard
+        labelValue: "1"
+        folder: /tmp/dashboards
+        # Method to use to detect ConfigMap changes. With WATCH the sidecar will do a WATCH requests, with SLEEP it will list all ConfigMaps, then sleep for 60 seconds.
+        watchMethod: WATCH
+        # search in configmap, secret or both
+        resource: configmap
+        # If specified, the sidecar will look for annotation with this name to create folder and put graph here.
+        # You can use this parameter together with `provider.foldersFromFilesStructure`to annotate configmaps and create folder structure.
+        folderAnnotation: dashboardfolder
+        # provider configuration that lets grafana manage the dashboards
+        provider:
+          # name of the provider, should be unique
+          name: sidecarProvider
+          # orgid as configured in grafana
+          orgid: 1
+          # folder in which the dashboards should be imported in grafana
+          folder: 'Custom'
+          # type of the provider
           type: file
-          disableDeletion: false
-          updateIntervalSeconds: 60
-          options:
-            path: /var/lib/grafana/dashboards/default
-        - name: 'smarthome'
-          orgId: 1
-          folder: 'Smarthome'
-          type: file
-          disableDeletion: false
-          updateIntervalSeconds: 60
-          options:
-            path: /var/lib/grafana/dashboards/smarthome
+          # disableDelete to activate a import-only behaviour
+          disableDelete: false
+          # allow updating provisioned dashboards from the UI
+          allowUiUpdates: false
+          # allow Grafana to replicate dashboard structure from filesystem
+          foldersFromFilesStructure: true
+      datasources:
+        enabled: false
+    # dashboardProviders:
+    #   dashboardproviders.yaml:
+    #     apiVersion: 1
+    #     providers:
+    #     - name: 'default'
+    #       orgId: 1
+    #       folder: 'Default'
+    #       type: file
+    #       disableDeletion: false
+    #       updateIntervalSeconds: 60
+    #       options:
+    #         path: /var/lib/grafana/dashboards/default
+    #     - name: 'smarthome'
+    #       orgId: 1
+    #       folder: 'Smarthome'
+    #       type: file
+    #       disableDeletion: false
+    #       updateIntervalSeconds: 60
+    #       options:
+    #         path: /var/lib/grafana/dashboards/smarthome
     datasources:
       datasources.yaml:
         apiVersion: 1
@@ -123,26 +169,26 @@ spec:
         #   type: loki
         #   access: proxy
         #   url: http://loki:3100
-    dashboards:
-      default:
-        node-exporter-full:
-          url: https://grafana.com/api/dashboards/1860/revisions/22/download
-          datasource: Prometheus
-        # flux-cluster:
-        #   url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/cluster.json
-        #   datasource: Prometheus
-        # flux-control-plane:
-        #   url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/control-plane.json
-        #   datasource: Prometheus
+    # dashboards:
+    #   default:
+    #     node-exporter-full:
+    #       url: https://grafana.com/api/dashboards/1860/revisions/22/download
+    #       datasource: Prometheus
+    #     flux-cluster:
+    #       url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/cluster.json
+    #       datasource: Prometheus
+    #     flux-control-plane:
+    #       url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/control-plane.json
+    #       datasource: Prometheus
     podAnnotations:
       configmap.reloader.stakater.com/reload: "grafana"
-    sidecar:
-      dashboards:
-        enabled: true
-        searchNamespace: ALL
-      datasources:
-        enabled: true
-        searchNamespace: ALL
+    # sidecar:
+    #   dashboards:
+    #     enabled: true
+    #     searchNamespace: ALL
+    #   datasources:
+    #     enabled: true
+    #     searchNamespace: ALL
     resources:
       requests:
         cpu: 75m
