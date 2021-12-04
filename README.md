@@ -249,10 +249,21 @@ kubectl --kubeconfig=./provision/kubeconfig get pods -n flux-system
 ### helpful commands
  **TODO**
 ```sh
+# Force reconciliation
 flux reconcile helmrelease <HELMRELEASE> -n <NAMESPACE>
 flux reconcile kustomization apps
+
+# Get statuses of flux resources
 flux get all
 flux get helmrelease -A
+
+# Follow flux logs
 flux logs --level=error
 flux logs --follow
+
+# Monitor helm-controller
+kubectl get pods -n flux-system
+klf -n flux-system helm-controller-55896d6ccf-d9w8p
+# klf -n flux-system $(kubectl get pods -n flux-system | grep -E 'helm-controller.*Running' | cut -d ' ' -f1)
+
 ```
