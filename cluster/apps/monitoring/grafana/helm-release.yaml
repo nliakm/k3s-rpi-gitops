@@ -52,11 +52,11 @@ spec:
         allow_embedding: true
       # adminUser: admin
       # adminPassword: "${SECRET_GRAFANA_ADMIN_PASSWORD}"
-      adminUser: admin
-      admin:
-        existingSecret: monitoring-secrets
-        userKey: SECRET_GRAFANA_ADMIN_USER
-        passwordKey: SECRET_GRAFANA_ADMIN_PASSWORD
+    adminUser: admin
+    admin:
+      existingSecret: monitoring-secrets
+      userKey: SECRET_GRAFANA_ADMIN_USER
+      passwordKey: SECRET_GRAFANA_ADMIN_PASSWORD
     ingress:
       enabled: true
       hostname: "grafana.${SECRET_DOMAIN}"
