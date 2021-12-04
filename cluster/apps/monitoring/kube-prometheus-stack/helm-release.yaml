@@ -16,6 +16,9 @@ spec:
         name: prometheus-community-charts
         namespace: flux-system
       interval: 5m
+  dependsOn:
+    - name: nfs-subdir-external-provisioner
+      namespace: nfs-system      
   values:
     fullnameOverride: prometheus
     additionalPrometheusRulesMap:

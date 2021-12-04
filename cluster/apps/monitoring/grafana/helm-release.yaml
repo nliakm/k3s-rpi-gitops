@@ -5,7 +5,7 @@ metadata:
   name: grafana
   namespace: monitoring
 spec:
-  interval: 1h
+  interval: 5m
   chart:
     spec:
       # renovate: registryUrl=https://grafana.github.io/helm-charts
@@ -15,6 +15,12 @@ spec:
         kind: HelmRepository
         name: grafana-charts
         namespace: flux-system
+      interval: 5m
+  dependsOn:
+    - name: nfs-subdir-external-provisioner
+      namespace: nfs-system
+    - name: kube-prometheus-stack
+      namespace: monitoring   
   values:
     image:
       repository: ghcr.io/k8s-at-home/grafana
