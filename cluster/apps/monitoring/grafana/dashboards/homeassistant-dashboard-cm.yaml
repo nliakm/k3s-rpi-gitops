@@ -667,7 +667,7 @@ data:
         },
         "timepicker": {},
         "timezone": "",
-        "title": "New dashboard",
-        "uid": null,
+        "title": "Homeassistant",
+        "uid": "homeassistant",
         "version": 0
       }
