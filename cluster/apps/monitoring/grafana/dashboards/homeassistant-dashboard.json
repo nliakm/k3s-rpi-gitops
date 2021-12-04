@@ -1,0 +1,663 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": null,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 11,
+        "title": "Licht",
+        "type": "row"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [
+              {
+                "options": {
+                  "0": {
+                    "color": "#808080",
+                    "index": 0,
+                    "text": "OFF"
+                  }
+                },
+                "type": "value"
+              },
+              {
+                "options": {
+                  "from": 1,
+                  "result": {
+                    "color": "yellow",
+                    "index": 1,
+                    "text": "ON"
+                  },
+                  "to": 300
+                },
+                "type": "range"
+              },
+              {
+                "options": {
+                  "match": "null+nan",
+                  "result": {
+                    "color": "red",
+                    "index": 2,
+                    "text": "N/A"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "transparent",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 3,
+          "x": 0,
+          "y": 1
+        },
+        "id": 6,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "last"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.2.5",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "light_state{friendly_name=\"Lichterkette\"}",
+            "format": "time_series",
+            "instant": true,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Lichterkette",
+        "type": "stat"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [
+              {
+                "options": {
+                  "0": {
+                    "color": "#808080",
+                    "index": 0,
+                    "text": "OFF"
+                  }
+                },
+                "type": "value"
+              },
+              {
+                "options": {
+                  "from": 1,
+                  "result": {
+                    "color": "yellow",
+                    "index": 1,
+                    "text": "ON"
+                  },
+                  "to": 300
+                },
+                "type": "range"
+              },
+              {
+                "options": {
+                  "match": "null+nan",
+                  "result": {
+                    "color": "red",
+                    "index": 2,
+                    "text": "N/A"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "transparent",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 3,
+          "x": 3,
+          "y": 1
+        },
+        "id": 7,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "last"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.2.5",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "light_state{entity=\"light.wohnzimmer\",friendly_name=\"Wohnzimmerlampe\"}",
+            "format": "time_series",
+            "instant": true,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Wohnzimmerlampe",
+        "type": "stat"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [
+              {
+                "options": {
+                  "0": {
+                    "color": "#808080",
+                    "index": 0,
+                    "text": "OFF"
+                  }
+                },
+                "type": "value"
+              },
+              {
+                "options": {
+                  "from": 1,
+                  "result": {
+                    "color": "yellow",
+                    "index": 1,
+                    "text": "ON"
+                  },
+                  "to": 300
+                },
+                "type": "range"
+              },
+              {
+                "options": {
+                  "match": "null+nan",
+                  "result": {
+                    "color": "red",
+                    "index": 2,
+                    "text": "N/A"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "transparent",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 3,
+          "x": 6,
+          "y": 1
+        },
+        "id": 9,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "last"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.2.5",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "light_state{domain=\"light\",entity=\"light.on_off_plug_1\",friendly_name=\"Sofalampe\"}",
+            "format": "time_series",
+            "instant": true,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Sofalampe",
+        "type": "stat"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [
+              {
+                "options": {
+                  "0": {
+                    "color": "#808080",
+                    "index": 0,
+                    "text": "OFF"
+                  }
+                },
+                "type": "value"
+              },
+              {
+                "options": {
+                  "from": 1,
+                  "result": {
+                    "color": "yellow",
+                    "index": 1,
+                    "text": "ON"
+                  },
+                  "to": 300
+                },
+                "type": "range"
+              },
+              {
+                "options": {
+                  "match": "null+nan",
+                  "result": {
+                    "color": "red",
+                    "index": 2,
+                    "text": "N/A"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "transparent",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 3,
+          "x": 9,
+          "y": 1
+        },
+        "id": 8,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "last"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.2.5",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "light_state{entity=\"light.schlafzimmer\",friendly_name=\"Schlafzimmer\"}",
+            "format": "time_series",
+            "instant": true,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Schlafzimmerlampe",
+        "type": "stat"
+      },
+      {
+        "collapsed": false,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 7
+        },
+        "id": 13,
+        "panels": [],
+        "title": "Temperatur",
+        "type": "row"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "left",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "smooth",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "decimals": 1,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "celsius"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "sensor.dark_sky_temperature"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Aussentemperator"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "climate.thermostat_arbeitszimmer_heating"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Arbeitszimmer"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "climate.thermostat_badezimmer_heating"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Badezimmer"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "climate.thermostat_kueche1_heating"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Kueche"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "climate.thermostat_schlafzimmer_heating"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Schlafzimmer"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "climate.thermostat_wohnzimmer_heating"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Wohnzimmer"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 24,
+          "x": 0,
+          "y": 8
+        },
+        "id": 4,
+        "options": {
+          "legend": {
+            "calcs": [
+              "min",
+              "max",
+              "mean"
+            ],
+            "displayMode": "table",
+            "placement": "right"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "temperature_c{entity=~\"(climate.*|sensor.dark_sky_temperature)\"}",
+            "interval": "",
+            "legendFormat": "{{ entity }}",
+            "refId": "A"
+          }
+        ],
+        "title": "Temperaturen drinnen und draußen",
+        "type": "timeseries"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 0,
+            "mappings": [],
+            "max": 100,
+            "min": 0,
+            "thresholds": {
+              "mode": "percentage",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "yellow",
+                  "value": 5
+                },
+                {
+                  "color": "green",
+                  "value": 15
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 24,
+          "x": 0,
+          "y": 16
+        },
+        "id": 2,
+        "options": {
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "text": {}
+        },
+        "pluginVersion": "8.2.5",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "battery_level_percent",
+            "format": "time_series",
+            "instant": true,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "{{ friendly_name }}",
+            "refId": "A"
+          }
+        ],
+        "title": "Batteriestände Heizthermostate",
+        "type": "gauge"
+      }
+    ],
+    "schemaVersion": 32,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-12h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "New dashboard",
+    "uid": null,
+    "version": 0
+  }
