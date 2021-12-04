@@ -205,5 +205,7 @@ spec:
             static_configs:
               - targets:
                   - "${PIHOLE_SERVER}:9100"
-                  - "${HOME_ASSISTANT_SERVER}:9100"
+                  - "${HOME_ASSISTANT_SERVER}:9100"     
+        secrets:
+          - monitoring-secrets          
           
