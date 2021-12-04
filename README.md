@@ -238,6 +238,13 @@ kubectl --kubeconfig=./provision/kubeconfig apply --kustomize=./cluster/base/flu
 # unable to recognize "./cluster/base/flux-system": no matches for kind "HelmRepository" in version "source.toolkit.fluxcd.io/v1beta1"
 ```
 
+Workaround for error `error GitRepository/flux-system.flux-system - Reconciler error auth secret error: Secret &#34;flux-system&#34; not found`
+```sh
+export GITHUB_USER=<GITHUB_USER>
+export GITHUB_TOKEN=<GITHUB_TOKEN>
+flux bootstrap github --owner=$GITHUB_USER --repository=k3s-rpi-gitops --branch=main --path=./cluster/base --personal --private=false
+```
+
 8. Verify Flux components are running in the cluster
 
 ```sh
