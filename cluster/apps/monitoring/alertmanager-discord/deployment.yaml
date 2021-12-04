@@ -47,7 +47,10 @@ spec:
             failureThreshold: 15
           env:
             - name: DISCORD_WEBHOOK
-              value: ${SECRET_ALERT_MANAGER_DISCORD_WEBHOOK}
+              valueFrom:
+                secretKeyRef:
+                  name: monitoring-secrets
+                  key: SECRET_ALERT_MANAGER_DISCORD_WEBHOOK
       # securityContext:
       #   runAsUser: 1000
       #   runAsGroup: 1000
