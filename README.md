@@ -221,19 +221,17 @@ git push
 
 7. Install Flux
 
-Due to race conditions with the Flux CRDs you will have to run the below command twice. There should be no errors on this second run.
-
+Since I didn't manage to get the installation command from the template to work, I used my own installation process for flux:
 ```sh
-kubectl --kubeconfig=./provision/kubeconfig apply --kustomize=./cluster/base/flux-system
-# namespace/flux-system configured
-# customresourcedefinition.apiextensions.k8s.io/alerts.notification.toolkit.fluxcd.io created
-# ...
-# unable to recognize "./cluster/base/flux-system": no matches for kind "Kustomization" in version "kustomize.toolkit.fluxcd.io/v1beta1"
-# unable to recognize "./cluster/base/flux-system": no matches for kind "GitRepository" in version "source.toolkit.fluxcd.io/v1beta1"
-# unable to recognize "./cluster/base/flux-system": no matches for kind "HelmRepository" in version "source.toolkit.fluxcd.io/v1beta1"
-# unable to recognize "./cluster/base/flux-system": no matches for kind "HelmRepository" in version "source.toolkit.fluxcd.io/v1beta1"
-# unable to recognize "./cluster/base/flux-system": no matches for kind "HelmRepository" in version "source.toolkit.fluxcd.io/v1beta1"
-# unable to recognize "./cluster/base/flux-system": no matches for kind "HelmRepository" in version "source.toolkit.fluxcd.io/v1beta1"
+# OPTIONAL: Copy kubeconfig into home folder
+cp ./provision/kubeconfig ~/.kube/config && chmod 0600 ~/.kube/config
+
+# Export github credentials
+export GITHUB_TOKEN=<YOUR_GITHUB_TOKEN>
+export GITHUB_USER=<YOUR_GITHUB_USERNAME>
+
+# Use the bootstrap flux command to install flux
+flux bootstrap github --owner=$GITHUB_USER --repository=k3s-rpi-gitops --branch=main --path=./cluster/base --personal
 ```
 
 8. Verify Flux components are running in the cluster
@@ -251,6 +249,10 @@ kubectl --kubeconfig=./provision/kubeconfig get pods -n flux-system
 ### helpful commands
  **TODO**
 ```sh
-flux reconsile helmrelease -n <NAMESPACE>
-flux reconsile kustomization apps
+flux reconcile helmrelease <HELMRELEASE> -n <NAMESPACE>
+flux reconcile kustomization apps
+flux get all
+flux get helmrelease -A -n <NAMESPACE>
+flux logs --level=error
+flux logs --follow
 ```
