@@ -51,7 +51,7 @@ spec:
       security:
         allow_embedding: true
       admin:
-        existingSecret: "monitoring-secrets"
+        existingSecret: monitoring-secrets
         userKey: SECRET_GRAFANA_ADMIN_USER
         passwordKey: SECRET_GRAFANA_ADMIN_PASSWORD
     ingress:
