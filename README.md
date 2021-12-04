@@ -252,7 +252,7 @@ kubectl --kubeconfig=./provision/kubeconfig get pods -n flux-system
 flux reconcile helmrelease <HELMRELEASE> -n <NAMESPACE>
 flux reconcile kustomization apps
 flux get all
-flux get helmrelease -A -n <NAMESPACE>
+flux get helmrelease -A
 flux logs --level=error
 flux logs --follow
 ```
