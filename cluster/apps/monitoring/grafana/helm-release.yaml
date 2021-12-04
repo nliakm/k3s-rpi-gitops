@@ -50,8 +50,6 @@ spec:
         org_role: Viewer
       security:
         allow_embedding: true
-    # adminUser: admin
-    # adminPassword: test-pw
     admin:
       existingSecret: grafana-secrets
       userKey: GRAFANA_ADMIN_USER
@@ -94,7 +92,6 @@ spec:
       image:
         repository: quay.io/kiwigrid/k8s-sidecar
         tag: 1.14.2
-        sha: ""
       imagePullPolicy: IfNotPresent
       resources: {}
       limits:
@@ -136,26 +133,6 @@ spec:
           foldersFromFilesStructure: true
       datasources:
         enabled: false
-    # dashboardProviders:
-    #   dashboardproviders.yaml:
-    #     apiVersion: 1
-    #     providers:
-    #     - name: 'default'
-    #       orgId: 1
-    #       folder: 'Default'
-    #       type: file
-    #       disableDeletion: false
-    #       updateIntervalSeconds: 60
-    #       options:
-    #         path: /var/lib/grafana/dashboards/default
-    #     - name: 'smarthome'
-    #       orgId: 1
-    #       folder: 'Smarthome'
-    #       type: file
-    #       disableDeletion: false
-    #       updateIntervalSeconds: 60
-    #       options:
-    #         path: /var/lib/grafana/dashboards/smarthome
     datasources:
       datasources.yaml:
         apiVersion: 1
@@ -169,26 +146,8 @@ spec:
         #   type: loki
         #   access: proxy
         #   url: http://loki:3100
-    # dashboards:
-    #   default:
-    #     node-exporter-full:
-    #       url: https://grafana.com/api/dashboards/1860/revisions/22/download
-    #       datasource: Prometheus
-    #     flux-cluster:
-    #       url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/cluster.json
-    #       datasource: Prometheus
-    #     flux-control-plane:
-    #       url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/control-plane.json
-    #       datasource: Prometheus
     podAnnotations:
       configmap.reloader.stakater.com/reload: "grafana"
-    # sidecar:
-    #   dashboards:
-    #     enabled: true
-    #     searchNamespace: ALL
-    #   datasources:
-    #     enabled: true
-    #     searchNamespace: ALL
     resources:
       requests:
         cpu: 75m
