@@ -51,7 +51,7 @@ spec:
       security:
         allow_embedding: true
     adminUser: admin
-    adminPassword: "${SECRET_GRAFANA_ADMIN_PASSWORD}"
+    adminPassword: test-pw
     # adminUser: admin
     # admin:
     #   existingSecret: monitoring-secrets
