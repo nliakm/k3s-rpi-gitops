@@ -41,8 +41,7 @@ spec:
                   severity: critical
                 annotations:
                   summary: Last rsync job failed
-                  description: |-
-                    "Rsync job (interval: {{ $labels.interval }}, directory: {{ $labels.directory }}) failed for instance {{ $labels.instance }} with exit code {{ $value }}."
+                  description: "Rsync job (interval: {{ $labels.interval }}, directory: {{ $labels.directory }}) failed for instance {{ $labels.instance }} with exit code {{ $value }}."
               - alert: PrometheusTargetMissing
                 expr: up == 0
                 for: 0m
@@ -51,16 +50,16 @@ spec:
                 annotations:
                   summary: Prometheus target missing (instance {{ $labels.instance }})
                   description: "A Prometheus target has disappeared. An exporter might be crashed.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-          - name: ruleset_2
-            rules:
-              - alert: PrometheusAllTargetsMissing
-                expr: count by (job) (up) == 0
-                for: 0m
-                labels:
-                  severity: critical
-                annotations:
-                  summary: Prometheus all targets missing (instance {{ $labels.instance }})
-                  description: "A Prometheus job does not have living target anymore.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+          # - name: ruleset_2
+          #   rules:
+          #     - alert: PrometheusAllTargetsMissing
+          #       expr: count by (job) (up) == 0
+          #       for: 0m
+          #       labels:
+          #         severity: critical
+          #       annotations:
+          #         summary: Prometheus all targets missing (instance {{ $labels.instance }})
+          #         description: "A Prometheus job does not have living target anymore.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
     alertmanager:
       #enabled: true
@@ -73,16 +72,6 @@ spec:
             webhook_configs:
               - url: "http://alertmanager-discord:9094"
                 send_resolved: true
-                # title: |-
-                #   [{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ if ne .CommonAnnotations.summary ""}}{{ .CommonAnnotations.summary }}{{ else }}{{ .CommonLabels.alertname }}{{ end }}
-                # text: >-
-                #   {{ range .Alerts -}}
-                #     **Alert:** {{ .Annotations.title }}{{ if .Labels.severity }} - `{{ .Labels.severity }}`{{ end }}
-                #   **Description:** {{ if ne .Annotations.description ""}}{{ .Annotations.description }}{{else}}N/A{{ end }}
-                #   **Details:**
-                #     {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
-                #     {{ end }}
-                #   {{ end }}
         route:
           group_by: ["alertname", "job"]
           group_wait: 30s
