@@ -7,3 +7,4 @@ commonLabels:
   grafana_dashboard: "1"
 resources:
   - homeassistant-dashboard-cm.yaml
+  - nas-dashboard-cm.yaml
