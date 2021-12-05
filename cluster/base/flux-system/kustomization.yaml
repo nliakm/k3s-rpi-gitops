@@ -3,6 +3,8 @@ kind: Kustomization
 resources:
   - gotk-components.yaml
   - gotk-sync.yaml
+  - alert-provider.yaml
+  - flux-alert.yaml
   - ./charts/helm/metallb-charts.yaml
   - ./charts/helm/nfs-subdir-external-provisioner-charts.yaml
   - ./charts/helm/traefik-charts.yaml
