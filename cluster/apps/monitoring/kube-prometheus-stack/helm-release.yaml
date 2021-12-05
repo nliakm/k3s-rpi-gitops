@@ -63,12 +63,11 @@ spec:
                   description: "A Prometheus job does not have living target anymore.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
     alertmanager:
-      #enabled: true
+      enabled: true
       config:
         global:
           resolve_timeout: 5m
         receivers:
-          - name: "null"
           - name: "discord_webhook"
             webhook_configs:
               - url: "http://alertmanager-discord:9094"
@@ -205,5 +204,3 @@ spec:
               - targets:
                   - "${PIHOLE_SERVER}:9100"
                   - "${HOME_ASSISTANT_SERVER}:9100"
-
-          
