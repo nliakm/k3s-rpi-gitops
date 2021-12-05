@@ -49,8 +49,8 @@ spec:
         org_id: 1
         org_role: Viewer
       auth.ldap:
-        enabled: false
-        allow_sign_up: true
+        enabled: true
+        allow_sign_up: false
         config_file: /etc/grafana/ldap.toml        
       security:
         allow_embedding: true 
@@ -59,7 +59,7 @@ spec:
       userKey: GRAFANA_ADMIN_USER
       passwordKey: GRAFANA_ADMIN_PASSWORD
     ldap:
-      enabled: false
+      enabled: true
       # `existingSecret` is a reference to an existing secret containing the ldap configuration
       # for Grafana in a key `ldap-toml`.
       existingSecret: "grafana-ldap-toml"      
