@@ -6,4 +6,4 @@ metadata:
 spec:
   type: discord
   secretRef:
-    name: SECRET_ALERT_MANAGER_DISCORD_WEBHOOK
+    name: webhook-secret
