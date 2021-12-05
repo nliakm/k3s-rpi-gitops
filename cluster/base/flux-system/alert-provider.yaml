@@ -5,5 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   type: discord
+  username: Prometheus
+  channel: "#monitoring"
   secretRef:
     name: webhook-secret
