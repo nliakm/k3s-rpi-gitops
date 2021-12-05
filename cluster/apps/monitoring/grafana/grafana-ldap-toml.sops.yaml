@@ -1,0 +1,28 @@
+# yamllint disable
+apiVersion: v1
+kind: Secret
+metadata:
+    name: grafana-ldap-toml
+    namespace: monitoring
+stringData:
+    ldap-toml: ENC[AES256_GCM,data:BO4rpriq8bkC658rzucT/Vk0GUKtQDDk1XKEEOcXoQP2QPayQf7lRZkKqgX1vwUWnySt3PYUw4qMl+m+SXYdAdOeJt4+yAGMpzdcXPR3mgyP8h85uag06KUtxnaXmHppVV42fVClifKXSYPlMha9fHYlKY8oQAuFvQNMm2TUyg5JikrmEdul0oJTx81SCa62b9TUzHo/bcAiS+lrqmEq9ojr8V602DIrV0nqiIj4p0E8OgLOkJgKs2OB0so+6W8ZQBtdOAFgdOqISgAmTz2l5VQ4qtI+Tb/awPARTR+nTccDPIMH13V7MQTExjh1CoM56YFmo7WaY4EBTBN0bzNbRdzN88bGnx99pFDvUVVuL5VlGX93wBOLVi+FXlyGHERzOLCPDsixRWXATLc9u7iwa61jiy6BXuEutidUVbw4Kk2iuNJj5qk5Q1dKlHCwl9IuQS/Dmt5+ZMw21I0RG2+odhHWK6s+be13EBLNsdY+rc3b3377MF0sW0HDM7CSsdnvOJyfBDbexIRzrapGku1U/kbJn7ITkJGlIUY58iOdjmXzcaOuV+EP2j960iizBbbu7bo1M9LY5LWdc82YjJltA078TsFgKusnfgPBQYaQ5jmW0AW3mLjd8MxJpMPzgIaNBJmxb2/gSWvRu7UM7UqORRFoLNoBhzELTab434tY7u0phikbkFfOI1ad18tnqwWwHEw+YIO+szswhEY2r58z9CwVMhBowmE2V1RW6ry0w0handwOD0sfYjoAdXTVXfmEGfhYsTWiPXY7JY+uP/h40930h9h6d1pbYr/7VDI8tXylb+QS92WW6MMnS/WJNGF7iQ+wZYdEd6SCEzqucdWA0BPdmlX0TIL+wMwCUQ3smb0r1FpoRcttd2JO90gnYlQUhSlF5+NPVvPTiATd9g9kOtU7GGriSR7OqO+iiTnlL7I3yQJt4ThZLNUENpayDKxVMc1RwrOZvfKmWBnBE85oUCpt3tCqyXGPWZefFIIfDqCuqN7zfimyng0rNaVMDbaMJZMSdbTHvfth+1ZH4wlbHLt7IkKlppbLgZd7fvaQ+zO3OoGDSJhKksh2/EOxECpI8uv/NmHEcJQ75xNdLt8PxTubmXCE+vhXtlOJDQzEyEhF3eoZGlBaUmuqAsfTIKXcrLasO2dhStBp/OelZ/PMM6vX0ELxec5fMT6w+7i8vTk+uVxcEl4Wo4HKCe8tXQtC6K+jl5F83Z+/svyGJsbxj+lIUzupp2M1M+SOuitiQDFZ1i9UHHUCSYXlugUuwxlK20PeTlCobR6R6gBGOBuqxMwWrMTvoRmNyjMFbV3Luu/TcVVIHZQiefgLqeo+sDols6c4vtQCHQqbVIS/1ZcYKs5Jjskcnc0Yx2n6+QcGUcw2ADV1rFOmkZiSw425LzW1DO5IQZQyYF9izhAZGp8C25Ly52b/DVVeqjzIYcq9tKVRXPLfviwOUglvkSk8SjajQTBLh+f2jzTH+PWsVTDqA4Ql7pTWtTx3ms+UOyP28Ojk8cdLtgbUIpovBpU6Dqkr0MPK1qWjTDT4SpGR7ulXtWiRpCPEFAMGrlhd+fdzpU4nmh8g2XaDBPHn5D5NBOQedtPwSYdZLPsGaek7a7GIgUzKl5eCT0RJKzMDxZ6eShXgMfAafLvVgkBTKAsPdHqI6XaAZ4vPmM1jzuU25gWvgTB2MFXkWKtoXjCx3UhbKZYUEnEmIPlJYOE0/P/G6jpB5m8b5DRbdBXIgdf6rC9tpTdyuV1KdCx6kiSZkCVoGwxJC8r/W3KUn5vIirgY8CTjlXyYHGBosxrae8HZHd92DhsCc9ZmpwSlUTPoIWH/Y3Hgpz2LNueh+WdBPjdGebiLGBabheez3fu/9YfXZVRsTSe6YLVdnrZceB8IAM1j0TAoeNJdkx4YwxfTdB2bHWBaLF6gXMAFKfE=,iv:BUKmx9ICu80kFrGKNRbVV3G+vqrufiCTuKS6eP3QLyo=,tag:lQczcasS4OFLUTnk8R0orQ==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1hra9lsurxkx96y9vgckl38ct3x4nkq655nnmfpe2xly93kqypqps0yhwmc
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBIOHZwTlprbHQ0ckVUNU4w
+            aExYbGtNbm9SUW0wS0VwYnB4NVBPcU9DOFFBCmtRblAva3FsZGhSbkZweUxOZVRn
+            eFgxTG5nK0hkeDZMRURITm9LNHVVVEUKLS0tIEZITTdER3JyNyttMndZS2k2aHNF
+            YjBLcndZVmM2aXliaFdkdTI2N3pVY0kKPp7RQx7s+CdJxzScMsgpNsBRfdMkWKBI
+            s8seaOJXsoS02fpnYqqTf10KsIsq2dnYwwKIvMc0JH2rHYM+USF6nw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2021-12-05T16:06:45Z"
+    mac: ENC[AES256_GCM,data:mPspg/gUWqVIZ/U4qXggIogm9X3sUr8ohCYla8LNo3arcF3t3AFNu13RXDRfQVyXK1oEgFtM6Vqx78aFFCG4jTnB6GEUXjuhXdDzWRuQWI/UeFijSS9ptbkcjMSb4dIOl5m7hScHhRTatqEAlAc+r1ztpFpnVxAKD9NaHpCOaZU=,iv:Br3hStuPXGUVTlf09dZiI77yK2q1UuB4MxHYTOESbLc=,tag:D6Drxzyewl461D9nLCXwIw==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.1
