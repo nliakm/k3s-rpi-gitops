@@ -50,7 +50,7 @@ spec:
         org_role: Viewer
       auth.ldap:
         enabled: true
-        allow_sign_up: false
+        allow_sign_up: true
         config_file: /etc/grafana/ldap.toml        
       security:
         allow_embedding: true 
