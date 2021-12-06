@@ -204,3 +204,10 @@ spec:
               - targets:
                   - "${PIHOLE_SERVER}:9100"
                   - "${HOME_ASSISTANT_SERVER}:9100"
+    resources:
+      requests:
+        cpu: 75m
+        memory: 128Mi
+      limits:
+        memory: 1Gi
+        cpu: 800m
