@@ -133,8 +133,21 @@ spec:
             etcd:
               enabled: true
     # Setting this option to 0 disabled CPU limits
-    prometheusOperator:
-      configReloaderCpu: 0
+    # prometheusOperator:
+    #   configReloaderCpu: 0
+    prometheusConfigReloader:
+      # image to use for config and rule reloading
+      image:
+        repository: quay.io/prometheus-operator/prometheus-config-reloader
+        tag: v0.52.0
+      # resource config for prometheusConfigReloader
+      resources:
+        requests:
+          cpu: 100m
+          memory: 50Mi
+        limits:
+          cpu: 800m
+          memory: 1Gi      
     prometheus:
       ingress:
         enabled: true
