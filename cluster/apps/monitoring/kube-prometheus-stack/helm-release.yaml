@@ -51,17 +51,6 @@ spec:
                 annotations:
                   summary: Prometheus target missing (instance {{ $labels.instance }})
                   description: "A Prometheus target has disappeared. An exporter might be crashed.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-          - name: ruleset_2
-            rules:
-              - alert: PrometheusAllTargetsMissing
-                expr: count by (job) (up) == 0
-                for: 0m
-                labels:
-                  severity: critical
-                annotations:
-                  summary: Prometheus all targets missing (instance {{ $labels.instance }})
-                  description: "A Prometheus job does not have living target anymore.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
     alertmanager:
       enabled: true
       config:
