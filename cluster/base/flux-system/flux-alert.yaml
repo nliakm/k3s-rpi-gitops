@@ -7,7 +7,7 @@ spec:
   providerRef:
     name: discord
   # enum: info,error
-  eventSeverity: error
+  eventSeverity: info
   eventSources:
     - kind: GitRepository
       name: '*'
