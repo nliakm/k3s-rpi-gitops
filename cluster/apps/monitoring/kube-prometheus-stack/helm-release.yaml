@@ -25,7 +25,7 @@ spec:
       create: true
       rules:
         alertmanager: true
-        etcd: true
+        etcd: false
         general: true
         k8s: true
         kubeApiserver: true
@@ -160,8 +160,8 @@ spec:
             etcd:
               enabled: true
     # Setting this option to 0 disabled CPU limits
-    prometheusOperator:
-      configReloaderCpu: 0
+    # prometheusOperator:
+    #  configReloaderCpu: 0
     # prometheusConfigReloader:
     #   # image to use for config and rule reloading
     #   image:
