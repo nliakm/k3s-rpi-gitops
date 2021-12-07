@@ -172,10 +172,19 @@ https://rancher.com/docs/k3s/latest/en/advanced/#enabling-cgroups-for-raspbian-b
 kubectl --kubeconfig=./provision/kubeconfig get nodes
 # NAME           STATUS   ROLES                       AGE     VERSION
 # k8s-0          Ready    control-plane,master      4d20h   v1.21.5+k3s1
+# k8s-1          Ready    <none>                    4d20h   v1.21.5+k3s1
+# k8s-2          Ready    <none>                    4d20h   v1.21.5+k3s1
+```
+5. Optionally label the workers so their role is displayed correctly
+```
+kubectl --kubeconfig=./provision/kubeconfig label node k8s-1 node-role.kubernetes.io/worker=''
+kubectl --kubeconfig=./provision/kubeconfig label node k8s-2 node-role.kubernetes.io/worker=''
+kubectl --kubeconfig=./provision/kubeconfig get nodes
+# NAME           STATUS   ROLES                       AGE     VERSION
+# k8s-0          Ready    control-plane,master      4d20h   v1.21.5+k3s1
 # k8s-1          Ready    worker                    4d20h   v1.21.5+k3s1
 # k8s-2          Ready    worker                    4d20h   v1.21.5+k3s1
 ```
-
 ### GitOps with Flux
 
 1. Verify Flux can be installed
