@@ -21,33 +21,33 @@ spec:
       namespace: nfs-system      
   values:
     fullnameOverride: prometheus
-    defaultRules:
-      create: true
-      rules:
-        alertmanager: true
-        etcd: false
-        general: true
-        k8s: true
-        kubeApiserver: true
-        kubeApiserverAvailability: true
-        kubeApiserverError: true
-        kubeApiserverSlos: true
-        kubelet: true
-        kubePrometheusGeneral: true
-        kubePrometheusNodeAlerting: true
-        kubePrometheusNodeRecording: true
-        kubernetesAbsent: true
-        kubernetesApps: true
-        kubernetesResources: true
-        kubernetesStorage: true
-        kubernetesSystem: true
-        kubeScheduler: true
-        kubeStateMetrics: true
-        network: true
-        node: true
-        prometheus: true
-        prometheusOperator: true
-        time: true
+#    defaultRules:
+#      create: true
+#      rules:
+#        alertmanager: true
+#        etcd: false
+#        general: true
+#        k8s: true
+#        kubeApiserver: true
+#        kubeApiserverAvailability: true
+#        kubeApiserverError: true
+#        kubeApiserverSlos: true
+#        kubelet: true
+#        kubePrometheusGeneral: true
+#        kubePrometheusNodeAlerting: true
+#        kubePrometheusNodeRecording: true
+#        kubernetesAbsent: true
+#        kubernetesApps: true
+#        kubernetesResources: true
+#        kubernetesStorage: true
+#        kubernetesSystem: true
+#        kubeScheduler: true
+#        kubeStateMetrics: true
+#        network: true
+#        node: true
+#        prometheus: true
+#        prometheusOperator: true
+#        time: true
     additionalPrometheusRulesMap:
       rule-name:
         groups:
@@ -160,8 +160,8 @@ spec:
             etcd:
               enabled: true
     # Setting this option to 0 disabled CPU limits
-    # prometheusOperator:
-    #  configReloaderCpu: 0
+    prometheusOperator:
+      configReloaderCpu: 0
     # prometheusConfigReloader:
     #   # image to use for config and rule reloading
     #   image:
