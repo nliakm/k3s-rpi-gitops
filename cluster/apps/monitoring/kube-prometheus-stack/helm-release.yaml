@@ -235,7 +235,7 @@ spec:
             memory: 128Mi
           limits:
             memory: 1Gi
-            cpu: 800m
+            cpu: 1500m
         enableAdminAPI: true
         walCompression: true
         storageSpec:
