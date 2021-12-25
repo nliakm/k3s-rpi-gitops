@@ -88,6 +88,7 @@ spec:
             webhook_configs:
               - url: "http://alertmanager-discord:9094"
                 send_resolved: true
+          - name: 'null'
         route:
           group_by: ["alertname", "job"]
           group_wait: 30s
