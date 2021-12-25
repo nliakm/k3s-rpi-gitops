@@ -229,6 +229,13 @@ spec:
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
         retention: 6h
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            memory: 1Gi
+            cpu: 800m
         enableAdminAPI: true
         walCompression: true
         storageSpec:
@@ -256,10 +263,3 @@ spec:
               - targets:
                   - "${PIHOLE_SERVER}:9100"
                   - "${HOME_ASSISTANT_SERVER}:9100"
-    resources:
-      requests:
-        cpu: 100m
-        memory: 128Mi
-      limits:
-        memory: 1Gi
-        cpu: 800m
