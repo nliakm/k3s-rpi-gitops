@@ -96,10 +96,9 @@ spec:
           repeat_interval: 110h
           receiver: "discord_webhook"
           routes:
-            - matchers:
-              alertname: Watchdog
+            - matchers: [alertname="Watchdog"]
               receiver: 'null'
-            - matchers: [ severity=~"(critical|warning|error)" ]
+            - matchers: [severity=~"(critical|warning|error)"]
               receiver: 'discord_webhook'
               continue: true
         inhibit_rules:
