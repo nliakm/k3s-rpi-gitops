@@ -78,6 +78,22 @@ spec:
                 annotations:
                   summary: Prometheus target missing (instance {{ $labels.instance }})
                   description: "A Prometheus target has disappeared. An exporter might be crashed.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+              - alert: NASSecurityStatus
+                expr: binary_sensor_state{job="home-assistant",entity="binary_sensor.synologynas_security_status"} != 0
+                for: 0m
+                labels:
+                  severity: warning
+                annotations:
+                  summary: NAS has atleast one security warning
+                  description: "There are security warnings on the NAS to check.\n These can be outdated packages or unsecure settings."
+              - alert: NASUpdateInformation
+                expr: binary_sensor_state{job="home-assistant",entity="binary_sensor.synologynas_update_available"} != 0
+                for: 0m
+                labels:
+                  severity: warning
+                annotations:
+                  summary: NAS update available
+                  description: "The NAS has a new update available."
     alertmanager:
       enabled: true
       config:
