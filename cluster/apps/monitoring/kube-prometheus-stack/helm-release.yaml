@@ -97,16 +97,14 @@ spec:
           receiver: "discord_webhook"
           routes:
             - matchers:
-                alertname: Watchdog
+              alertname: Watchdog
               receiver: 'null'
-            - matchers: [ '{severity=~"(critical|warning|error)"}' ]
+            - matchers: [ severity=~"(critical|warning|error)" ]
               receiver: 'discord_webhook'
               continue: true
         inhibit_rules:
-          - source_matchers:
-              severity: "critical"
-            target_matchers:
-              severity: "warning"
+          - source_matchers: [severity="critical"]
+            target_matchers: [severity="warning"]
             equal: ["alertname", "namespace"]
       ingress:
         enabled: true
