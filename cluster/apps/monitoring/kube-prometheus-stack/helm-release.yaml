@@ -229,13 +229,13 @@ spec:
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
         retention: 30d
-        resources:
-          requests:
-            cpu: 100m
-            memory: 128Mi
-          limits:
-            memory: 1Gi
-            cpu: 1500m
+        # resources:
+        #   requests:
+        #     cpu: 100m
+        #     memory: 128Mi
+        #   limits:
+        #     memory: 1Gi
+        #     cpu: 1500m
         enableAdminAPI: true
         walCompression: true
         storageSpec:
