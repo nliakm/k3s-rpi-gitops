@@ -46,7 +46,7 @@ spec:
               key: postgresql-password
         - name: POSTGRES_DB
           value: recipes
-        image: docker.io/postgres/postgres:11.5-alpine
+        image: postgres:11.5-alpine
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
