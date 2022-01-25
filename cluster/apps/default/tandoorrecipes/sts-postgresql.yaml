@@ -69,9 +69,7 @@ spec:
             - sh
             - -c
             - -e
-            - |
-              pg_isready -U "recipes" -d "recipes" -h 127.0.0.1 -p 5432
-              [ -f /opt/var/lib/postgresql/tmp/.initialized ]
+            - pg_isready -U "recipes" -d "recipes" -h 127.0.0.1 -p 5432
           failureThreshold: 6
           initialDelaySeconds: 5
           periodSeconds: 10
