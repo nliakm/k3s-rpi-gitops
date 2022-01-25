@@ -7,5 +7,5 @@ resources:
   - sts-postgresql.yaml
   - service-db.yaml
   - deployment.yaml
-  - service.yaml
+  - service-app.yaml
   - ingress.yaml
