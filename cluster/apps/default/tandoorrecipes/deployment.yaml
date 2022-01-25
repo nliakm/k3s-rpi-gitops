@@ -48,7 +48,7 @@ spec:
               secretKeyRef:
                 name: default-secrets
                 key: postgresql-password
-        image: vabene1111/recipes:1.0.1
+        image: vabene1111/recipes: 1.0.4.1
         imagePullPolicy: Always
         resources:
           requests:
