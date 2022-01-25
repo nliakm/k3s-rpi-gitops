@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - default-secrets.sops.yaml
   - hajimari
-#  - tandoorrecipes
+  - tandoorrecipes
