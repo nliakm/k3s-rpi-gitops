@@ -290,7 +290,10 @@ klf -n flux-system helm-controller-55896d6ccf-d9w8p
 helm delete <HELMRELEASE> -n <NAMESPACE>
 flux reconcile helmrelease <HELMRELEASE> -n <NAMESPACE>
 
-
 flux delete helmrelease <HELMRELEASE> -n <NAMESPACE>
 flux reconcile source helm <HELMRELEASE>
+
+# Fix error message (re-create kustomization): 
+# ✗ Kustomization reconciliation failed: Secret/flux-system/cluster-secrets is SOPS encryted, configuring decryption is required for this secret to be reconciled
+flux create kustomization cluster-secrets --source=flux-system --path=./cluster/base --prune=true --interval=10m --decryption-provider=sops --decryption-secret=sops-age
 ```
