@@ -4,3 +4,4 @@ resources:
   - default-secrets.sops.yaml
   - hajimari
   - tandoorrecipes
+  - home-assistant
