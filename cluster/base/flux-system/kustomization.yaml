@@ -16,3 +16,4 @@ resources:
   - ./charts/helm/prometheus-community-charts.yaml
   - ./charts/helm/grafana-charts.yaml
   - ./charts/helm/bitnami-charts.yaml
+  - ./charts/helm/k8s-at-home-charts.yaml
