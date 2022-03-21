@@ -46,7 +46,7 @@ spec:
           value: recipes
         volumeMounts:
         - mountPath: /var/lib/postgresql
-          name: data          
+          name: postgres-pvc          
         livenessProbe:
           exec:
             command:
@@ -85,7 +85,7 @@ spec:
   - apiVersion: v1
     kind: PersistentVolumeClaim
     metadata:
-      name: data
+      name: postgres-pvc
       namespace: default
     spec:
       accessModes:
