@@ -48,7 +48,7 @@ spec:
         tls:
           - hosts:
               - "hass.${SECRET_DOMAIN}"
-            secretName: "hajimari-tls-secret"
+            secretName: "hass-tls-secret"
     persistence:
       config:
         enabled: false
