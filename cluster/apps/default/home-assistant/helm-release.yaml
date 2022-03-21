@@ -58,6 +58,7 @@ spec:
         hostPath: /path/to/device
     postgresql:
       enabled: true
+      debug: true
       image:
         repository: postgres
         tag: '14.1'
