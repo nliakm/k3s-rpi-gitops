@@ -22,19 +22,13 @@ spec:
       name: recipes-postgresql
       namespace: default
     spec:
-      restartPolicy: Always
-      # securityContext:
-      #   fsGroup: 999
-      serviceAccount: recipes
-      serviceAccountName: recipes
-      terminationGracePeriodSeconds: 30
       containers:      
       - name: recipes-db
-        image: postgres:11.5-alpine
+        image: postgres:14.2-alpine3.15
         imagePullPolicy: IfNotPresent      
         env:
-        # - name: PGDATA
-        #   value: /var/lib/postgresql/data
+        - name: PGDATA
+          value: /data/pgdata
         - name: POSTGRES_USER
           value: recipes
         - name: POSTGRES_PASSWORD
@@ -44,9 +38,6 @@ spec:
               key: postgresql-password
         - name: POSTGRES_DB
           value: recipes
-        volumeMounts:
-        - mountPath: /var/lib/postgresql
-          name: postgres-pvc          
         livenessProbe:
           exec:
             command:
@@ -80,17 +71,23 @@ spec:
             memory: 256Mi
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: "/data/"
+          name: data
       dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      serviceAccount: recipes
+      serviceAccountName: recipes
+      terminationGracePeriodSeconds: 30
   volumeClaimTemplates:
   - apiVersion: v1
     kind: PersistentVolumeClaim
     metadata:
-      name: postgres-pvc
+      name: data
       namespace: default
     spec:
       accessModes:
       - ReadWriteOnce
-      storageClassName: nfs-client
       resources:
         requests:
-          storage: 2Gi
+          storage: 5Gi
