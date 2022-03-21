@@ -82,7 +82,7 @@ spec:
         enabled: true
         runAsUser: 999        
     metrics:
-      enabled: false
+      enabled: true
       serviceMonitor:
         interval: 1m
         scrapeTimeout: 30s
@@ -90,9 +90,9 @@ spec:
         ## See https://www.home-assistant.io/docs/authentication/ for where to find
         ## long lived access token creation under your account profile, which is
         ## needed to monitor Home Assistant
-        # bearerTokenSecret:
-        #   name: ""
-        #   key: ""
+        bearerTokenSecret:
+          name: "default-secrets"
+          key: "HASS_LLAT"
       prometheusRule:
         enabled: false
         labels: {}
