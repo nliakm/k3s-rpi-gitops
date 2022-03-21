@@ -76,7 +76,9 @@ spec:
           fsGroup: 1024
       containerSecurityContext:
         enabled: true
-        runAsUser: 1024        
+        runAsUser: 1024
+      volumePermissions:
+        enabled: false        
     metrics:
       enabled: false
       serviceMonitor:
