@@ -89,6 +89,7 @@ spec:
       ## If false, data ownership will not be reset at startup
       ## This allows the prometheus-server to be run with an arbitrary user
       ## https://www.reddit.com/r/grafana/comments/nj0p31/grafana_pod_is_in_init_error_state_after_adding/
+      ## Relevant UID for volumes https://grafana.com/docs/grafana/latest/installation/docker/#migrate-to-v51-or-later
       enabled: false      
     plugins:
     - natel-discrete-panel

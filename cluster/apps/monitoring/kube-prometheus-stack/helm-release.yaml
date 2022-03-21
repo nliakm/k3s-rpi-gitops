@@ -129,6 +129,7 @@ spec:
               - "alert-manager.${SECRET_DOMAIN}"
             secretName: "alert-manager-tls-secret"
       alertmanagerSpec:
+      # UID for volume 1000
         storage:
           volumeClaimTemplate:
             spec:
