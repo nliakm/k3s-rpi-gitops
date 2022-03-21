@@ -71,14 +71,10 @@ spec:
         storageClass: "nfs-client"
         size: 8Gi
         mountPath: "/data/"
-      podSecurityContext:
-          enabled: true
-          fsGroup: 1024
-      containerSecurityContext:
-        enabled: true
-        runAsUser: 1024
+      shmVolume:
+        enabled: false
       volumePermissions:
-        enabled: false        
+        enabled: false       
     metrics:
       enabled: false
       serviceMonitor:
