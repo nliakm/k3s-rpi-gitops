@@ -46,8 +46,8 @@ spec:
     - host: "pihole.${SECRET_DOMAIN}"
       http:
         paths:
-          - path: /admin/
-            pathType: Exact
+          - path: /
+            pathType: Prefix
             backend:
               service:
                 name: pihole-external
