@@ -87,17 +87,12 @@ spec:
         interval: 1m
         scrapeTimeout: 30s
         labels: {}
-        ## See https://www.home-assistant.io/docs/authentication/ for where to find
-        ## long lived access token creation under your account profile, which is
-        ## needed to monitor Home Assistant
         bearerTokenSecret:
           name: "default-secrets"
           key: "HASS_LLAT"
       prometheusRule:
-        enabled: false
+        enabled: true
         labels: {}
-        # -- Configure additionial rules for the chart under this key.
-        # @default -- See prometheusrules.yaml
         rules:
           - alert: HomeAssistantAbsent
             annotations:
@@ -139,4 +134,4 @@ spec:
               summary: Hard disk exceeded max bad sectors
               description: |-
                 {{ $labels.friendly_name }}. 
-                Actions to take: https://kb.synology.com/en-global/DSM/tutorial/How_to_diagnose_drives_health_status_when_receiving_bad_sector_warning              
+                Actions to take: https://kb.synology.com/en-global/DSM/tutorial/How_to_diagnose_drives_health_status_when_receiving_bad_sector_warning
