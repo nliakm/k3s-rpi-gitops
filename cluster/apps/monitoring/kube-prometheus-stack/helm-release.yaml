@@ -32,14 +32,6 @@ spec:
         groups:
           - name: home-assistant
             rules:
-              - alert: BatteryLow
-                expr: battery_level_percent < 3
-                for: 5m
-                labels:
-                  severity: critical
-                annotations:
-                  summary: Battery low for entity {{ $labels.friendly_name }}
-                  description: "An entity is low on battery\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
               - alert: RsyncFailed
                 expr: rsync_exit_code != 0
                 for: 5m
@@ -57,32 +49,6 @@ spec:
                 annotations:
                   summary: Prometheus target missing (instance {{ $labels.instance }})
                   description: "A Prometheus target has disappeared. An exporter might be crashed.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-              - alert: NASSecurityStatus
-                expr: binary_sensor_state{job="home-assistant",entity="binary_sensor.synologynas_security_status"} != 0
-                for: 0m
-                labels:
-                  severity: warning
-                annotations:
-                  summary: NAS has atleast one security warning
-                  description: "There are security warnings on the NAS to check.\nThese can be outdated packages or unsecure settings."
-              - alert: NASUpdateInformation
-                expr: binary_sensor_state{job="home-assistant",entity="binary_sensor.synologynas_update_available"} != 0
-                for: 0m
-                labels:
-                  severity: warning
-                annotations:
-                  summary: NAS update available
-                  description: "The NAS has a new update available."
-              - alert: NASMaxBadSectors
-                expr: binary_sensor_state{domain="binary_sensor",entity=~".*exceeded_max_bad_sectors"} != 0
-                for: 0m
-                labels:
-                  severity: critical
-                annotations:
-                  summary: Hard disk exceeded max bad sectors
-                  description: |-
-                    {{ $labels.friendly_name }}. 
-                    Actions to take: https://kb.synology.com/en-global/DSM/tutorial/How_to_diagnose_drives_health_status_when_receiving_bad_sector_warning
     alertmanager:
       enabled: true
       config:
@@ -226,20 +192,8 @@ spec:
                 requests:
                   storage: 10Gi
         additionalScrapeConfigs:
-          - job_name: "home-assistant"
-            scheme: http
-            metrics_path: /api/prometheus
-            tls_config:
-              insecure_skip_verify: true
-            authorization:
-              type: Bearer
-              credentials: "${HOME_ASSISTANT_BEARER}"
-            static_configs:
-              - targets:
-                - "${HOME_ASSISTANT_SERVER}:8123"
           - job_name: "node-exporter"
             honor_timestamps: true
             static_configs:
               - targets:
                   - "${PIHOLE_SERVER}:9100"
-                  - "${HOME_ASSISTANT_SERVER}:9100"
