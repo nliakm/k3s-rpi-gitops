@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - nas.yaml
   - pihole.yaml
+  - router.yaml

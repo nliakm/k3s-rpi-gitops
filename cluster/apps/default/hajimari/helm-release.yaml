@@ -31,10 +31,7 @@ spec:
           - networking
           - monitoring
       name: "you"
-      customApps:
-        - name: Router
-          url: "http://${GATEWAY_ADDR}"
-          icon: router-wireless
+      customApps: []
       groups:
         - name: Tech
           links:
