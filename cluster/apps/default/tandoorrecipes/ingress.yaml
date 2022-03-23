@@ -12,10 +12,10 @@ metadata:
 spec:
   tls:
   - hosts:
-     - "rezepte.fritz.box"
+     - "rezepte.${SECRET_DOMAIN}"
     secretName: "recipes-tls-secret"
   rules:
-  - host: "rezepte.fritz.box"
+  - host: "rezepte.${SECRET_DOMAIN}"
     http:
       paths:
       - backend:
