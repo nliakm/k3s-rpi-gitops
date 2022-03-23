@@ -35,15 +35,6 @@ spec:
         - name: Router
           url: "http://${GATEWAY_ADDR}"
           icon: router-wireless
-        - name: Smart Home
-          url: "https://homeassistant.fritz.box:8123"
-          icon: home-assistant
-        - name: PiHole
-          url: "http://pihole.fritz.box/admin/"
-          icon: pi-hole
-        - name: Synology NAS
-          url: "https://nas.fritz.box:5001"
-          icon: nas
       groups:
         - name: Tech
           links:
