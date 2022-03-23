@@ -24,7 +24,7 @@ spec:
       hostname: "loki.${SECRET_DOMAIN}"
       ingressClassName: "traefik"
       annotations:
-        cert-manager.io/cluster-issuer: "selfsigned-cluster-issuer"
+        cert-manager.io/cluster-issuer: "letsencrypt-production"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
       hosts:
         - host: "loki.${SECRET_DOMAIN}"
