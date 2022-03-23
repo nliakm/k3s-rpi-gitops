@@ -47,7 +47,7 @@ spec:
       http:
         paths:
           - path: /admin/
-            pathType: Prefix
+            pathType: Exact
             backend:
               service:
                 name: pihole-external
