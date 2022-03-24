@@ -4,3 +4,4 @@ resources:
   - nas.yaml
   - pihole.yaml
   - router.yaml
+  - zwave.yaml
