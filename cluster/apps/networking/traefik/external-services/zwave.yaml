@@ -40,7 +40,7 @@ spec:
   ingressClassName: "traefik"
   tls:
     - hosts:
-        - "nas.${SECRET_DOMAIN}"
+        - "zwave.${SECRET_DOMAIN}"
       secretName: "zwave-ingress-tls"
   rules:
     - host: "zwave.${SECRET_DOMAIN}"
