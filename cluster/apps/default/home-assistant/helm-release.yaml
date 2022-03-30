@@ -37,6 +37,7 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: "home-assistant"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          traefik.http.middlewares.securedheaders.headers.frameDeny: "false"
         hosts:
           - host: "hass.${SECRET_DOMAIN}"
             paths:
