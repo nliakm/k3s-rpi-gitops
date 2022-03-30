@@ -1,41 +1,54 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
   annotations:
     kubernetes.io/ingress.class: "traefik"
     cert-manager.io/cluster-issuer: "letsencrypt-production"
     hajimari.io/enable: "true"
     hajimari.io/icon: "chef-hat"
-    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"    
   name: recipes
   namespace: default
 spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`rezepte.${SECRET_DOMAIN}`)
+      kind: Rule
+      middlewares:
+        - name: recipes-headers
+      services:
+        - name: recipes
+          port: 8080
+    - match: Host(`rezepte.${SECRET_DOMAIN}`) && PathPrefix(`/media`)
+      kind: Rule
+      middlewares:
+        - name: recipes-headers      
+      services:
+        - name: recipes
+          port: 80
+    - match: Host(`rezepte.${SECRET_DOMAIN}`) && PathPrefix(`/static`)
+      kind: Rule
+      middlewares:
+        - name: recipes-headers      
+      services:
+        - name: recipes
+          port: 80
   tls:
-  - hosts:
-     - "rezepte.${SECRET_DOMAIN}"
-    secretName: "recipes-tls-secret"
-  rules:
-  - host: "rezepte.${SECRET_DOMAIN}"
-    http:
-      paths:
-      - backend:
-          service:
-            name: recipes
-            port:
-              number: 8080
-        path: /
-        pathType: Prefix
-      - backend:
-          service:
-            name: recipes
-            port:
-              number: 80
-        path: /media
-        pathType: Prefix
-      - backend:
-          service:
-            name: recipes
-            port:
-              number: 80
-        path: /static
-        pathType: Prefix
+    secretName: "recipes-tls-secret"          
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: recipes-headers
+  namespace: default
+spec:
+  headers:
+    accessControlAllowMethods:
+      - "GET"
+      - "OPTIONS"
+      - "PUT"
+      - "POST"
+    accessControlAllowOriginList:
+      - "https://hass.${SECRET_DOMAIN}"
+    accessControlMaxAge: 100
+    addVaryHeader: true
