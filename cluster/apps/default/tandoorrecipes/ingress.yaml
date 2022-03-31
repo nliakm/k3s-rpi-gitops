@@ -50,13 +50,13 @@ metadata:
   namespace: default
 spec:
   headers:
-    accessControlAllowMethods:
-      - "GET"
-      - "OPTIONS"
-      - "PUT"
-      - "POST"
-    accessControlAllowOriginList:
-      - "https://hass.${SECRET_DOMAIN}"
-    accessControlMaxAge: 100
-    addVaryHeader: true
+    # accessControlAllowMethods:
+    #   - "GET"
+    #   - "OPTIONS"
+    #   - "PUT"
+    #   - "POST"
+    # accessControlAllowOriginList:
+    #   - "https://hass.${SECRET_DOMAIN}"
+    # accessControlMaxAge: 100
+    # addVaryHeader: true
     frameDeny: false
