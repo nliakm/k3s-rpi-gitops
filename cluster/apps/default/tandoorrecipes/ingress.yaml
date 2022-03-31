@@ -51,4 +51,4 @@ metadata:
 spec:
   headers:
     customRequestHeaders:
-      X-Frame-Options: ""
+      X-Frame-Options: "SAMEORIGIN"
