@@ -1,3 +1,4 @@
+---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
@@ -24,7 +25,7 @@ spec:
     - match: Host(`rezepte.${SECRET_DOMAIN}`) && PathPrefix(`/media`)
       kind: Rule
       middlewares:
-        - name: recipes-headers      
+        - name: recipes-headers
       services:
         - kind: Service
           name: recipes
@@ -33,14 +34,14 @@ spec:
     - match: Host(`rezepte.${SECRET_DOMAIN}`) && PathPrefix(`/static`)
       kind: Rule
       middlewares:
-        - name: recipes-headers      
+        - name: recipes-headers
       services:
         - kind: Service
           name: recipes
           namespace: default
           port: 80
   tls:
-    secretName: "recipes-tls-secret"          
+    secretName: "recipes-tls-secret"
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
