@@ -12,26 +12,32 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`rezepte.${SECRET_DOMAIN}`)
+    - match: Host(`rezepte.${SECRET_DOMAIN}`) && PathPrefix(`/`)
       kind: Rule
       middlewares:
         - name: recipes-headers
       services:
-        - name: recipes
+        - kind: Service
+          name: recipes
+          namespace: default
           port: 8080
     - match: Host(`rezepte.${SECRET_DOMAIN}`) && PathPrefix(`/media`)
       kind: Rule
       middlewares:
         - name: recipes-headers      
       services:
-        - name: recipes
+        - kind: Service
+          name: recipes
+          namespace: default
           port: 80
     - match: Host(`rezepte.${SECRET_DOMAIN}`) && PathPrefix(`/static`)
       kind: Rule
       middlewares:
         - name: recipes-headers      
       services:
-        - name: recipes
+        - kind: Service
+          name: recipes
+          namespace: default
           port: 80
   tls:
     secretName: "recipes-tls-secret"          
