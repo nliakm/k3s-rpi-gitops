@@ -59,3 +59,4 @@ spec:
       - "https://hass.${SECRET_DOMAIN}"
     accessControlMaxAge: 100
     addVaryHeader: true
+    frameDeny: false
