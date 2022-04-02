@@ -36,14 +36,11 @@ spec:
         interval: 60s
         scrapeTimeout: 30s
       targets:
-        - name: fritzbox
+        - name: router
           url: "${GATEWAY_ADDR}"
           module: icmp
         - name: pihole
           url: ${PIHOLE_SERVER}
-          module: icmp
-        - name: homeassistant
-          url: ${HOME_ASSISTANT_SERVER}
           module: icmp
         - name: nas
           url: "${NFS_SERVER}"
