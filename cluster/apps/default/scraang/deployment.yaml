@@ -55,6 +55,8 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
+          protocol: TCP
+          name: http        
         volumeMounts:
           - mountPath: /var/offers
             name: www
