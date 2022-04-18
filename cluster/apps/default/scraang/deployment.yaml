@@ -5,6 +5,7 @@ metadata:
   namespace: default
   labels:
     app: scraang
+    tier: frontend
 spec:
   replicas: 1
   selector:
@@ -14,6 +15,7 @@ spec:
     metadata:
       labels:
         app: scraang
+        tier: frontend
     spec:
       containers:
       - name: scraper
