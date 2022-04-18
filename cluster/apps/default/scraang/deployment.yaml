@@ -6,21 +6,27 @@ metadata:
   labels:
     app: scraang
     tier: frontend
+    environment: production
 spec:
   replicas: 1
+  strategy:
+    type: Recreate  
   selector:
     matchLabels:
       app: scraang
+      environment: production
   template:
     metadata:
       labels:
         app: scraang
         tier: frontend
+        environment: production
     spec:
+      restartPolicy: Always    
       containers:
       - name: scraper
         image: nliakm/scraang-scraper:0.1
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         # command:
         #   - /root/scraper.py
         volumeMounts:
@@ -46,7 +52,7 @@ spec:
                 key: SCRAANG_LON
       - name: flask
         image: nliakm/scraang-flask:0.1
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - containerPort: 5000
         volumeMounts:
