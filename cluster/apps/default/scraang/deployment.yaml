@@ -30,7 +30,7 @@ spec:
             value: "23"
           - name: MIN
             value: "59"
-          - name: MARKETNAME
+          - name: MARKETNAMES
             value: "['REWE','PENNYMARKT']"
           - name: LATITUDE
             valueForm:
