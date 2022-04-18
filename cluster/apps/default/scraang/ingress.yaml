@@ -6,7 +6,7 @@ metadata:
   namespace: default
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-production"
-    hajimari.io/appName: "traefik"
+    hajimari.io/appName: "scraang"
     hajimari.io/enable: "true"
     hajimari.io/icon: "tag"
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
