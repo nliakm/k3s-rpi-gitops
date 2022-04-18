@@ -19,8 +19,8 @@ spec:
       - name: scraang-scraper
         image: nliakm/scraang-scraper:latest
         imagePullPolicy: IfNotPresent
-        command:
-          - /root/scraper.py
+        # command:
+        #   - /root/scraper.py
         volumeMounts:
           - mountPath: /var/offers
             name: www
@@ -43,7 +43,7 @@ spec:
                 name: default-secrets
                 key: SCRAANG_LON
       - name: scraang-flask
-        image: nliakm/scraang-flask
+        image: nliakm/scraang-flask:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5000
