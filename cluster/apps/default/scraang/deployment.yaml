@@ -16,7 +16,7 @@ spec:
         app: scraang
     spec:
       containers:
-      - name: scraang-scraper
+      - name: scraper
         image: nliakm/scraang-scraper:0.1
         imagePullPolicy: IfNotPresent
         # command:
@@ -42,7 +42,7 @@ spec:
               secretKeyRef:
                 name: default-secrets
                 key: SCRAANG_LON
-      - name: scraang-flask
+      - name: flask
         image: nliakm/scraang-flask:0.1
         imagePullPolicy: IfNotPresent
         ports:
