@@ -25,7 +25,7 @@ spec:
       restartPolicy: Always    
       containers:
       - name: scraper
-        image: nliakm/scraang-scraper:0.1
+        image: nliakm/scraang-scraper:0.2
         imagePullPolicy: Always
         # command:
         #   - /root/scraper.py
