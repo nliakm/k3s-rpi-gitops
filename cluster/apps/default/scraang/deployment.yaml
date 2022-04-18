@@ -26,9 +26,9 @@ spec:
             subPath: files
         env:
           - name: HOUR
-            value: 23
+            value: "23"
           - name: MIN
-            value: 59
+            value: "59"
           - name: MARKETNAME
             value: "['REWE','PENNYMARKT']"
           - name: LATITUDE
