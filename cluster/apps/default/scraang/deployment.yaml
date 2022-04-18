@@ -65,7 +65,7 @@ spec:
             scheme: HTTP
           periodSeconds: 30        
       volumes:
-        - name: wwww
+        - name: www
           persistentVolumeClaim:
             claimName: scraang-www
        
