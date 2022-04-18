@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scraang-deployment
+  labels:
+    app: scraang
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scraang
+  template:
+    metadata:
+      labels:
+        app: scraang
+    spec:
+      containers:
+      - name: scraang-scraper
+        image: nliakm/scraang-scraper:latest
+        imagePullPolicy: IfNotPresent
+        command:
+          - /root/scraper.py
+        volumeMounts:
+          - mountPath: /var/offers
+            name: www
+            subPath: files
+        env:
+          - name: HOUR
+            value: 23
+          - name: MIN
+            value: 59
+          - name: MARKETNAME
+            value: "['REWE','PENNYMARKT']"
+          - name: LATITUDE
+            valueForm:
+              secretKeyRef:
+                name: default-secrets
+                key: SCRAANG_LAT
+          - name: LONGITUDE
+            valueForm:
+              secretKeyRef:
+                name: default-secrets
+                key: SCRAANG_LON
+      - name: scraang-flask
+        image: nliakm/scraang-flask
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
+        volumeMounts:
+          - mountPath: /var/offers
+            name: www
+            subPath: files        
+        livenessProbe:
+          failureThreshold: 5
+          httpGet:
+            path: /
+            port: 5000
+            scheme: HTTP
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 5000
+            scheme: HTTP
+          periodSeconds: 30        
+      volumes:
+        - name: wwww
+          persistentVolumeClaim:
+            claimName: scraang-www
+       
