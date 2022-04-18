@@ -31,14 +31,14 @@ spec:
           - name: MIN
             value: "59"
           - name: MARKETNAMES
-            value: "['REWE','PENNYMARKT']"
+            value: "['REWE','Penny-Markt']"
           - name: LATITUDE
-            valueForm:
+            valueFrom:
               secretKeyRef:
                 name: default-secrets
                 key: SCRAANG_LAT
           - name: LONGITUDE
-            valueForm:
+            valueFrom:
               secretKeyRef:
                 name: default-secrets
                 key: SCRAANG_LON
