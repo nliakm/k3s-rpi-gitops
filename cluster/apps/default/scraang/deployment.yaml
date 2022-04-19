@@ -25,10 +25,8 @@ spec:
       restartPolicy: Always    
       containers:
       - name: scraper
-        image: nliakm/scraang-scraper:0.2
+        image: nliakm/scraang-scraper:latest
         imagePullPolicy: Always
-        # command:
-        #   - /root/scraper.py
         volumeMounts:
           - mountPath: /var/offers
             name: www
@@ -39,7 +37,7 @@ spec:
           - name: MIN
             value: "59"
           - name: MARKETNAMES
-            value: "['REWE','Penny-Markt']"
+            value: "REWE,Penny-Markt"
           - name: LATITUDE
             valueFrom:
               secretKeyRef:
@@ -51,7 +49,7 @@ spec:
                 name: default-secrets
                 key: SCRAANG_LON
       - name: flask
-        image: nliakm/scraang-flask:0.1
+        image: nliakm/scraang-flask:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
