@@ -58,7 +58,15 @@ spec:
         volumeMounts:
           - mountPath: /var/offers
             name: www
-            subPath: files        
+            subPath: files
+        env:
+          - name: HASS_URL
+            value: "hass.${SECRET_DOMAIN}"
+          - name: HASS_BEARER_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: default-secrets
+                key: HASS_BEARER_TOKEN            
         livenessProbe:
           failureThreshold: 5
           httpGet:
