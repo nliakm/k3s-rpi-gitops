@@ -114,7 +114,7 @@ spec:
               summary: Battery low for entity {{ $labels.friendly_name }}
               description: "An entity is low on battery\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
             expr: |
-              homeassistant_sensor_battery_percent{entity=~"(sensor.ts.*|sensor.hue.*)"} < 3
+              homeassistant_sensor_battery_percent < 3
           - alert: NASSecurityStatus
             expr: homeassistant_binary_sensor_state{job="home-assistant",entity="binary_sensor.synologynas_security_status"} != 0
             for: 0m
