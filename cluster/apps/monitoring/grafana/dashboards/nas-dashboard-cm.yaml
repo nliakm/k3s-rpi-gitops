@@ -34,7 +34,7 @@ data:
       "fiscalYearStartMonth": 0,
       "gnetId": null,
       "graphTooltip": 0,
-      "id": null,
+      "id": 57,
       "links": [],
       "liveNow": false,
       "panels": [
@@ -46,9 +46,207 @@ data:
             "x": 0,
             "y": 0
           },
-          "id": 14,
-          "title": "Overview",
+          "id": 2,
+          "title": "Row title",
           "type": "row"
+        },
+        {
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
+              "mappings": [],
+              "max": 1,
+              "min": 0,
+              "thresholds": {
+                "mode": "percentage",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "yellow",
+                    "value": 80
+                  },
+                  {
+                    "color": "red",
+                    "value": 90
+                  }
+                ]
+              },
+              "unit": "percentunit"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 4,
+            "x": 0,
+            "y": 1
+          },
+          "id": 4,
+          "options": {
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true,
+            "text": {}
+          },
+          "pluginVersion": "8.2.5",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "homeassistant_sensor_unit_percent{entity=\"sensor.synologynas_cpu_utilization_total\"} / 100",
+              "instant": false,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            }
+          ],
+          "title": "CPU utilization total",
+          "type": "gauge"
+        },
+        {
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
+              "mappings": [],
+              "max": 1,
+              "min": 0,
+              "thresholds": {
+                "mode": "percentage",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "yellow",
+                    "value": 80
+                  },
+                  {
+                    "color": "red",
+                    "value": 90
+                  }
+                ]
+              },
+              "unit": "percentunit"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 4,
+            "x": 4,
+            "y": 1
+          },
+          "id": 5,
+          "options": {
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true,
+            "text": {}
+          },
+          "pluginVersion": "8.2.5",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "homeassistant_sensor_unit_percent{entity=\"sensor.synologynas_cpu_utilization_user\"} / 100",
+              "instant": false,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            }
+          ],
+          "title": "CPU utilization user",
+          "type": "gauge"
+        },
+        {
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
+              "mappings": [],
+              "max": 100,
+              "min": 0,
+              "thresholds": {
+                "mode": "percentage",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "yellow",
+                    "value": 80
+                  },
+                  {
+                    "color": "red",
+                    "value": 90
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 4,
+            "x": 8,
+            "y": 1
+          },
+          "id": 9,
+          "options": {
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true,
+            "text": {}
+          },
+          "pluginVersion": "8.2.5",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "homeassistant_sensor_unit_percent{entity=\"sensor.synologynas_memory_usage_real\"}",
+              "instant": false,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            }
+          ],
+          "title": "MEM Usage",
+          "type": "gauge"
         },
         {
           "datasource": null,
@@ -66,10 +264,21 @@ data:
                     },
                     "1": {
                       "index": 1,
-                      "text": "Please update"
+                      "text": "Update available"
                     }
                   },
                   "type": "value"
+                },
+                {
+                  "options": {
+                    "pattern": "*",
+                    "result": {
+                      "color": "red",
+                      "index": 2,
+                      "text": "ERROR"
+                    }
+                  },
+                  "type": "regex"
                 }
               ],
               "thresholds": {
@@ -80,29 +289,24 @@ data:
                     "value": null
                   },
                   {
-                    "color": "yellow",
-                    "value": 0.9
-                  },
-                  {
                     "color": "red",
-                    "value": 2
+                    "value": 1
                   }
                 ]
-              },
-              "unit": "short"
+              }
             },
             "overrides": []
           },
           "gridPos": {
-            "h": 5,
-            "w": 3,
-            "x": 0,
+            "h": 3,
+            "w": 6,
+            "x": 12,
             "y": 1
           },
-          "id": 9,
+          "id": 19,
           "options": {
             "colorMode": "background",
-            "graphMode": "none",
+            "graphMode": "area",
             "justifyMode": "auto",
             "orientation": "auto",
             "reduceOptions": {
@@ -119,16 +323,13 @@ data:
           "targets": [
             {
               "exemplar": true,
-              "expr": "binary_sensor_state{domain=\"binary_sensor\",entity=\"binary_sensor.synologynas_update_available\"}",
-              "format": "time_series",
-              "instant": true,
+              "expr": "homeassistant_binary_sensor_state{entity=\"binary_sensor.synologynas_update_available\"}",
               "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "{{ friendly_name }}",
+              "legendFormat": "",
               "refId": "A"
             }
           ],
-          "title": "Update status",
+          "title": "Update available",
           "type": "stat"
         },
         {
@@ -143,14 +344,25 @@ data:
                   "options": {
                     "0": {
                       "index": 0,
-                      "text": "All OK"
+                      "text": "OK"
                     },
                     "1": {
                       "index": 1,
-                      "text": "Please check"
+                      "text": "NOT OK"
                     }
                   },
                   "type": "value"
+                },
+                {
+                  "options": {
+                    "pattern": "*",
+                    "result": {
+                      "color": "red",
+                      "index": 2,
+                      "text": "ERROR"
+                    }
+                  },
+                  "type": "regex"
                 }
               ],
               "thresholds": {
@@ -162,28 +374,27 @@ data:
                   },
                   {
                     "color": "yellow",
-                    "value": 0.9
+                    "value": 1
                   },
                   {
                     "color": "red",
                     "value": 2
                   }
                 ]
-              },
-              "unit": "short"
+              }
             },
             "overrides": []
           },
           "gridPos": {
-            "h": 5,
-            "w": 2,
-            "x": 3,
+            "h": 3,
+            "w": 6,
+            "x": 18,
             "y": 1
           },
-          "id": 10,
+          "id": 20,
           "options": {
             "colorMode": "background",
-            "graphMode": "none",
+            "graphMode": "area",
             "justifyMode": "auto",
             "orientation": "auto",
             "reduceOptions": {
@@ -200,16 +411,13 @@ data:
           "targets": [
             {
               "exemplar": true,
-              "expr": "binary_sensor_state{domain=\"binary_sensor\",entity=\"binary_sensor.synologynas_security_status\"}",
-              "format": "time_series",
-              "instant": true,
+              "expr": "homeassistant_binary_sensor_state{entity=\"binary_sensor.synologynas_security_status\"}",
               "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "{{ friendly_name }}",
+              "legendFormat": "",
               "refId": "A"
             }
           ],
-          "title": "Security advisor",
+          "title": "Security Status",
           "type": "stat"
         },
         {
@@ -219,10 +427,32 @@ data:
               "color": {
                 "mode": "thresholds"
               },
-              "decimals": 2,
-              "mappings": [],
-              "max": 4,
-              "min": 0,
+              "mappings": [
+                {
+                  "options": {
+                    "0": {
+                      "index": 0,
+                      "text": "OK"
+                    },
+                    "1": {
+                      "index": 1,
+                      "text": "NOT OK"
+                    }
+                  },
+                  "type": "value"
+                },
+                {
+                  "options": {
+                    "pattern": "*",
+                    "result": {
+                      "color": "red",
+                      "index": 2,
+                      "text": "ERROR"
+                    }
+                  },
+                  "type": "regex"
+                }
+              ],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -231,12 +461,8 @@ data:
                     "value": null
                   },
                   {
-                    "color": "yellow",
-                    "value": 3
-                  },
-                  {
                     "color": "red",
-                    "value": 3.5
+                    "value": 1
                   }
                 ]
               }
@@ -244,13 +470,16 @@ data:
             "overrides": []
           },
           "gridPos": {
-            "h": 5,
+            "h": 3,
             "w": 3,
-            "x": 5,
-            "y": 1
+            "x": 12,
+            "y": 4
           },
-          "id": 31,
+          "id": 21,
           "options": {
+            "colorMode": "background",
+            "graphMode": "area",
+            "justifyMode": "auto",
             "orientation": "auto",
             "reduceOptions": {
               "calcs": [
@@ -259,23 +488,21 @@ data:
               "fields": "",
               "values": false
             },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true,
-            "text": {}
+            "text": {},
+            "textMode": "auto"
           },
           "pluginVersion": "8.2.5",
           "targets": [
             {
               "exemplar": true,
-              "expr": "sensor_unit_percent{domain=\"sensor\",entity=\"sensor.synologynas_cpu_load_15_min\",friendly_name=\"synologynas CPU Load (15 min)\"} / 100",
-              "instant": true,
+              "expr": "homeassistant_binary_sensor_state{entity=\"binary_sensor.synologynas_exceeded_max_bad_sectors\"}",
               "interval": "",
               "legendFormat": "",
               "refId": "A"
             }
           ],
-          "title": "CPU Load (15 min)",
-          "type": "gauge"
+          "title": "Max Bad Sectors exc (D1)",
+          "type": "stat"
         },
         {
           "datasource": null,
@@ -284,8 +511,261 @@ data:
               "color": {
                 "mode": "thresholds"
               },
+              "mappings": [
+                {
+                  "options": {
+                    "0": {
+                      "index": 0,
+                      "text": "OK"
+                    },
+                    "1": {
+                      "index": 1,
+                      "text": "NOT OK"
+                    }
+                  },
+                  "type": "value"
+                },
+                {
+                  "options": {
+                    "pattern": "*",
+                    "result": {
+                      "color": "red",
+                      "index": 2,
+                      "text": "ERROR"
+                    }
+                  },
+                  "type": "regex"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 3,
+            "w": 3,
+            "x": 15,
+            "y": 4
+          },
+          "id": 24,
+          "options": {
+            "colorMode": "background",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.2.5",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "homeassistant_binary_sensor_state{entity=\"binary_sensor.synologynas_exceeded_max_bad_sectors\"}",
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            }
+          ],
+          "title": "Max Bad Sectors exc (D2)",
+          "type": "stat"
+        },
+        {
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "0": {
+                      "index": 0,
+                      "text": "OK"
+                    },
+                    "1": {
+                      "index": 1,
+                      "text": "NOT OK"
+                    }
+                  },
+                  "type": "value"
+                },
+                {
+                  "options": {
+                    "pattern": "*",
+                    "result": {
+                      "color": "red",
+                      "index": 2,
+                      "text": "ERROR"
+                    }
+                  },
+                  "type": "regex"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 3,
+            "w": 3,
+            "x": 18,
+            "y": 4
+          },
+          "id": 23,
+          "options": {
+            "colorMode": "background",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.2.5",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "homeassistant_binary_sensor_state{entity=\"binary_sensor.synologynas_exceeded_max_bad_sectors_3\"}",
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            }
+          ],
+          "title": "Max Bad Sectors exc (D3)",
+          "type": "stat"
+        },
+        {
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "0": {
+                      "index": 0,
+                      "text": "OK"
+                    },
+                    "1": {
+                      "index": 1,
+                      "text": "NOT OK"
+                    }
+                  },
+                  "type": "value"
+                },
+                {
+                  "options": {
+                    "pattern": "*",
+                    "result": {
+                      "color": "red",
+                      "index": 2,
+                      "text": "ERROR"
+                    }
+                  },
+                  "type": "regex"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 3,
+            "w": 3,
+            "x": 21,
+            "y": 4
+          },
+          "id": 22,
+          "options": {
+            "colorMode": "background",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.2.5",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "homeassistant_binary_sensor_state{entity=\"binary_sensor.synologynas_exceeded_max_bad_sectors_4\"}",
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            }
+          ],
+          "title": "Max Bad Sectors exc (D4)",
+          "type": "stat"
+        },
+        {
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
               "mappings": [],
-              "max": 70,
+              "max": 1,
               "min": 0,
               "thresholds": {
                 "mode": "percentage",
@@ -296,25 +776,25 @@ data:
                   },
                   {
                     "color": "yellow",
-                    "value": 70
+                    "value": 80
                   },
                   {
                     "color": "red",
-                    "value": 80
+                    "value": 90
                   }
                 ]
               },
-              "unit": "celsius"
+              "unit": "percentunit"
             },
             "overrides": []
           },
           "gridPos": {
-            "h": 5,
-            "w": 3,
-            "x": 8,
-            "y": 1
+            "h": 4,
+            "w": 4,
+            "x": 0,
+            "y": 6
           },
-          "id": 12,
+          "id": 6,
           "options": {
             "orientation": "auto",
             "reduceOptions": {
@@ -332,14 +812,80 @@ data:
           "targets": [
             {
               "exemplar": true,
-              "expr": "temperature_c{domain=\"sensor\",entity=\"sensor.synologynas_temperature\",friendly_name=\"synologynas temperature\"}",
-              "instant": true,
+              "expr": "avg(homeassistant_sensor_unit_load{entity=\"sensor.synologynas_cpu_load_average_5_min\"})",
+              "instant": false,
               "interval": "",
               "legendFormat": "",
               "refId": "A"
             }
           ],
-          "title": "Temperature",
+          "title": "Sys Load (5m avg)",
+          "type": "gauge"
+        },
+        {
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
+              "mappings": [],
+              "max": 1,
+              "min": 0,
+              "thresholds": {
+                "mode": "percentage",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "yellow",
+                    "value": 80
+                  },
+                  {
+                    "color": "red",
+                    "value": 90
+                  }
+                ]
+              },
+              "unit": "percentunit"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 4,
+            "x": 4,
+            "y": 6
+          },
+          "id": 7,
+          "options": {
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true,
+            "text": {}
+          },
+          "pluginVersion": "8.2.5",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "avg(homeassistant_sensor_unit_load{entity=\"sensor.synologynas_cpu_load_average_15_min\"})",
+              "instant": false,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            }
+          ],
+          "title": "Sys Load (15m avg)",
           "type": "gauge"
         },
         {
@@ -375,12 +921,12 @@ data:
             "overrides": []
           },
           "gridPos": {
-            "h": 5,
-            "w": 3,
-            "x": 11,
-            "y": 1
+            "h": 4,
+            "w": 4,
+            "x": 8,
+            "y": 6
           },
-          "id": 18,
+          "id": 10,
           "options": {
             "orientation": "auto",
             "reduceOptions": {
@@ -398,14 +944,14 @@ data:
           "targets": [
             {
               "exemplar": true,
-              "expr": "sensor_unit_percent{domain=\"sensor\",entity=\"sensor.synologynas_volume_1_volume_used\",friendly_name=\"synologynas Volume 1 Volume Used\"} ",
-              "instant": true,
+              "expr": "homeassistant_sensor_unit_percent{entity=\"sensor.synologynas_volume_used\"}",
+              "instant": false,
               "interval": "",
               "legendFormat": "",
               "refId": "A"
             }
           ],
-          "title": "Disk space used (total)",
+          "title": "Volume Used",
           "type": "gauge"
         },
         {
@@ -415,11 +961,348 @@ data:
               "color": {
                 "mode": "thresholds"
               },
+              "mappings": [
+                {
+                  "options": {
+                    "0": {
+                      "index": 0,
+                      "text": "OK"
+                    },
+                    "1": {
+                      "index": 1,
+                      "text": "NOT OK"
+                    }
+                  },
+                  "type": "value"
+                },
+                {
+                  "options": {
+                    "pattern": "*",
+                    "result": {
+                      "color": "red",
+                      "index": 2,
+                      "text": "ERROR"
+                    }
+                  },
+                  "type": "regex"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 3,
+            "w": 3,
+            "x": 12,
+            "y": 7
+          },
+          "id": 25,
+          "options": {
+            "colorMode": "background",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.2.5",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "homeassistant_binary_sensor_state{entity=\"binary_sensor.synologynas_below_min_remaining_life\"}",
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            }
+          ],
+          "title": "Below Min Rem. Life (D1)",
+          "type": "stat"
+        },
+        {
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "0": {
+                      "index": 0,
+                      "text": "OK"
+                    },
+                    "1": {
+                      "index": 1,
+                      "text": "NOT OK"
+                    }
+                  },
+                  "type": "value"
+                },
+                {
+                  "options": {
+                    "pattern": "*",
+                    "result": {
+                      "color": "red",
+                      "index": 2,
+                      "text": "ERROR"
+                    }
+                  },
+                  "type": "regex"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 3,
+            "w": 3,
+            "x": 15,
+            "y": 7
+          },
+          "id": 28,
+          "options": {
+            "colorMode": "background",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.2.5",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "homeassistant_binary_sensor_state{entity=\"binary_sensor.synologynas_below_min_remaining_life_2\"}",
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            }
+          ],
+          "title": "Below Min Rem. Life (D2)",
+          "type": "stat"
+        },
+        {
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "0": {
+                      "index": 0,
+                      "text": "OK"
+                    },
+                    "1": {
+                      "index": 1,
+                      "text": "NOT OK"
+                    }
+                  },
+                  "type": "value"
+                },
+                {
+                  "options": {
+                    "pattern": "*",
+                    "result": {
+                      "color": "red",
+                      "index": 2,
+                      "text": "ERROR"
+                    }
+                  },
+                  "type": "regex"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 3,
+            "w": 3,
+            "x": 18,
+            "y": 7
+          },
+          "id": 27,
+          "options": {
+            "colorMode": "background",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.2.5",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "homeassistant_binary_sensor_state{entity=\"binary_sensor.synologynas_below_min_remaining_life_3\"}",
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            }
+          ],
+          "title": "Below Min Rem. Life (D3)",
+          "type": "stat"
+        },
+        {
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "0": {
+                      "index": 0,
+                      "text": "OK"
+                    },
+                    "1": {
+                      "index": 1,
+                      "text": "NOT OK"
+                    }
+                  },
+                  "type": "value"
+                },
+                {
+                  "options": {
+                    "pattern": "*",
+                    "result": {
+                      "color": "red",
+                      "index": 2,
+                      "text": "ERROR"
+                    }
+                  },
+                  "type": "regex"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 3,
+            "w": 3,
+            "x": 21,
+            "y": 7
+          },
+          "id": 26,
+          "options": {
+            "colorMode": "background",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.2.5",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "homeassistant_binary_sensor_state{entity=\"binary_sensor.synologynas_below_min_remaining_life_4\"}",
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            }
+          ],
+          "title": "Below Min Rem. Life (D4)",
+          "type": "stat"
+        },
+        {
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
               "mappings": [],
-              "max": 4000,
+              "max": 70,
               "min": 0,
               "thresholds": {
-                "mode": "percentage",
+                "mode": "absolute",
                 "steps": [
                   {
                     "color": "green",
@@ -427,25 +1310,25 @@ data:
                   },
                   {
                     "color": "yellow",
-                    "value": 80
+                    "value": 55
                   },
                   {
                     "color": "red",
-                    "value": 90
+                    "value": 65
                   }
                 ]
               },
-              "unit": "decmbytes"
+              "unit": "celsius"
             },
             "overrides": []
           },
           "gridPos": {
-            "h": 5,
-            "w": 3,
-            "x": 14,
-            "y": 1
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 10
           },
-          "id": 29,
+          "id": 30,
           "options": {
             "orientation": "auto",
             "reduceOptions": {
@@ -463,71 +1346,14 @@ data:
           "targets": [
             {
               "exemplar": true,
-              "expr": "sensor_unit_mb{domain=\"sensor\",entity=\"sensor.synologynas_memory_total_real\",friendly_name=\"synologynas Memory Total (Real)\"}",
-              "instant": true,
+              "expr": "homeassistant_sensor_temperature_celsius{entity=~\"sensor.synologynas_temperature.*\"}",
               "interval": "",
-              "legendFormat": "",
+              "legendFormat": " ",
               "refId": "A"
             }
           ],
-          "title": "Memory Total (Real)",
-          "type": "gauge"
-        },
-        {
-          "datasource": null,
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "max": 4000,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "blue",
-                    "value": null
-                  }
-                ]
-              },
-              "unit": "KBs"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 5,
-            "w": 7,
-            "x": 17,
-            "y": 1
-          },
-          "id": 5,
-          "options": {
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true,
-            "text": {}
-          },
-          "pluginVersion": "8.2.5",
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "sensor_unit_kb_per_s{domain=\"sensor\",entity=~\"sensor.synologynas_network_.*\"}",
-              "instant": true,
-              "interval": "",
-              "legendFormat": "{{ friendly_name }}",
-              "refId": "A"
-            }
-          ],
-          "title": "Upload / Download (KB/s)",
+          "title": "Temperatures",
+          "transformations": [],
           "type": "gauge"
         },
         {
@@ -537,749 +1363,12 @@ data:
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 6
+            "y": 16
           },
-          "id": 38,
+          "id": 12,
           "panels": [],
-          "title": "Disk infomations",
+          "title": "Basic CPU / Mem / Net",
           "type": "row"
-        },
-        {
-          "datasource": null,
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [
-                {
-                  "options": {
-                    "0": {
-                      "index": 0,
-                      "text": "OK"
-                    },
-                    "1": {
-                      "index": 1,
-                      "text": "NOT OK"
-                    }
-                  },
-                  "type": "value"
-                },
-                {
-                  "options": {
-                    "match": "null+nan",
-                    "result": {
-                      "index": 2,
-                      "text": "N/A"
-                    }
-                  },
-                  "type": "special"
-                }
-              ],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 1
-                  }
-                ]
-              },
-              "unit": "short"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 5,
-            "w": 4,
-            "x": 0,
-            "y": 7
-          },
-          "id": 20,
-          "options": {
-            "colorMode": "background",
-            "graphMode": "none",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "text": {},
-            "textMode": "auto"
-          },
-          "pluginVersion": "8.2.5",
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "binary_sensor_state{domain=\"binary_sensor\",entity=\"binary_sensor.synologynas_drive_1_exceeded_max_bad_sectors\",friendly_name=\"synologynas Drive 1 Exceeded Max Bad Sectors\"}",
-              "interval": "",
-              "legendFormat": "",
-              "refId": "A"
-            }
-          ],
-          "title": "Drive 1 Exceeded Max Bad Sectors",
-          "type": "stat"
-        },
-        {
-          "datasource": null,
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [
-                {
-                  "options": {
-                    "0": {
-                      "index": 0,
-                      "text": "OK"
-                    },
-                    "1": {
-                      "index": 1,
-                      "text": "NOT OK"
-                    }
-                  },
-                  "type": "value"
-                },
-                {
-                  "options": {
-                    "match": "null+nan",
-                    "result": {
-                      "index": 2,
-                      "text": "N/A"
-                    }
-                  },
-                  "type": "special"
-                }
-              ],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 1
-                  }
-                ]
-              },
-              "unit": "short"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 5,
-            "w": 4,
-            "x": 4,
-            "y": 7
-          },
-          "id": 23,
-          "options": {
-            "colorMode": "background",
-            "graphMode": "none",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "text": {},
-            "textMode": "auto"
-          },
-          "pluginVersion": "8.2.5",
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "binary_sensor_state{domain=\"binary_sensor\",entity=\"binary_sensor.synologynas_drive_2_exceeded_max_bad_sectors\",friendly_name=\"synologynas Drive 2 Exceeded Max Bad Sectors\"}",
-              "interval": "",
-              "legendFormat": "",
-              "refId": "A"
-            }
-          ],
-          "title": "Drive 2 Exceeded Max Bad Sectors",
-          "type": "stat"
-        },
-        {
-          "datasource": null,
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [
-                {
-                  "options": {
-                    "0": {
-                      "index": 0,
-                      "text": "OK"
-                    },
-                    "1": {
-                      "index": 1,
-                      "text": "NOT OK"
-                    }
-                  },
-                  "type": "value"
-                },
-                {
-                  "options": {
-                    "match": "null+nan",
-                    "result": {
-                      "index": 2,
-                      "text": "N/A"
-                    }
-                  },
-                  "type": "special"
-                }
-              ],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 1
-                  }
-                ]
-              },
-              "unit": "short"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 5,
-            "w": 4,
-            "x": 8,
-            "y": 7
-          },
-          "id": 22,
-          "options": {
-            "colorMode": "background",
-            "graphMode": "none",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "text": {},
-            "textMode": "auto"
-          },
-          "pluginVersion": "8.2.5",
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "binary_sensor_state{domain=\"binary_sensor\",entity=\"binary_sensor.synologynas_drive_3_exceeded_max_bad_sectors\",friendly_name=\"synologynas Drive 3 Exceeded Max Bad Sectors\"}",
-              "interval": "",
-              "legendFormat": "",
-              "refId": "A"
-            }
-          ],
-          "title": "Drive 3 Exceeded Max Bad Sectors",
-          "type": "stat"
-        },
-        {
-          "datasource": null,
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [
-                {
-                  "options": {
-                    "0": {
-                      "index": 0,
-                      "text": "OK"
-                    },
-                    "1": {
-                      "index": 1,
-                      "text": "NOT OK"
-                    }
-                  },
-                  "type": "value"
-                },
-                {
-                  "options": {
-                    "match": "null+nan",
-                    "result": {
-                      "index": 2,
-                      "text": "N/A"
-                    }
-                  },
-                  "type": "special"
-                }
-              ],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 1
-                  }
-                ]
-              },
-              "unit": "short"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 5,
-            "w": 4,
-            "x": 12,
-            "y": 7
-          },
-          "id": 21,
-          "options": {
-            "colorMode": "background",
-            "graphMode": "none",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "text": {},
-            "textMode": "auto"
-          },
-          "pluginVersion": "8.2.5",
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "binary_sensor_state{domain=\"binary_sensor\",entity=\"binary_sensor.synologynas_drive_4_exceeded_max_bad_sectors\",friendly_name=\"synologynas Drive 4 Exceeded Max Bad Sectors\"}",
-              "interval": "",
-              "legendFormat": "",
-              "refId": "A"
-            }
-          ],
-          "title": "Drive 4 Exceeded Max Bad Sectors",
-          "type": "stat"
-        },
-        {
-          "datasource": null,
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "max": 70,
-              "min": 0,
-              "thresholds": {
-                "mode": "percentage",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "#EAB839",
-                    "value": 70
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "celsius"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 10,
-            "w": 8,
-            "x": 16,
-            "y": 7
-          },
-          "id": 3,
-          "options": {
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true,
-            "text": {}
-          },
-          "pluginVersion": "8.2.5",
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "temperature_c{domain=\"sensor\",entity=~\"sensor.synologynas_drive.*\"}",
-              "instant": true,
-              "interval": "",
-              "legendFormat": "{{ friendly_name }}",
-              "refId": "A"
-            }
-          ],
-          "title": "Drive temperatures",
-          "type": "gauge"
-        },
-        {
-          "datasource": null,
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [
-                {
-                  "options": {
-                    "0": {
-                      "index": 0,
-                      "text": "OK"
-                    },
-                    "1": {
-                      "index": 1,
-                      "text": "NOT OK"
-                    }
-                  },
-                  "type": "value"
-                },
-                {
-                  "options": {
-                    "match": "null+nan",
-                    "result": {
-                      "index": 2,
-                      "text": "N/A"
-                    }
-                  },
-                  "type": "special"
-                }
-              ],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 1
-                  }
-                ]
-              },
-              "unit": "short"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 5,
-            "w": 4,
-            "x": 0,
-            "y": 12
-          },
-          "id": 24,
-          "options": {
-            "colorMode": "background",
-            "graphMode": "none",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "text": {},
-            "textMode": "auto"
-          },
-          "pluginVersion": "8.2.5",
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "binary_sensor_state{domain=\"binary_sensor\",entity=\"binary_sensor.synologynas_drive_1_below_min_remaining_life\",friendly_name=\"synologynas Drive 1 Below Min Remaining Life\"}",
-              "interval": "",
-              "legendFormat": "",
-              "refId": "A"
-            }
-          ],
-          "title": "Drive 1 Below Min Remaining Life",
-          "type": "stat"
-        },
-        {
-          "datasource": null,
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [
-                {
-                  "options": {
-                    "0": {
-                      "index": 0,
-                      "text": "OK"
-                    },
-                    "1": {
-                      "index": 1,
-                      "text": "NOT OK"
-                    }
-                  },
-                  "type": "value"
-                },
-                {
-                  "options": {
-                    "match": "null+nan",
-                    "result": {
-                      "index": 2,
-                      "text": "N/A"
-                    }
-                  },
-                  "type": "special"
-                }
-              ],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 1
-                  }
-                ]
-              },
-              "unit": "short"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 5,
-            "w": 4,
-            "x": 4,
-            "y": 12
-          },
-          "id": 27,
-          "options": {
-            "colorMode": "background",
-            "graphMode": "none",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "text": {},
-            "textMode": "auto"
-          },
-          "pluginVersion": "8.2.5",
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "binary_sensor_state{domain=\"binary_sensor\",entity=\"binary_sensor.synologynas_drive_2_below_min_remaining_life\",friendly_name=\"synologynas Drive 2 Below Min Remaining Life\"}",
-              "interval": "",
-              "legendFormat": "",
-              "refId": "A"
-            }
-          ],
-          "title": "Drive 2 Below Min Remaining Life",
-          "type": "stat"
-        },
-        {
-          "datasource": null,
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [
-                {
-                  "options": {
-                    "0": {
-                      "index": 0,
-                      "text": "OK"
-                    },
-                    "1": {
-                      "index": 1,
-                      "text": "NOT OK"
-                    }
-                  },
-                  "type": "value"
-                },
-                {
-                  "options": {
-                    "match": "null+nan",
-                    "result": {
-                      "index": 2,
-                      "text": "N/A"
-                    }
-                  },
-                  "type": "special"
-                }
-              ],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 1
-                  }
-                ]
-              },
-              "unit": "short"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 5,
-            "w": 4,
-            "x": 8,
-            "y": 12
-          },
-          "id": 25,
-          "options": {
-            "colorMode": "background",
-            "graphMode": "none",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "text": {},
-            "textMode": "auto"
-          },
-          "pluginVersion": "8.2.5",
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "binary_sensor_state{domain=\"binary_sensor\",entity=\"binary_sensor.synologynas_drive_3_below_min_remaining_life\",friendly_name=\"synologynas Drive 3 Below Min Remaining Life\"}",
-              "interval": "",
-              "legendFormat": "",
-              "refId": "A"
-            }
-          ],
-          "title": "Drive 3 Below Min Remaining Life",
-          "type": "stat"
-        },
-        {
-          "datasource": null,
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [
-                {
-                  "options": {
-                    "0": {
-                      "index": 0,
-                      "text": "OK"
-                    },
-                    "1": {
-                      "index": 1,
-                      "text": "NOT OK"
-                    }
-                  },
-                  "type": "value"
-                },
-                {
-                  "options": {
-                    "match": "null+nan",
-                    "result": {
-                      "index": 2,
-                      "text": "N/A"
-                    }
-                  },
-                  "type": "special"
-                }
-              ],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 1
-                  }
-                ]
-              },
-              "unit": "short"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 5,
-            "w": 4,
-            "x": 12,
-            "y": 12
-          },
-          "id": 26,
-          "options": {
-            "colorMode": "background",
-            "graphMode": "none",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "text": {},
-            "textMode": "auto"
-          },
-          "pluginVersion": "8.2.5",
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "binary_sensor_state{domain=\"binary_sensor\",entity=\"binary_sensor.synologynas_drive_4_below_min_remaining_life\",friendly_name=\"synologynas Drive 4 Below Min Remaining Life\"}",
-              "interval": "",
-              "legendFormat": "",
-              "refId": "A"
-            }
-          ],
-          "title": "Drive 4 Below Min Remaining Life",
-          "type": "stat"
         },
         {
           "datasource": null,
@@ -1289,24 +1378,27 @@ data:
                 "mode": "palette-classic"
               },
               "custom": {
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
+                "axisLabel": "Percent",
+                "axisPlacement": "left",
+                "barAlignment": 1,
                 "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
+                "fillOpacity": 100,
+                "gradientMode": "opacity",
                 "hideFrom": {
                   "legend": false,
                   "tooltip": false,
                   "viz": false
                 },
-                "lineInterpolation": "linear",
+                "lineInterpolation": "smooth",
+                "lineStyle": {
+                  "fill": "solid"
+                },
                 "lineWidth": 1,
                 "pointSize": 5,
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -1316,7 +1408,6 @@ data:
                   "mode": "off"
                 }
               },
-              "decimals": 2,
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
@@ -1326,32 +1417,206 @@ data:
                     "value": null
                   },
                   {
-                    "color": "yellow",
-                    "value": 45
-                  },
-                  {
                     "color": "red",
-                    "value": 55
+                    "value": 80
                   }
                 ]
               },
-              "unit": "celsius"
+              "unit": "percent"
             },
             "overrides": []
           },
           "gridPos": {
-            "h": 11,
+            "h": 8,
             "w": 12,
             "x": 0,
             "y": 17
           },
-          "id": 36,
+          "id": 14,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "homeassistant_sensor_unit_percent{entity=\"sensor.synologynas_cpu_utilization_total\"}",
+              "interval": "",
+              "legendFormat": "{{ friendly_name }}",
+              "refId": "A"
+            },
+            {
+              "exemplar": true,
+              "expr": "homeassistant_sensor_unit_percent{entity=\"sensor.synologynas_cpu_utilization_user\"}",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "{{ friendly_name }}",
+              "refId": "B"
+            }
+          ],
+          "title": "CPU basic",
+          "type": "timeseries"
+        },
+        {
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "Percent",
+                "axisPlacement": "left",
+                "barAlignment": 1,
+                "drawStyle": "line",
+                "fillOpacity": 100,
+                "gradientMode": "opacity",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "smooth",
+                "lineStyle": {
+                  "fill": "solid"
+                },
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 17
+          },
+          "id": 15,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "homeassistant_sensor_unit_percent{entity=\"sensor.synologynas_memory_usage_real\"}",
+              "interval": "",
+              "legendFormat": "{{ friendly_name }}",
+              "refId": "A"
+            }
+          ],
+          "title": "Memory basic",
+          "type": "timeseries"
+        },
+        {
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "kilobyte / sec",
+                "axisPlacement": "left",
+                "barAlignment": 1,
+                "drawStyle": "line",
+                "fillOpacity": 100,
+                "gradientMode": "opacity",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "smooth",
+                "lineStyle": {
+                  "fill": "solid"
+                },
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "KBs"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 25
+          },
+          "id": 16,
           "options": {
             "legend": {
               "calcs": [
-                "min",
                 "max",
-                "mean"
+                "mean",
+                "lastNotNull"
               ],
               "displayMode": "table",
               "placement": "bottom"
@@ -1363,13 +1628,21 @@ data:
           "targets": [
             {
               "exemplar": true,
-              "expr": "temperature_c{domain=\"sensor\",entity=~\"sensor.synologynas_drive.*\"}",
+              "expr": "homeassistant_sensor_unit_kb_per_s{entity=\"sensor.synologynas_download_throughput\"}",
               "interval": "",
               "legendFormat": "{{ friendly_name }}",
               "refId": "A"
+            },
+            {
+              "exemplar": true,
+              "expr": "homeassistant_sensor_unit_kb_per_s{entity=\"sensor.synologynas_upload_throughput\"}",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "{{ friendly_name }}",
+              "refId": "B"
             }
           ],
-          "title": "Drive temperatures",
+          "title": "Download / Upload basic",
           "type": "timeseries"
         },
         {
@@ -1380,24 +1653,27 @@ data:
                 "mode": "palette-classic"
               },
               "custom": {
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
+                "axisLabel": "terabyte",
+                "axisPlacement": "left",
+                "barAlignment": 1,
                 "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
+                "fillOpacity": 100,
+                "gradientMode": "opacity",
                 "hideFrom": {
                   "legend": false,
                   "tooltip": false,
                   "viz": false
                 },
-                "lineInterpolation": "linear",
+                "lineInterpolation": "smooth",
+                "lineStyle": {
+                  "fill": "solid"
+                },
                 "lineWidth": 1,
                 "pointSize": 5,
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -1426,16 +1702,16 @@ data:
             "overrides": []
           },
           "gridPos": {
-            "h": 11,
+            "h": 8,
             "w": 12,
             "x": 12,
-            "y": 17
+            "y": 25
           },
-          "id": 7,
+          "id": 17,
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
@@ -1445,279 +1721,16 @@ data:
           "targets": [
             {
               "exemplar": true,
-              "expr": "sensor_unit_tb{domain=\"sensor\",entity=\"sensor.synologynas_volume_1_used_space\",friendly_name=\"synologynas Volume 1 Used Space\"}",
-              "interval": "",
-              "legendFormat": "",
-              "refId": "A"
-            }
-          ],
-          "title": "Volume 1 Used Space",
-          "type": "timeseries"
-        },
-        {
-          "collapsed": false,
-          "datasource": null,
-          "gridPos": {
-            "h": 1,
-            "w": 24,
-            "x": 0,
-            "y": 28
-          },
-          "id": 16,
-          "panels": [],
-          "title": "CPU Usage",
-          "type": "row"
-        },
-        {
-          "datasource": null,
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "decimals": 2,
-              "mappings": [],
-              "max": 4,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "yellow",
-                    "value": 3
-                  },
-                  {
-                    "color": "red",
-                    "value": 3.5
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 24,
-            "x": 0,
-            "y": 29
-          },
-          "id": 2,
-          "options": {
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true,
-            "text": {}
-          },
-          "pluginVersion": "8.2.5",
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "sensor_unit_percent{domain=\"sensor\",entity=~\"sensor.synologynas_cpu_.*\"} / 100",
-              "instant": true,
+              "expr": "homeassistant_sensor_unit_tb",
               "interval": "",
               "legendFormat": "{{ friendly_name }}",
               "refId": "A"
             }
           ],
-          "title": "CPU Load Synology NAS",
-          "type": "gauge"
-        },
-        {
-          "datasource": null,
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "decimals": 2,
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 10,
-            "w": 24,
-            "x": 0,
-            "y": 37
-          },
-          "id": 33,
-          "options": {
-            "legend": {
-              "calcs": [
-                "min",
-                "max",
-                "mean"
-              ],
-              "displayMode": "table",
-              "placement": "right"
-            },
-            "tooltip": {
-              "mode": "single"
-            }
-          },
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "sensor_unit_percent{domain=\"sensor\",entity=~\"sensor.synologynas_cpu_.*\"} / 100",
-              "interval": "",
-              "legendFormat": "{{ friendly_name }}",
-              "refId": "A"
-            }
-          ],
-          "title": "CPU Load Synology NAS",
-          "type": "timeseries"
-        },
-        {
-          "collapsed": false,
-          "datasource": null,
-          "gridPos": {
-            "h": 1,
-            "w": 24,
-            "x": 0,
-            "y": 47
-          },
-          "id": 41,
-          "panels": [],
-          "title": "Network",
-          "type": "row"
-        },
-        {
-          "datasource": null,
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "decimals": 2,
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  }
-                ]
-              },
-              "unit": "KBs"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 10,
-            "w": 24,
-            "x": 0,
-            "y": 48
-          },
-          "id": 39,
-          "options": {
-            "legend": {
-              "calcs": [
-                "min",
-                "max",
-                "mean"
-              ],
-              "displayMode": "table",
-              "placement": "bottom"
-            },
-            "tooltip": {
-              "mode": "single"
-            }
-          },
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "sensor_unit_kb_per_s{domain=\"sensor\",entity=~\"sensor.synologynas_network_.*\"}",
-              "interval": "",
-              "legendFormat": "{{ friendly_name }}",
-              "refId": "A"
-            }
-          ],
-          "title": "Network sent / recieved",
+          "title": "Used space",
           "type": "timeseries"
         }
       ],
-      "refresh": "5s",
       "schemaVersion": 32,
       "style": "dark",
       "tags": [],
@@ -1732,5 +1745,5 @@ data:
       "timezone": "",
       "title": "Synology NAS",
       "uid": "synology-nas",
-      "version": 0
+      "version": 6
     }
