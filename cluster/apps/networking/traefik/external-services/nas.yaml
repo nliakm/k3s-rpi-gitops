@@ -13,6 +13,20 @@ spec:
   type: ClusterIP
 ---
 apiVersion: v1
+kind: Service
+metadata:
+  name: nas-webdav
+  namespace: networking
+spec:
+  ports:
+  - name: webdav
+    port: 80
+    protocol: TCP
+    targetPort: 5005
+  clusterIP: None
+  type: ClusterIP
+---
+apiVersion: v1
 kind: Endpoints
 metadata:
   name: nas-external
@@ -23,6 +37,19 @@ subsets:
   ports:
   - name: app
     port: 5000
+    protocol: TCP
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: nas-webdav
+  namespace: networking
+subsets:
+- addresses:
+  - ip: ${NFS_SERVER}
+  ports:
+  - name: webdav
+    port: 5005
     protocol: TCP
 ---
 apiVersion: networking.k8s.io/v1
@@ -53,3 +80,10 @@ spec:
                 name: nas-external
                 port:
                   number: 80
+          - path: /webdav
+            pathType: Prefix
+            backend:
+              service:
+                name: nas-webdav
+                port:
+                  number: 80                  
