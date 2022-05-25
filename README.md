@@ -6,7 +6,7 @@ This repo was templated from https://github.com/k8s-at-home/template-cluster-k3s
 
 The following components will be installed in the [k3s](https://k3s.io/) cluster by default. 
 
-- [cert-manager](https://cert-manager.io/) - SSL selfsigned certificates
+- [cert-manager](https://cert-manager.io/) - Operator to request SSL certificates and store them as Kubernetes resources
 - [calico](https://www.tigera.io/project-calico/) - CNI (container network interface)
 - [flux](https://toolkit.fluxcd.io/) - GitOps tool for deploying manifests from the `cluster` directory
 - [hajimari](https://github.com/toboshii/hajimari) - start page with ingress discovery
@@ -20,7 +20,9 @@ The following components will be installed in the [k3s](https://k3s.io/) cluster
 - [prometheus-kube-stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack) - prometheus operator with alertmanager
 - [blackbox-exporter](https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-blackbox-exporter) - Exporter for prometheus to monitor HTTP/ICMP endpoints
 - [alertmanager-discord](https://github.com/benjojo/alertmanager-discord) - Allows alerting to discord
-- [grafana](https://github.com/grafana/helm-charts/tree/main/charts/grafana) Webdashboard to visualize prometheus metrics
+- [grafana](https://github.com/grafana/helm-charts/tree/main/charts/grafana) - Webdashboard to visualize prometheus metrics
+- [home-assistant](https://www.home-assistant.io/) - Open source home automation platform
+- [tandoorrecipes](https://tandoor.dev/) - recipe manager that allows management of digital recipes
 
 For provisioning the following tools will be used:
 
