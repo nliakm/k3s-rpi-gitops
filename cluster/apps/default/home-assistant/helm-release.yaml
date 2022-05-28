@@ -141,3 +141,12 @@ spec:
               description: |-
                 {{ $labels.friendly_name }}. 
                 Actions to take: https://kb.synology.com/en-global/DSM/tutorial/How_to_diagnose_drives_health_status_when_receiving_bad_sector_warning
+          - alert: TargetTempTooHigh
+            expr: homeassistant_climate_target_temperature_celsius > 22
+            for: 2h
+            labels:
+              severity: critical
+            annotations:
+              summary: Target temperature too high
+              description: "The target temperature for thermostat {{ $labels.friendly_name }} is too high for too long."
+                
