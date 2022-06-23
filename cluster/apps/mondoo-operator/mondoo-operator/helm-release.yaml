@@ -12,7 +12,7 @@ spec:
       version: 0.4.2
       sourceRef:
         kind: GitRepository
-        name: mondoo
+        name: mondoo-operator
         namespace: flux-system
       interval: 5m
   values:
