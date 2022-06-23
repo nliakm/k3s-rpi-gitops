@@ -1,10 +1,16 @@
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta1
-kind: HelmRepository
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
 metadata:
-  name: mondoo-charts
+  name: mondoo
   namespace: flux-system
 spec:
   interval: 1m
-  url: https://mondoohq.github.io/mondoo-operator
-  timeout: 3m
+  url: https://github.com/mondoohq/mondoo-operator
+  ref:
+    branch: main
+  ignore: |
+    # exclude all
+    /*
+    # include charts directory
+    !/charts/mondoo-operator/

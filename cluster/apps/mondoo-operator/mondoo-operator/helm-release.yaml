@@ -4,11 +4,17 @@ kind: HelmRelease
 metadata:
   name: mondoo
   namespace: mondoo-operator
-spec:  
+spec:
+  interval: 5m
   chart:
-    repository: https://mondoohq.github.io/mondoo-operator
-    name: mondoo-operator
-    version: 0.4.2
+    spec:
+      chart: mondoo-operator
+      version: 0.4.2
+      sourceRef:
+        kind: GitRepository
+        name: mondoo
+        namespace: flux-system
+      interval: 5m
   values:
     controllerManager:
       manager:
