@@ -8,14 +8,11 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://mondoohq.github.io/mondoo-operator
-      chart: mondoo/mondoo-operator
-      version: 0.4.2
-      sourceRef:
-        kind: HelmRepository
-        name: mondoo-charts
+      chart:
+        repository: https://mondoohq.github.io/mondoo-operator
+        name: mondoo-operator
+        version: 0.4.2
         namespace: flux-system
-      interval: 5m
   values:
     controllerManager:
       manager:
