@@ -4,5 +4,6 @@ resources:
   - cert-manager.yaml
   - metallb-system.yaml
   - monitoring.yaml
+  - mondoo-operator.yaml
   - networking.yaml
   - nfs-provisioner.yaml

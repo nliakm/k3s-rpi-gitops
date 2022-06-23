@@ -1,0 +1,48 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: mondoo
+  namespace: mondoo-operator
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://mondoohq.github.io/mondoo-operator
+      chart: mondoo
+      version: 0.4.2
+      sourceRef:
+        kind: HelmRepository
+        name: mondoo-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    controllerManager:
+      manager:
+        image:
+          repository: ghcr.io/mondoohq/mondoo-operator
+          tag: v0.4.2
+        resources:
+          requests:
+            cpu: 200m
+            memory: 100Mi
+      replicas: 1
+    kubernetesClusterDomain: cluster.local
+    managerConfig:
+      controllerManagerConfigYaml:
+        health:
+          healthProbeBindAddress: :8081
+        leaderElection:
+          leaderElect: true
+          resourceName: 60679458.mondoo.com
+        metrics:
+          bindAddress: 127.0.0.1:8080
+        webhook:
+          port: 9443
+    metricsService:
+      ports:
+      - name: metrics
+        port: 8080
+        protocol: TCP
+        targetPort: metrics
+      type: ClusterIP

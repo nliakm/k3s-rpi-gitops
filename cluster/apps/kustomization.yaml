@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - default
   - kube-system
+  - mondoo-operator
   - monitoring
   - networking
   - system-upgrade
