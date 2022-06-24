@@ -1,0 +1,57 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+    hajimari.io/enable: "true"
+    hajimari.io/icon: "chef-hat"
+  name: recipes
+  namespace: default
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`rezepte.${SECRET_DOMAIN}`) && PathPrefix(`/`)
+      kind: Rule
+      middlewares:
+        - name: recipes-headers
+      services:
+        - kind: Service
+          name: recipes
+          namespace: default
+          port: 8080
+    - match: Host(`rezepte.${SECRET_DOMAIN}`) && PathPrefix(`/media`)
+      kind: Rule
+      middlewares:
+        - name: recipes-headers
+      services:
+        - kind: Service
+          name: recipes
+          namespace: default
+          port: 80
+    - match: Host(`rezepte.${SECRET_DOMAIN}`) && PathPrefix(`/static`)
+      kind: Rule
+      middlewares:
+        - name: recipes-headers
+      services:
+        - kind: Service
+          name: recipes
+          namespace: default
+          port: 80
+  tls:
+    secretName: "recipes-tls-secret"
+    certResolver: letsencrypt-production
+    domains:
+    - main: "rezepte.${SECRET_DOMAIN}"
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: recipes-headers
+  namespace: default
+spec:
+  headers:
+    customResponseHeaders:
+      X-Frame-Options: ""
