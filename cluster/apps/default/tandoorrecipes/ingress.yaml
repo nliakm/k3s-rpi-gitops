@@ -8,6 +8,7 @@ metadata:
     hajimari.io/icon: "chef-hat"
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     ingress.kubernetes.io/custom-frame-options-value: ""
+    ingress.kubernetes.io/frame-deny: "false"
   name: recipes
   namespace: default
 spec:
