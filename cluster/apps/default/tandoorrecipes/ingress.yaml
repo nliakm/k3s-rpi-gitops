@@ -6,7 +6,8 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt-production"
     hajimari.io/enable: "true"
     hajimari.io/icon: "chef-hat"
-    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"    
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+    ingress.kubernetes.io/custom-frame-options-value: ""
   name: recipes
   namespace: default
 spec:
