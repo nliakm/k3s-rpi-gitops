@@ -23,7 +23,7 @@ spec:
           namespace: default
           port: 5000
   tls:
-    secretName: "scraang-tls-secret"
+    secretName: "scraang-web-tls"
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
