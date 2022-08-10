@@ -37,7 +37,7 @@ spec:
           - name: MIN
             value: "59"
           - name: MARKETNAMES
-            value: "REWE,Penny-Markt,EDEKA"
+            value: "REWE,Penny-Markt,EDEKA,GLOBUS"
           - name: LATITUDE
             valueFrom:
               secretKeyRef:
@@ -54,7 +54,7 @@ spec:
         ports:
         - containerPort: 5000
           protocol: TCP
-          name: http        
+          name: http
         volumeMounts:
           - mountPath: /var/offers
             name: www
@@ -66,7 +66,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: default-secrets
-                key: HASS_BEARER_TOKEN            
+                key: HASS_BEARER_TOKEN
         livenessProbe:
           failureThreshold: 5
           httpGet:
@@ -79,7 +79,7 @@ spec:
             path: /
             port: 5000
             scheme: HTTP
-          periodSeconds: 30        
+          periodSeconds: 30
       volumes:
         - name: www
           persistentVolumeClaim:
