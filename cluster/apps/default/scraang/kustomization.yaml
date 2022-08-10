@@ -4,5 +4,5 @@ resources:
   - config-pvc.yaml
   - deployment.yaml
   - service.yaml
-#  - ingress.yaml
-  - ingressroute.yaml
+  - ingress.yaml
+#  - ingressroute.yaml
