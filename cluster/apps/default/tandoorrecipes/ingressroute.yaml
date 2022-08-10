@@ -11,7 +11,7 @@ metadata:
   namespace: default
 spec:
   entryPoints:
-    - websecure
+    - "websecure"
   routes:
     - match: Host(`rezepte.${SECRET_DOMAIN}`) && PathPrefix(`/`)
       kind: Rule
