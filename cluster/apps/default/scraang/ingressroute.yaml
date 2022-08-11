@@ -5,6 +5,8 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "traefik"
     cert-manager.io/cluster-issuer: "letsencrypt-production"
+    cert-manager.io/acme-challenge-type: dns01
+    cert-manager.io/acme-dns01-provider: cloudflare    
     hajimari.io/enable: "true"
     hajimari.io/icon: "tag"
   name: scraang
@@ -23,7 +25,7 @@ spec:
           namespace: default
           port: 5000
   tls:
-    secretName: "scraang-web-tls"
+    secretName: "tls-wildcard-secret"
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
