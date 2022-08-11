@@ -4,7 +4,6 @@ kind: IngressRoute
 metadata:
   annotations:
     kubernetes.io/ingress.class: "traefik"
-    cert-manager.io/cluster-issuer: "letsencrypt-production"
     hajimari.io/enable: "true"
     hajimari.io/icon: "chef-hat"
   name: recipes
@@ -41,10 +40,9 @@ spec:
           namespace: default
           port: 80
   tls:
-    secretName: "recipes-tls-secret"
-    certResolver: letsencrypt-production
+    secretName: "tls-wildcard-secret"
     domains:
-    - main: "rezepte.${SECRET_DOMAIN}"
+    - main: "*.${SECRET_DOMAIN}"
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware

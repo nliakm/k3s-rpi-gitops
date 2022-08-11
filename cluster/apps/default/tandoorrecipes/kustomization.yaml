@@ -8,4 +8,5 @@ resources:
   - service-db.yaml
   - deployment.yaml
   - service-app.yaml
-  - ingress.yaml
+#  - ingress.yaml
+  - ingressroute.yaml

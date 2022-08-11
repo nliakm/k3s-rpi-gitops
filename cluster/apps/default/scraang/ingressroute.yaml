@@ -4,9 +4,6 @@ kind: IngressRoute
 metadata:
   annotations:
     kubernetes.io/ingress.class: "traefik"
-    cert-manager.io/cluster-issuer: "letsencrypt-production"
-    cert-manager.io/acme-challenge-type: dns01
-    cert-manager.io/acme-dns01-provider: cloudflare    
     hajimari.io/enable: "true"
     hajimari.io/icon: "tag"
   name: scraang

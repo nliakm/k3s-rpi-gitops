@@ -3,7 +3,6 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: "traefik"
-    cert-manager.io/cluster-issuer: "letsencrypt-production"
     hajimari.io/enable: "true"
     hajimari.io/icon: "chef-hat"
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
@@ -14,8 +13,8 @@ metadata:
 spec:
   tls:
   - hosts:
-     - "rezepte.${SECRET_DOMAIN}"
-    secretName: "recipes-tls-secret"
+     - "*.${SECRET_DOMAIN}"
+    secretName: "tls-wildcard-secret"
   rules:
   - host: "rezepte.${SECRET_DOMAIN}"
     http:

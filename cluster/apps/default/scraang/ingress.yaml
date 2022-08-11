@@ -14,8 +14,8 @@ spec:
   ingressClassName: "traefik"
   tls:
     - hosts:
-        - "scraang.${SECRET_DOMAIN}"
-      secretName: "scraang-web-tls"
+        - "*.${SECRET_DOMAIN}"
+      secretName: "tls-wildcard-secret"
   rules:
     - host: "scraang.${SECRET_DOMAIN}"
       http:
