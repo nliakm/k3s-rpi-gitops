@@ -74,12 +74,13 @@ spec:
             port: 5000
             scheme: HTTP
           periodSeconds: 30
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 5000
-            scheme: HTTP
-          periodSeconds: 30
+        # readinessProbe:
+        #   failureThreshold: 5
+        #   httpGet:
+        #     path: /
+        #     port: 5000
+        #     scheme: HTTP
+        #   periodSeconds: 30
       volumes:
         - name: www
           persistentVolumeClaim:
