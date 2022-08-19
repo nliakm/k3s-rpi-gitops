@@ -718,7 +718,7 @@ spec:
               - "argocd.${SECRET_DOMAIN}"
             secretName: "argocd-tls-secret"
         # -- Uses `server.service.servicePortHttps` instead `server.service.servicePortHttp`
-        https: false
+        https: true
       # -- Manage Argo CD configmap (Declarative Setup)
       ## Ref: https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/argocd-cm.yaml
       configEnabled: true
