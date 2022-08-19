@@ -702,29 +702,21 @@ spec:
       ingress:
         # -- Enable an ingress resource for the Argo CD server
         enabled: true
-        # -- Additional ingress annotations
+        ingressClassName: "traefik"
         annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"        
           hajimari.io/enable: "true"
           hajimari.io/icon: "sitemap"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-        # -- Defines which ingress controller will implement the resource
-        ingressClassName: "traefik"
-        # -- List of ingress hosts
-        ## Argo Ingress.
-        ## Hostnames must be provided if Ingress is enabled.
-        ## Secrets must be manually created in the namespace
         hosts:
-          - "argocd.${SECRET_DOMAIN}"
-        # -- List of ingress paths
-        paths:
-          - /
-        # -- Ingress path type. One of `Exact`, `Prefix` or `ImplementationSpecific`
-        pathType: Prefix
-        # -- Ingress TLS configuration
+          - host: "argocd.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
         tls:
-          - secretName: argocd-tls-certificate
-            hosts:
+          - hosts:
               - "argocd.${SECRET_DOMAIN}"
+            secretName: "argocd-tls-secret"
         # -- Uses `server.service.servicePortHttps` instead `server.service.servicePortHttp`
         https: false
       # -- Manage Argo CD configmap (Declarative Setup)
