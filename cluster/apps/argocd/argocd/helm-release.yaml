@@ -707,7 +707,7 @@ spec:
           cert-manager.io/cluster-issuer: "letsencrypt-production"        
           hajimari.io/enable: "true"
           hajimari.io/icon: "sitemap"
-          hajimari.io/appName: "ArgoCD"
+          hajimari.io/appName: "argocd"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
           - host: "argocd.${SECRET_DOMAIN}"
