@@ -247,271 +247,271 @@ spec:
     # -- Secrets with credentials to pull images from a private registry
     imagePullSecrets: []
 
-## Dex
-dex:
-  # -- Enable dex
-  enabled: true
-  # -- Dex name
-  name: dex-server
+  ## Dex
+  dex:
+    # -- Enable dex
+    enabled: true
+    # -- Dex name
+    name: dex-server
 
-  metrics:
-    # -- Deploy metrics service
-    enabled: false
-    service:
-      # -- Metrics service annotations
-      annotations: {}
-      # -- Metrics service labels
-      labels: {}
-      # -- Metrics service port name
-      portName: http-metrics
-    serviceMonitor:
-      # -- Enable a prometheus ServiceMonitor
+    metrics:
+      # -- Deploy metrics service
       enabled: false
-      # -- Prometheus ServiceMonitor interval
-      interval: 30s
-      # -- Prometheus [RelabelConfigs] to apply to samples before scraping
-      relabelings: []
-      # -- Prometheus [MetricRelabelConfigs] to apply to samples before ingestion
-      metricRelabelings: []
-      # -- Prometheus ServiceMonitor selector
-      selector: {}
-      # prometheus: kube-prometheus
+      service:
+        # -- Metrics service annotations
+        annotations: {}
+        # -- Metrics service labels
+        labels: {}
+        # -- Metrics service port name
+        portName: http-metrics
+      serviceMonitor:
+        # -- Enable a prometheus ServiceMonitor
+        enabled: false
+        # -- Prometheus ServiceMonitor interval
+        interval: 30s
+        # -- Prometheus [RelabelConfigs] to apply to samples before scraping
+        relabelings: []
+        # -- Prometheus [MetricRelabelConfigs] to apply to samples before ingestion
+        metricRelabelings: []
+        # -- Prometheus ServiceMonitor selector
+        selector: {}
+        # prometheus: kube-prometheus
 
-      # -- Prometheus ServiceMonitor scheme
-      scheme: ""
-      # -- Prometheus ServiceMonitor tlsConfig
-      tlsConfig: {}
-      # -- Prometheus ServiceMonitor namespace
-      namespace: "" # "monitoring"
-      # -- Prometheus ServiceMonitor labels
-      additionalLabels: {}
+        # -- Prometheus ServiceMonitor scheme
+        scheme: ""
+        # -- Prometheus ServiceMonitor tlsConfig
+        tlsConfig: {}
+        # -- Prometheus ServiceMonitor namespace
+        namespace: "" # "monitoring"
+        # -- Prometheus ServiceMonitor labels
+        additionalLabels: {}
 
-  image:
-    # -- Dex image repository
-    repository: ghcr.io/dexidp/dex
-    # -- Dex image tag
-    tag: v2.30.2
-    # -- Dex imagePullPolicy
-    # @default -- `""` (defaults to global.image.imagePullPolicy)
-    imagePullPolicy: ""
-  initImage:
-    # -- Argo CD init image repository
-    # @default -- `""` (defaults to global.image.repository)
-    repository: ""
-    # -- Argo CD init image tag
-    # @default -- `""` (defaults to global.image.tag)
-    tag: ""
-    # -- Argo CD init image imagePullPolicy
-    # @default -- `""` (defaults to global.image.imagePullPolicy)
-    imagePullPolicy: ""
-  ## Probes for Dex server
-  ## Supported from Dex >= 2.28.0
-  livenessProbe:
-    # -- Enable Kubernetes liveness probe for Dex >= 2.28.0
-    enabled: false
-    # -- Minimum consecutive failures for the [probe] to be considered failed after having succeeded
-    failureThreshold: 3
-    # -- Number of seconds after the container has started before [probe] is initiated
-    initialDelaySeconds: 10
-    # -- How often (in seconds) to perform the [probe]
-    periodSeconds: 10
-    # -- Minimum consecutive successes for the [probe] to be considered successful after having failed
-    successThreshold: 1
-    # -- Number of seconds after which the [probe] times out
-    timeoutSeconds: 1
-  readinessProbe:
-    # -- Enable Kubernetes readiness probe for Dex >= 2.28.0
-    enabled: false
-    # -- Minimum consecutive failures for the [probe] to be considered failed after having succeeded
-    failureThreshold: 3
-    # -- Number of seconds after the container has started before [probe] is initiated
-    initialDelaySeconds: 10
-    # -- How often (in seconds) to perform the [probe]
-    periodSeconds: 10
-    # -- Minimum consecutive successes for the [probe] to be considered successful after having failed
-    successThreshold: 1
-    # -- Number of seconds after which the [probe] times out
-    timeoutSeconds: 1
-
-  serviceAccount:
-    # -- Create dex service account
-    create: true
-    # -- Dex service account name
-    name: argocd-dex-server
-    # -- Annotations applied to created service account
-    annotations: {}
-    # -- Automount API credentials for the Service Account
-    automountServiceAccountToken: true
-
-  # -- Additional volumeMounts to the dex main container
-  volumeMounts:
-    - name: static-files
-      mountPath: /shared
-
-  # -- Additional volumes to the dex pod
-  volumes:
-    - name: static-files
-      emptyDir: {}
-  # -- Container port for HTTP access
-  containerPortHttp: 5556
-  # -- Service port for HTTP access
-  servicePortHttp: 5556
-  # -- Service port name for HTTP access
-  servicePortHttpName: http
-  # -- Container port for gRPC access
-  containerPortGrpc: 5557
-  # -- Service port for gRPC access
-  servicePortGrpc: 5557
-  # -- Service port name for gRPC access
-  servicePortGrpcName: grpc
-  # -- Container port for metrics access
-  containerPortMetrics: 5558
-  # -- Service port for metrics access
-  servicePortMetrics: 5558
-
-  # -- Resource limits and requests for dex
-  resources: {}
-  #  limits:
-  #    cpu: 50m
-  #    memory: 64Mi
-  #  requests:
-  #    cpu: 10m
-  #    memory: 32Mi
-  pdb:
-    # -- Labels to be added to Dex server pdb
-    labels: {}
-    # -- Annotations to be added to Dex server pdb
-    annotations: {}
-
-    # -- Deploy a Poddisruptionbudget for the Dex server
-    enabled: false
-    # minAvailable: 1
-    # maxUnavailable: 0
-
-  # -- Secrets with credentials to pull images from a private registry
-  imagePullSecrets: []
-
-## Redis
-redis:
-  # -- Enable redis
-  enabled: true
-  # -- Redis name
-  name: redis
-
-  image:
-    # -- Redis repository
-    repository: public.ecr.aws/docker/library/redis
-    # -- Redis tag
-    tag: 7.0.4-alpine
-    # -- Redis imagePullPolicy
-    imagePullPolicy: IfNotPresent
-
-  # -- Additional command line arguments to pass to redis-server
-  extraArgs: []
-  # - --bind
-  # - "0.0.0.0"
-
-  # -- Redis container port
-  containerPort: 6379
-  # -- Redis service port
-  servicePort: 6379
-  # -- Redis pod-level security context
-  securityContext:
-    runAsNonRoot: true
-    runAsUser: 999
-
-  serviceAccount:
-    # -- Create a service account for the redis pod
-    create: false
-    # -- Service account name for redis pod
-    name: ""
-    # -- Annotations applied to created service account
-    annotations: {}
-    # -- Automount API credentials for the Service Account
-    automountServiceAccountToken: false
-
-  # -- Resource limits and requests for redis
-  resources: {}
-  #  limits:
-  #    cpu: 200m
-  #    memory: 128Mi
-  #  requests:
-  #    cpu: 100m
-  #    memory: 64Mi
-  service:
-    # -- Redis service annotations
-    annotations: {}
-    # -- Additional redis service labels
-    labels: {}
-
-  metrics:
-    # -- Deploy metrics service and redis-exporter sidecar
-    enabled: false
     image:
-      # -- redis-exporter image repository
-      repository: public.ecr.aws/bitnami/redis-exporter
-      # -- redis-exporter image tag
-      tag: 1.26.0-debian-10-r2
-      # -- redis-exporter image PullPolicy
-      imagePullPolicy: IfNotPresent
-    # -- Port to use for redis-exporter sidecar
-    containerPort: 9121
-    # -- Resource limits and requests for redis-exporter sidecar
-    resources: {}
-    # limits:
-    #   cpu: 50m
-    #   memory: 64Mi
-    # requests:
-    #   cpu: 10m
-    #   memory: 32Mi
-    service:
-      # -- Metrics service type
-      type: ClusterIP
-      # -- Metrics service clusterIP. `None` makes a "headless service" (no virtual IP)
-      clusterIP: None
-      # -- Metrics service annotations
-      annotations: {}
-      # -- Metrics service labels
-      labels: {}
-      # -- Metrics service port
-      servicePort: 9121
-      # -- Metrics service port name
-      portName: http-metrics
-    serviceMonitor:
-      # -- Enable a prometheus ServiceMonitor
+      # -- Dex image repository
+      repository: ghcr.io/dexidp/dex
+      # -- Dex image tag
+      tag: v2.30.2
+      # -- Dex imagePullPolicy
+      # @default -- `""` (defaults to global.image.imagePullPolicy)
+      imagePullPolicy: ""
+    initImage:
+      # -- Argo CD init image repository
+      # @default -- `""` (defaults to global.image.repository)
+      repository: ""
+      # -- Argo CD init image tag
+      # @default -- `""` (defaults to global.image.tag)
+      tag: ""
+      # -- Argo CD init image imagePullPolicy
+      # @default -- `""` (defaults to global.image.imagePullPolicy)
+      imagePullPolicy: ""
+    ## Probes for Dex server
+    ## Supported from Dex >= 2.28.0
+    livenessProbe:
+      # -- Enable Kubernetes liveness probe for Dex >= 2.28.0
       enabled: false
-      # -- Interval at which metrics should be scraped
-      interval: 30s
-      # -- Prometheus [RelabelConfigs] to apply to samples before scraping
-      relabelings: []
-      # -- Prometheus [MetricRelabelConfigs] to apply to samples before ingestion
-      metricRelabelings: []
-      # -- Prometheus ServiceMonitor selector
-      selector: {}
-      # prometheus: kube-prometheus
+      # -- Minimum consecutive failures for the [probe] to be considered failed after having succeeded
+      failureThreshold: 3
+      # -- Number of seconds after the container has started before [probe] is initiated
+      initialDelaySeconds: 10
+      # -- How often (in seconds) to perform the [probe]
+      periodSeconds: 10
+      # -- Minimum consecutive successes for the [probe] to be considered successful after having failed
+      successThreshold: 1
+      # -- Number of seconds after which the [probe] times out
+      timeoutSeconds: 1
+    readinessProbe:
+      # -- Enable Kubernetes readiness probe for Dex >= 2.28.0
+      enabled: false
+      # -- Minimum consecutive failures for the [probe] to be considered failed after having succeeded
+      failureThreshold: 3
+      # -- Number of seconds after the container has started before [probe] is initiated
+      initialDelaySeconds: 10
+      # -- How often (in seconds) to perform the [probe]
+      periodSeconds: 10
+      # -- Minimum consecutive successes for the [probe] to be considered successful after having failed
+      successThreshold: 1
+      # -- Number of seconds after which the [probe] times out
+      timeoutSeconds: 1
 
-      # -- Prometheus ServiceMonitor scheme
-      scheme: ""
-      # -- Prometheus ServiceMonitor tlsConfig
-      tlsConfig: {}
-      # -- Prometheus ServiceMonitor namespace
-      namespace: "" # "monitoring"
-      # -- Prometheus ServiceMonitor labels
-      additionalLabels: {}
+    serviceAccount:
+      # -- Create dex service account
+      create: true
+      # -- Dex service account name
+      name: argocd-dex-server
+      # -- Annotations applied to created service account
+      annotations: {}
+      # -- Automount API credentials for the Service Account
+      automountServiceAccountToken: true
 
-  pdb:
-    # -- Labels to be added to Redis server pdb
-    labels: {}
-    # -- Annotations to be added to Redis server pdb
-    annotations: {}
+    # -- Additional volumeMounts to the dex main container
+    volumeMounts:
+      - name: static-files
+        mountPath: /shared
 
-    # -- Deploy a Poddisruptionbudget for the Redis server
-    enabled: false
-    # minAvailable: 1
-    # maxUnavailable: 0
+    # -- Additional volumes to the dex pod
+    volumes:
+      - name: static-files
+        emptyDir: {}
+    # -- Container port for HTTP access
+    containerPortHttp: 5556
+    # -- Service port for HTTP access
+    servicePortHttp: 5556
+    # -- Service port name for HTTP access
+    servicePortHttpName: http
+    # -- Container port for gRPC access
+    containerPortGrpc: 5557
+    # -- Service port for gRPC access
+    servicePortGrpc: 5557
+    # -- Service port name for gRPC access
+    servicePortGrpcName: grpc
+    # -- Container port for metrics access
+    containerPortMetrics: 5558
+    # -- Service port for metrics access
+    servicePortMetrics: 5558
 
-  # -- Secrets with credentials to pull images from a private registry
-  imagePullSecrets: []
+    # -- Resource limits and requests for dex
+    resources: {}
+    #  limits:
+    #    cpu: 50m
+    #    memory: 64Mi
+    #  requests:
+    #    cpu: 10m
+    #    memory: 32Mi
+    pdb:
+      # -- Labels to be added to Dex server pdb
+      labels: {}
+      # -- Annotations to be added to Dex server pdb
+      annotations: {}
+
+      # -- Deploy a Poddisruptionbudget for the Dex server
+      enabled: false
+      # minAvailable: 1
+      # maxUnavailable: 0
+
+    # -- Secrets with credentials to pull images from a private registry
+    imagePullSecrets: []
+
+  ## Redis
+  redis:
+    # -- Enable redis
+    enabled: true
+    # -- Redis name
+    name: redis
+
+    image:
+      # -- Redis repository
+      repository: public.ecr.aws/docker/library/redis
+      # -- Redis tag
+      tag: 7.0.4-alpine
+      # -- Redis imagePullPolicy
+      imagePullPolicy: IfNotPresent
+
+    # -- Additional command line arguments to pass to redis-server
+    extraArgs: []
+    # - --bind
+    # - "0.0.0.0"
+
+    # -- Redis container port
+    containerPort: 6379
+    # -- Redis service port
+    servicePort: 6379
+    # -- Redis pod-level security context
+    securityContext:
+      runAsNonRoot: true
+      runAsUser: 999
+
+    serviceAccount:
+      # -- Create a service account for the redis pod
+      create: false
+      # -- Service account name for redis pod
+      name: ""
+      # -- Annotations applied to created service account
+      annotations: {}
+      # -- Automount API credentials for the Service Account
+      automountServiceAccountToken: false
+
+    # -- Resource limits and requests for redis
+    resources: {}
+    #  limits:
+    #    cpu: 200m
+    #    memory: 128Mi
+    #  requests:
+    #    cpu: 100m
+    #    memory: 64Mi
+    service:
+      # -- Redis service annotations
+      annotations: {}
+      # -- Additional redis service labels
+      labels: {}
+
+    metrics:
+      # -- Deploy metrics service and redis-exporter sidecar
+      enabled: false
+      image:
+        # -- redis-exporter image repository
+        repository: public.ecr.aws/bitnami/redis-exporter
+        # -- redis-exporter image tag
+        tag: 1.26.0-debian-10-r2
+        # -- redis-exporter image PullPolicy
+        imagePullPolicy: IfNotPresent
+      # -- Port to use for redis-exporter sidecar
+      containerPort: 9121
+      # -- Resource limits and requests for redis-exporter sidecar
+      resources: {}
+      # limits:
+      #   cpu: 50m
+      #   memory: 64Mi
+      # requests:
+      #   cpu: 10m
+      #   memory: 32Mi
+      service:
+        # -- Metrics service type
+        type: ClusterIP
+        # -- Metrics service clusterIP. `None` makes a "headless service" (no virtual IP)
+        clusterIP: None
+        # -- Metrics service annotations
+        annotations: {}
+        # -- Metrics service labels
+        labels: {}
+        # -- Metrics service port
+        servicePort: 9121
+        # -- Metrics service port name
+        portName: http-metrics
+      serviceMonitor:
+        # -- Enable a prometheus ServiceMonitor
+        enabled: false
+        # -- Interval at which metrics should be scraped
+        interval: 30s
+        # -- Prometheus [RelabelConfigs] to apply to samples before scraping
+        relabelings: []
+        # -- Prometheus [MetricRelabelConfigs] to apply to samples before ingestion
+        metricRelabelings: []
+        # -- Prometheus ServiceMonitor selector
+        selector: {}
+        # prometheus: kube-prometheus
+
+        # -- Prometheus ServiceMonitor scheme
+        scheme: ""
+        # -- Prometheus ServiceMonitor tlsConfig
+        tlsConfig: {}
+        # -- Prometheus ServiceMonitor namespace
+        namespace: "" # "monitoring"
+        # -- Prometheus ServiceMonitor labels
+        additionalLabels: {}
+
+    pdb:
+      # -- Labels to be added to Redis server pdb
+      labels: {}
+      # -- Annotations to be added to Redis server pdb
+      annotations: {}
+
+      # -- Deploy a Poddisruptionbudget for the Redis server
+      enabled: false
+      # minAvailable: 1
+      # maxUnavailable: 0
+
+    # -- Secrets with credentials to pull images from a private registry
+    imagePullSecrets: []
 
 
   # This key configures Redis-HA subchart and when enabled (redis-ha.enabled=true)
