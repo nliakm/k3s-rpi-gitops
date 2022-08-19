@@ -701,7 +701,7 @@ spec:
 
       ingress:
         # -- Enable an ingress resource for the Argo CD server
-        enabled: true
+        enabled: false
         ingressClassName: "traefik"
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"        
