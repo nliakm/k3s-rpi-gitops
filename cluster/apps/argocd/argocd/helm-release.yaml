@@ -201,18 +201,18 @@ spec:
           enabled: true
           # -- PrometheusRule.Spec for the application controller
           spec:
-            - alert: ArgoAppMissing
-              expr: |
-                absent(argocd_app_info)
-              for: 15m
-              labels:
-                severity: critical
-              annotations:
-                summary: "[Argo CD] No reported applications"
-                description: >
-                  Argo CD has not reported any applications data for the past 15 minutes which
-                  means that it must be down or not functioning properly.  This needs to be
-                  resolved for this cloud to continue to maintain state.
+            # - alert: ArgoAppMissing
+            #   expr: |
+            #     absent(argocd_app_info)
+            #   for: 15m
+            #   labels:
+            #     severity: critical
+            #   annotations:
+            #     summary: "[Argo CD] No reported applications"
+            #     description: >
+            #       Argo CD has not reported any applications data for the past 15 minutes which
+            #       means that it must be down or not functioning properly.  This needs to be
+            #       resolved for this cloud to continue to maintain state.
             - alert: ArgoAppNotSynced
               expr: |
                 argocd_app_info{sync_status!="Synced"} == 1
