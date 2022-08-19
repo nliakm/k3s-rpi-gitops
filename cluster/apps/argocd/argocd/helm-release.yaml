@@ -710,10 +710,12 @@ spec:
           hajimari.io/appName: "argocd"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
-          - host: "argocd.test.example"
-            paths:
-              - path: /
-                pathType: Prefix
+          - "argocd.${SECRET_DOMAIN}"
+        # -- List of ingress paths
+        paths:
+          - /
+        # -- Ingress path type. One of `Exact`, `Prefix` or `ImplementationSpecific`
+        pathType: Prefix
         tls:
           - hosts:
               - "argocd.${SECRET_DOMAIN}"
