@@ -30,6 +30,7 @@ spec:
           - default
           - networking
           - monitoring
+          - argocd
       name: "you"
       customApps: []
       groups:
