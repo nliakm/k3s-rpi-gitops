@@ -1351,7 +1351,7 @@ redis:
         ## Hostnames must be provided if Ingress is enabled.
         ## Secrets must be manually created in the namespace
         hosts: []
-          # - argocd-applicationset.example.com
+        # - argocd-applicationset.example.com
 
         # -- List of ingress paths
         paths:
