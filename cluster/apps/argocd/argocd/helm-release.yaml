@@ -2,8 +2,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: argo-cd
-  namespace: argo-cd
+  name: argocd
+  namespace: argocd
 spec:
   interval: 5m
   chart:
@@ -13,7 +13,7 @@ spec:
       version: 4.10.7
       sourceRef:
         kind: HelmRepository
-        name: argo-cd-charts
+        name: argocd-charts
         namespace: flux-system
       interval: 5m
   values:
@@ -1086,83 +1086,9 @@ redis:
           gitlab.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsj2bNKTBSpIYDEGk9KxsGh3mySTRgMtXL583qmBpzeQ+jqCMRgBqB98u3z++J1sKlXHWfM9dyhSevkMwSbhoR8XIq/U0tCNyokEi/ueaBMCvbcTHhO7FcwzY92WK4Yt0aGROY5qX2UKSeOvuP4D6TPqKF1onrSzH9bx9XUf2lEdWT/ia1NEKjunUqu1xOB/StKDHMoX4/OKyIzuS0q/T1zOATthvasJFoPrAjkohTyaDUz2LN5JoH839hViyEG82yB+MjcFV5MU3N1l1QL3cVUCh93xSaua1N85qivl+siMkPGbO5xR/En4iEY6K2XPASUEMaieWVNTRCtJ4S8H+9
           ssh.dev.azure.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC7Hr1oTWqNqOlzGJOfGJ4NakVyIzf1rXYd4d7wo6jBlkLvCA4odBlL0mDUyZ0/QUfTTqeu+tm22gOsv+VrVTMk6vwRU75gY/y9ut5Mb3bR5BV58dKXyq9A9UeB5Cakehn5Zgm6x1mKoVyf+FFn26iYqXJRgzIZZcZ5V6hrE0Qg39kZm4az48o0AUbf6Sp4SLdvnuMa2sVNwHBboS7EJkm57XQPVU3/QpyNLHbWDdzwtrlS+ez30S3AdYhLKEOxAG8weOnyrtLJAUen9mTkol8oII1edf7mWWbWVf0nBmly21+nZcmCTISQBtdcyPaEno7fFQMDD26/s0lfKob4Kw8H
           vs-ssh.visualstudio.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC7Hr1oTWqNqOlzGJOfGJ4NakVyIzf1rXYd4d7wo6jBlkLvCA4odBlL0mDUyZ0/QUfTTqeu+tm22gOsv+VrVTMk6vwRU75gY/y9ut5Mb3bR5BV58dKXyq9A9UeB5Cakehn5Zgm6x1mKoVyf+FFn26iYqXJRgzIZZcZ5V6hrE0Qg39kZm4az48o0AUbf6Sp4SLdvnuMa2sVNwHBboS7EJkm57XQPVU3/QpyNLHbWDdzwtrlS+ez30S3AdYhLKEOxAG8weOnyrtLJAUen9mTkol8oII1edf7mWWbWVf0nBmly21+nZcmCTISQBtdcyPaEno7fFQMDD26/s0lfKob4Kw8H
-
-    # -- Repository credentials to be used as Templates for other repos
-    ## Creates a secret for each key/value specified below to create repository credentials
-    credentialTemplates:
-      # github-enterprise-creds-1:
-      #   url: https://github.com/argoproj
-      #   githubAppID: 1
-      #   githubAppInstallationID: 2
-      #   githubAppEnterpriseBaseUrl: https://ghe.example.com/api/v3
-      #   githubAppPrivateKey: |
-      #     -----BEGIN OPENSSH PRIVATE KEY-----
-      #     ...
-      #     -----END OPENSSH PRIVATE KEY-----
-      https-creds:
-        url: https://github.com/nliakm
-        password: my-password
-        username: nliakm
-    # -- Repositories list to be used by applications
-    ## Creates a secret for each key/value specified below to create repositories
-    ## Note: the last example in the list would use a repository credential template, configured under "configs.repositoryCredentials".
-    repositories: {}
-    # istio-helm-repo:
-    #   url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts
-    #   name: istio.io
-    #   type: helm
-    # private-helm-repo:
-    #   url: https://my-private-chart-repo.internal
-    #   name: private-repo
-    #   type: helm
-    #   password: my-password
-    #   username: my-username
-    # private-repo:
-    #   url: https://github.com/argoproj/private-repo
     secret:
       # -- Create the argocd-secret
-      createSecret: true
-      # -- Annotations to be added to argocd-secret
-      annotations: {}
-
-      # -- Shared secret for authenticating GitHub webhook events
-      githubSecret: ""
-      # -- Shared secret for authenticating GitLab webhook events
-      gitlabSecret: ""
-      # -- Shared secret for authenticating BitbucketServer webhook events
-      bitbucketServerSecret: ""
-      # -- UUID for authenticating Bitbucket webhook events
-      bitbucketUUID: ""
-      # -- Shared secret for authenticating Gogs webhook events
-      gogsSecret: ""
-
-      # -- add additional secrets to be added to argocd-secret
-      ## Custom secrets. Useful for injecting SSO secrets into environment variables.
-      ## Ref: https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/#sensitive-data-and-sso-client-secrets
-      ## Note that all values must be non-empty.
-      extra:
-        {}
-        # LDAP_PASSWORD: "mypassword"
-
-      # -- Argo TLS Data
-      argocdServerTlsConfig:
-        {}
-        # key:
-        # crt: |
-        #   -----BEGIN CERTIFICATE-----
-        #   <cert data>
-        #   -----END CERTIFICATE-----
-        #   -----BEGIN CERTIFICATE-----
-        #   <ca cert data>
-        #   -----END CERTIFICATE-----
-
-      # -- Bcrypt hashed admin password
-      ## Argo expects the password in the secret to be bcrypt hashed. You can create this hash with
-      ## `htpasswd -nbBC 10 "" $ARGO_PWD | tr -d ':\n' | sed 's/$2y/$2a/'`
-      argocdServerAdminPassword: ""
-      # -- Admin password modification time. Eg. `"2006-01-02T15:04:05Z"`
-      # @default -- `""` (defaults to current time)
-      argocdServerAdminPasswordMtime: ""
+      createSecret: false
   openshift:
     # -- enables using arbitrary uid for argo repo server
     enabled: false
@@ -1202,9 +1128,6 @@ redis:
       # -- Enable dry run mode
       dryRun: false
 
-    # -- Additional containers to be added to the applicationset controller pod
-    extraContainers: []
-
     ## Metrics service configuration
     metrics:
       # -- Deploy metrics service
@@ -1240,9 +1163,6 @@ redis:
         # -- Prometheus ServiceMonitor labels
         additionalLabels: {}
 
-    # -- If defined, uses a Secret to pull an image from a private Docker registry or repository.
-    imagePullSecrets: []
-
     ## Application set service configuration
     service:
       # -- Application set service annotations
@@ -1262,25 +1182,6 @@ redis:
       # -- The name of the service account to use.
       # If not set and create is true, a name is generated using the fullname template
       name: ""
-
-    # -- Annotations for the controller pods
-    podAnnotations: {}
-
-    # -- Labels for the controller pods
-    podLabels: {}
-
-    # -- Pod Security Context
-    podSecurityContext: {}
-    # fsGroup: 2000
-
-    # -- Security Context
-    securityContext: {}
-    # capabilities:
-    #   drop:
-    #   - ALL
-    # readOnlyRootFilesystem: true
-    # runAsNonRoot: true
-    # runAsUser: 1000
 
     # -- Resource limits and requests for the controller pods.
     resources: {}
