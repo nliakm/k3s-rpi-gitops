@@ -943,7 +943,7 @@ spec:
           emptyDir: {}
       initContainers:
         - name: install-ksops
-          image: viaductoss/ksops:v3.0.2
+          image: viaductoss/ksops:v3.0.2-arm64
           command: ["/bin/sh", "-c"]
           args:
             - echo "Installing KSOPS...";
