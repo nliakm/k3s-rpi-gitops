@@ -606,9 +606,9 @@ spec:
         # -- Certificate primary domain (commonName)
         domain: "argocd.${SECRET_DOMAIN}"
         # -- The requested 'duration' (i.e. lifetime) of the Certificate. Value must be in units accepted by Go time.ParseDuration
-        duration: "90"
+        duration: "90d"
         # -- How long before the currently issued certificate's expiry cert-manager should renew the certificate. Value must be in units accepted by Go time.ParseDuration
-        renewBefore: "14"
+        renewBefore: "14d"
         issuer:
           # -- Certificate issuer group. Set if using an external issuer. Eg. `cert-manager.io`
           group: "cert-manager.io"
