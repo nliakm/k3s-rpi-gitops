@@ -934,8 +934,8 @@ spec:
       ##### KSOPS CONFIGURATION #####
       # Set the XDG_CONFIG_HOME env variable to allow kustomize to detect the plugin
       env:
-        - name: GNUPGHOME
-          value: /home/argocd/.gnupg
+        # - name: GNUPGHOME
+        #   value: /home/argocd/.gnupg
         - name: XDG_CONFIG_HOME
           value: /.config
       # Use init containers to configure custom tooling
@@ -943,24 +943,24 @@ spec:
       volumes:
         - name: custom-tools
           emptyDir: {}
-        - name: gnupg-home
-          emptyDir: {}
-        - name: deploy-gpg-key
+        # - name: gnupg-home
+        #   emptyDir: {}
+        - name: gpg-private-key
           secret:
             secretName: sops-gpg
       initContainers:
-        - name: import-gpg-key
-          image: argoproj/argocd:v2.4.8
-          command: ["gpg", "--import", "/deploy-gpg-key/sops.asc"]
-          env:
-            - name: GNUPGHOME
-              value: /gnupg-home/.gnupg
-          volumeMounts:
-            - mountPath: /deploy-gpg-key
-              name: deploy-gpg-key
-              readOnly: true
-            - mountPath: /gnupg-home
-              name: gnupg-home      
+        # - name: import-gpg-key
+        #   image: argoproj/argocd:v2.4.8
+        #   command: ["gpg", "--import", "/deploy-gpg-key/sops.asc"]
+        #   env:
+        #     - name: GNUPGHOME
+        #       value: /gnupg-home/.gnupg
+        #   volumeMounts:
+        #     - mountPath: /deploy-gpg-key
+        #       name: deploy-gpg-key
+        #       readOnly: true
+        #     - mountPath: /gnupg-home
+        #       name: gnupg-home      
         - name: install-ksops
           image: viaductoss/ksops:v3.0.2-arm64
           command: ["/bin/sh", "-c"]
@@ -973,9 +973,11 @@ spec:
             - mountPath: /custom-tools
               name: custom-tools
       volumeMounts:
-        - mountPath: /home/argocd/.gnupg
-          name: gnupg-home
-          subPath: .gnupg
+        # - mountPath: /home/argocd/.gnupg
+        #   name: gnupg-home
+        #   subPath: .gnupg
+        - name: gpg-private-key
+          mountPath: /app/config/gpg
         - mountPath: /usr/local/bin/kustomize
           name: custom-tools
           subPath: kustomize
