@@ -1092,20 +1092,20 @@ spec:
         # -- Create repo server service account
         create: true
         # -- Repo server service account name
-        name: "" # "argocd-repo-server"
+        name: "argocd-repo-server"
         # -- Annotations applied to created service account
         annotations: {}
         # -- Automount API credentials for the Service Account
         automountServiceAccountToken: true
 
         # rbac permssions
-        rbac:
-        - apiGroups:
-          - ""
-          resources:
-          - secrets
-          verbs:
-          - get
+      rbac:
+      - apiGroups:
+        - ""
+        resources:
+        - secrets
+        verbs:
+        - get
       # Init container to copy argocd binary
       copyutil:
         # -- Resource limits and requests for the copyutil initContainer
