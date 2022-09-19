@@ -26,7 +26,7 @@ spec:
         tag: 10-alpine
         pullPolicy: IfNotPresent
       storage:
-        class: nfs-subdir-external-provisioner
+        class: nfs-client
         accessModes: ReadWriteOnce
         dataSize: 1Gi
         # -- Use an existing PersistentVolumeClaim, overrides values above
@@ -57,7 +57,7 @@ spec:
       persistence:
         # -- If you set this to false, uploaded attachments are not stored persistently and will be lost with every restart of the pod
         enabled: true
-        storageClassName: nfs-subdir-external-provisioner
+        storageClassName: nfs-client
         accessModes: ReadWriteOnce
         storage: 1Gi
         # -- If you want to use an existing claim, set it here
