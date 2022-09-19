@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: firefly-iii-stack
-      version: firefly-iii-stack-0.7.0
+      version: 0.7.0
       sourceRef:
         kind: HelmRepository
         name: firefly-iii-charts
