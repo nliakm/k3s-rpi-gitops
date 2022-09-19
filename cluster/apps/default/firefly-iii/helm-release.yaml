@@ -28,15 +28,6 @@ spec:
       storage:
         existingClaim: firefly-iii-db-claim
       configs:
-        RESTORE_URL: ""
-        BACKUP_URL: ""
-        DBHOST: firefly-firefly-db
-        DBPORT: "5432"
-        DBNAME: firefly
-        DBUSER: firefly
-        TZ: Europe/Berlin
-        POSTGRES_HOST_AUTH_METHOD: trust
-        POSTGRES_USER: firefly
           # -- Set this to the name of a secret to load environment variables from. If defined, values in the secret will override values in configs
         existingSecret: "firefly-iii-secrets"
 
@@ -56,15 +47,24 @@ spec:
 
       # -- Environment variables for Firefly III. See docs at: https://github.com/firefly-iii/firefly-iii/blob/main/.env.example
       config:
-        # -- Set this to the name of a secret to load environment variables from. If defined, values in the secret will override values in config.env
-        existingSecret: "firefly-secrets"
-
         # -- Set environment variables from configMaps or Secrets
-        envValueFrom: {}
-
+        envValueFrom:
+          APP_KEY:
+            secretKeyRef:
+              name: firefly-iii-secrets
+              key: APP_KEY
+          SITE_OWNER:
+            secretKeyRef:
+              name: firefly-iii-secrets
+              key: SITE_OWNER
+          DB_PASSWORD:
+            secretKeyRef:
+              name: firefly-iii-secrets
+              key: DB_PASSWORD
         # -- Directly defined environment variables. Use this for non-secret configuration values.
         env:
           DB_CONNECTION: pgsql
+          DB_HOST: firefly-iii-firefly-db
           DB_PORT: "5432"
           DB_DATABASE: firefly
           DB_USERNAME: firefly
