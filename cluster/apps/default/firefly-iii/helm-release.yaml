@@ -30,7 +30,7 @@ spec:
         accessModes: ReadWriteOnce
         dataSize: 1Gi
         # -- Use an existing PersistentVolumeClaim, overrides values above
-        existingClaim: "firefly-iii-db"
+        existingClaim: ""
       configs:
         RESTORE_URL: ""
         BACKUP_URL: ""
@@ -61,7 +61,7 @@ spec:
         accessModes: ReadWriteOnce
         storage: 1Gi
         # -- If you want to use an existing claim, set it here
-        existingClaim: "firefly-iii-app"
+        existingClaim: ""
 
       # -- Environment variables for Firefly III. See docs at: https://github.com/firefly-iii/firefly-iii/blob/main/.env.example
       config:
