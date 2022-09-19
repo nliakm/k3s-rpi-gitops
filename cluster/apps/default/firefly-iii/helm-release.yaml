@@ -26,11 +26,7 @@ spec:
         tag: 10-alpine
         pullPolicy: IfNotPresent
       storage:
-        class: nfs-client
-        accessModes: ReadWriteOnce
-        dataSize: 1Gi
-        # -- Use an existing PersistentVolumeClaim, overrides values above
-        existingClaim: "firefly-iii-db-claim"
+        existingClaim: firefly-iii-db-claim
       configs:
         RESTORE_URL: ""
         BACKUP_URL: ""
@@ -55,13 +51,8 @@ spec:
         pullPolicy: IfNotPresent
         tag: version-5.6.14
       persistence:
-        # -- If you set this to false, uploaded attachments are not stored persistently and will be lost with every restart of the pod
         enabled: true
-        storageClassName: nfs-client
-        accessModes: ReadWriteOnce
-        storage: 1Gi
-        # -- If you want to use an existing claim, set it here
-        existingClaim: "firefly-iii-app-claim"
+        existingClaim: firefly-iii-app-claim
 
       # -- Environment variables for Firefly III. See docs at: https://github.com/firefly-iii/firefly-iii/blob/main/.env.example
       config:
