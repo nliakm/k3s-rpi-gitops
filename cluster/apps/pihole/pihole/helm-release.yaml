@@ -31,7 +31,7 @@ spec:
     DNS2: "1.1.1.1"
     extraEnvVars:
       WEBTHEME: default-dark
-      WEBUIBOXEDLAYOUT: boyed
+      WEBUIBOXEDLAYOUT: boxed
       FTLCONF_REPLY_ADDR4: 192.168.178.201
       REV_SERVER: true
       REV_SERVER_TARGET: 192.168.178.1
