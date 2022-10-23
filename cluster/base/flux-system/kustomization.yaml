@@ -19,3 +19,4 @@ resources:
   - ./charts/helm/bitnami-charts.yaml
   - ./charts/helm/k8s-at-home-charts.yaml
   - ./charts/helm/firefly-iii-charts.yaml
+  - ./charts/helm/pihole-charts.yaml

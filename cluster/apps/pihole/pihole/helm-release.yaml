@@ -1,0 +1,89 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: pihole
+  namespace: pihole
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://mojo2600.github.io/pihole-kubernetes/
+      chart: pihole
+      version: 2.9.3
+      sourceRef:
+        kind: HelmRepository
+        name: pihole-charts
+        namespace: flux-system
+      interval: 5m
+  dependsOn:
+    - name: nfs-subdir-external-provisioner
+      namespace: nfs-system      
+  values:
+    replicaCount: 1
+    image:
+      repository: "pihole/pihole"
+      tag: "2022.10"
+    admin:
+      existingSecret: "pihole-secrets"
+      passwordKey: "ADMIN_PASSWORD" 
+    DNS1: "208.67.222.222"
+    DNS2: "1.1.1.1"
+    extraEnvVars:
+      WEBTHEME: default-dark
+      WEBUIBOXEDLAYOUT: boyed
+      FTLCONF_REPLY_ADDR4: REDACTED
+      REV_SERVER: true
+      REV_SERVER_TARGET: 192.168.178.1
+      REV_SERVER_DOMAIN: "${SECRET_DOMAIN}"
+      REV_SERVER_CIDR: 192.168.178.0/24
+    adlists:
+      - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+      - https://mirror1.malwaredomains.com/files/justdomains
+      - https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt
+      - https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt
+    # networking config
+    serviceDns:
+      type: LoadBalancer
+      annotations:
+        metallb.universe.tf/allow-shared-ip: default
+      loadBalancerIP: 192.168.178.201
+    dnsmasq:
+      customDnsEntries:
+        - address=/nas.${SECRET_DOMAIN}/192.168.178.201
+        - address=/alert-manager.${SECRET_DOMAIN}/192.168.178.201
+        - address=/grafana.${SECRET_DOMAIN}/192.168.178.201
+        - address=/hass.${SECRET_DOMAIN}/192.168.178.201
+        - address=/prometheus.${SECRET_DOMAIN}/192.168.178.201
+        - address=/rezepte.${SECRET_DOMAIN}/192.168.178.201
+        - address=/traefik.${SECRET_DOMAIN}/192.168.178.201
+        - address=/start.${SECRET_DOMAIN}/192.168.178.201
+        - address=/router.${SECRET_DOMAIN}/192.168.178.201
+        - address=/zwave.${SECRET_DOMAIN}/192.168.178.201
+        - address=/scraang.${SECRET_DOMAIN}/192.168.178.201
+        - address=/scraang-dev.${SECRET_DOMAIN}/192.168.178.201
+        - address=/argocd.${SECRET_DOMAIN}/192.168.178.201
+    serviceDhcp:
+      enabled: false
+    # serviceWeb:
+    #   http:
+    #     enabled: true
+    persistentVolumeClaim:
+      enabled: true
+      existingClaim: pihole-pvc
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        hajimari.io/enable: "true"
+        hajimari.io/icon: "pihole"
+        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        cert-manager.io/cluster-issuer: "letsencrypt-production"
+        cert-manager.io/private-key-secret-name: "root-secret"        
+      path: /
+      hosts:
+        - "pihole.${SECRET_DOMAIN}"
+      tls:
+        - hosts:
+          - "pihole.${SECRET_DOMAIN}"
+          secretName: "tls-wildcard-secret"

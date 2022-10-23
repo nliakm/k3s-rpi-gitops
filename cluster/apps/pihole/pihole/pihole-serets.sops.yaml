@@ -1,0 +1,29 @@
+# yamllint disable
+apiVersion: v1
+kind: Secret
+metadata:
+    name: monitoring-secrets
+    namespace: monitoring
+stringData:
+    ADMIN_PASSWORD: ENC[AES256_GCM,data:jVb0EWiN2kpt9jPylbXHYyAKQk7vGgjbolKzx/pE5GY=,iv:6rRwGeSseW1b9priNDOY7/giZhcSAuouo2iOoIyXjBU=,tag:JatEr7MpmUpZLiOTJw35kw==,type:str]
+    SECRET_DOMAIN: ENC[AES256_GCM,data:FeI8osHYZg==,iv:AIoSrtoVNUWjfOwhH+ErBw0K/w0qMFnQQcOuc4k6pS0=,tag:8xdU/U/+vmjUF1ilhBNBEA==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1hra9lsurxkx96y9vgckl38ct3x4nkq655nnmfpe2xly93kqypqps0yhwmc
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB5NkNSeXJDZ05GZ3NKMEhw
+            MDJ4aVBndzNMQnQ5ZUdhOXUxaHJxVFE4Y0dBCm5tVW9ORi9zOHBSNzRHZU4yU0p6
+            bTJ2citUNExpU0Q3VXZXSzdmb1Uxc0UKLS0tIGRCUGZrVGNlVE1aaUMwUnI4eWZ6
+            eGlac1R6M3dvNmtPVzdjcDVMRXhYeHMKGeCDg0GzSUKKueAqhtEuRUeg4ZqIE4Zu
+            PxoDfQnMA63Wo9viEIfLo78KzvWQ7Meec2nyDr1deFrZLgpzVJ4IKQ==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2022-10-23T16:47:20Z"
+    mac: ENC[AES256_GCM,data:x8QItDGrcBIAPAN8n+wm1jndbX+XXpusVbvSJnS2bSHfjuHsJsUNltljqiXfTvXMSdIb1LLQzV6W6AuVOYgcMkS/y1300sU6YZ/2RGBOtrjzWP3RAesirwKX4B+eGYyxibdhksOb6ZkJRaKJGcwHdA7wEL7r8LV/OTPtUxedNMM=,iv:4/U9ASXyFLnUDYsgUZLDM2OS68o2ux7caaSykhnvaKs=,tag:/XJx8lFro5AASq31Qy1Lzg==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.1
