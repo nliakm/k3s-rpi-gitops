@@ -32,7 +32,7 @@ spec:
     extraEnvVars:
       WEBTHEME: default-dark
       WEBUIBOXEDLAYOUT: boyed
-      FTLCONF_REPLY_ADDR4: REDACTED
+      FTLCONF_REPLY_ADDR4: 192.168.178.201
       REV_SERVER: true
       REV_SERVER_TARGET: 192.168.178.1
       REV_SERVER_DOMAIN: "${SECRET_DOMAIN}"
