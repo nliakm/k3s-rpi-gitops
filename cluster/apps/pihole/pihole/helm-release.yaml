@@ -280,11 +280,11 @@ spec:
       annotations:
         metallb.universe.tf/allow-shared-ip: pihole-svc
       loadBalancerIP: 192.168.178.202
-    serviceWeb:
-      type: LoadBalancer
-      annotations:
-        metallb.universe.tf/allow-shared-ip: pihole-svc
-      loadBalancerIP: 192.168.178.201
+    # serviceWeb:
+    #   type: LoadBalancer
+    #   annotations:
+    #     metallb.universe.tf/allow-shared-ip: pihole-svc
+    #   loadBalancerIP: 192.168.178.201
     privileged: true
     dnsmasq:
       customDnsEntries:
