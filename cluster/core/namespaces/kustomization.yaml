@@ -9,3 +9,4 @@ resources:
   - mondoo-operator.yaml
   - networking.yaml
   - nfs-provisioner.yaml
+  - pihole.yaml
