@@ -279,8 +279,14 @@ spec:
       type: LoadBalancer
       annotations:
         metallb.universe.tf/address-pool: default
-        metallb.universe.tf/allow-shared-ip: "serviceDns"
+        metallb.universe.tf/allow-shared-ip: pihole-svc
       loadBalancerIP: 192.168.178.202
+    serviceWeb:
+      type: LoadBalancer
+      annotations:
+        metallb.universe.tf/address-pool: default
+        metallb.universe.tf/allow-shared-ip: pihole-svc
+      loadBalancerIP: 192.168.178.201
     privileged: true
     dnsmasq:
       customDnsEntries:
@@ -300,9 +306,6 @@ spec:
         - address=/pihole.${SECRET_DOMAIN}/192.168.178.201
     serviceDhcp:
       enabled: false
-    # serviceWeb:
-    #   http:
-    #     enabled: true
     persistentVolumeClaim:
       enabled: true
       existingClaim: pihole-pvc
