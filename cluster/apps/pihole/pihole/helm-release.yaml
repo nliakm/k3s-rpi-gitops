@@ -37,6 +37,10 @@ spec:
       REV_SERVER_TARGET: 192.168.178.1
       REV_SERVER_DOMAIN: "${SECRET_DOMAIN}"
       REV_SERVER_CIDR: 192.168.178.0/24
+      DNSMASQ_LISTENING: all
+      DNS_BOGUS_PRIV: true
+      DNS_FQDN_REQUIRED: true
+      DNSSEC: false
     adlists:
       - https://raw.githubusercontent.com/PolishFiltersTeam/KADhosts/master/KADhosts.txt
       - https://raw.githubusercontent.com/FadeMind/hosts.extras/master/add.Spam/hosts
