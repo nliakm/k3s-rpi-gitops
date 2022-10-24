@@ -28,9 +28,9 @@ spec:
       existingSecret: "pihole-secrets"
       passwordKey: "ADMIN_PASSWORD" 
     DNS1: "208.67.222.222"
-    DNS2: "1.1.1.1"
-    DNS3: "2620:119:35::35"
-    DNS4: "2606:4700:4700::1111"
+    #DNS2: "1.1.1.1"
+    DNS2: "2620:119:35::35"
+    #DNS4: "2606:4700:4700::1111"
     extraEnvVars:
       WEBTHEME: default-dark
       WEBUIBOXEDLAYOUT: boxed
