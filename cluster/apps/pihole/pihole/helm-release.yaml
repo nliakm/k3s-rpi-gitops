@@ -92,6 +92,10 @@ spec:
       - https://v.firebog.net/hosts/Prigent-Malware.txt
       - https://raw.githubusercontent.com/anudeepND/blacklist/master/facebook.txt
     whitelist:
+      - sentry.io
+      - unagi-na.amazon.com
+      - app.usercentrics.eu
+      - graphql.usercentrics.eu
       - 0.client-channel.google.com
       - 1drv.com
       - 2.android.pool.ntp.org
