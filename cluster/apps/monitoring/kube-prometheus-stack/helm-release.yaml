@@ -174,7 +174,7 @@ spec:
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
-        retention: 30d
+        retention: 21d
         # resources:
         #   requests:
         #     cpu: 100m
