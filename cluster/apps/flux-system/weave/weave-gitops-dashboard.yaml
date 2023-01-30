@@ -26,10 +26,10 @@ spec:
         hajimari.io/appName: "argocd"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
       hosts:
-        - "weave.${SECRET_DOMAIN}"
-      paths:
-        - /
-      pathType: Prefix
+        - host: "weave.${SECRET_DOMAIN}"
+          paths:
+            - /
+          pathType: Prefix
       tls:
         - hosts:
             - "weave.${SECRET_DOMAIN}"
