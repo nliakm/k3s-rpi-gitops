@@ -28,8 +28,8 @@ spec:
       hosts:
         - host: "weave.${SECRET_DOMAIN}"
           paths:
-            - /
-          pathType: Prefix
+            - path: /
+              pathType: Prefix
       tls:
         - hosts:
             - "weave.${SECRET_DOMAIN}"
