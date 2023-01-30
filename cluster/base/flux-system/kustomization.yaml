@@ -20,3 +20,4 @@ resources:
   - ./charts/helm/k8s-at-home-charts.yaml
   - ./charts/helm/firefly-iii-charts.yaml
   - ./charts/helm/pihole-charts.yaml
+  - ./charts/helm/weave-gitops.yaml
