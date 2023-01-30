@@ -22,6 +22,11 @@ spec:
       - apiGroups: ["*"]
         resources: ["*"]
         verbs: ["*"]
+    adminUser:
+      create: true
+      createCluserRole: true
+      createSecret: false
+      username: admin
     ingress:
       enabled: true
       className: "traefik"
