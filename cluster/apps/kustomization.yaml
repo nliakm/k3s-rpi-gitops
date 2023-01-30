@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - argocd
   - default
+  - flux-system
   - kube-system
   - monitoring
   - networking
