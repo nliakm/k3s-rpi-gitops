@@ -80,13 +80,13 @@ spec:
       shmVolume:
         enabled: false
       volumePermissions:
-        enabled: true
+        enabled: false
       podSecurityContext:
         enabled: true
-        fsGroup: 999
+        fsGroup: 1001
       containerSecurityContext:
         enabled: true
-        runAsUser: 999        
+        runAsUser: 1001        
     metrics:
       enabled: true
       serviceMonitor:
