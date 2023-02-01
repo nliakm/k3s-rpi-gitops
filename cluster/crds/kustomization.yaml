@@ -4,4 +4,4 @@ resources:
   - cert-manager
   - traefik
   - prometheus
-
+  - metallb
