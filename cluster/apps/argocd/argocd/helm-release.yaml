@@ -452,7 +452,7 @@ spec:
           # -- redis-exporter image repository
           repository: public.ecr.aws/bitnami/redis-exporter
           # -- redis-exporter image tag
-          tag: 1.26.0-debian-10-r2
+          tag: 1.39.0-debian-10-r2
           # -- redis-exporter image PullPolicy
           imagePullPolicy: IfNotPresent
         # -- Port to use for redis-exporter sidecar
