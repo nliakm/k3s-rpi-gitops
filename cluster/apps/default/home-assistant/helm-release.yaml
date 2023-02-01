@@ -80,7 +80,7 @@ spec:
       shmVolume:
         enabled: false
       volumePermissions:
-        enabled: false
+        enabled: true
       podSecurityContext:
         enabled: true
         fsGroup: 999
