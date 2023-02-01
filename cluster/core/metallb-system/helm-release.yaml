@@ -23,4 +23,5 @@ spec:
         enabled: true
       prometheusRule:
         enabled: true
-
+    crds:
+      enabled: false
