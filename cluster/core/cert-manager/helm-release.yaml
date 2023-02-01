@@ -26,6 +26,6 @@ spec:
     podDnsPolicy: "None"
     podDnsConfig:
       nameservers:
-        - "192.168.178.10"
+        - "192.168.178.202"
         - "1.1.1.1"
         - "9.9.9.9"
