@@ -22,9 +22,6 @@ spec:
   values:
     image:
       name: traefik
-    deployment:
-      kind: Deployment
-      replicas: 1
     service:
       enabled: true
       type: LoadBalancer
@@ -34,14 +31,14 @@ spec:
     logs:
       general:
         format: json
-        level: DEBUG
+        level: INFO
       access:
         enabled: true
         format: json
     ingressClass:
       enabled: true
       isDefaultClass: true
-      fallbackApiVersion: v1
+      #fallbackApiVersion: v1
     ingressRoute:
       dashboard:
         enabled: false
@@ -74,8 +71,6 @@ spec:
         minVersion: VersionTLS12
         maxVersion: VersionTLS13
         sniStrict: true
-    pilot:
-      enabled: false
     experimental:
       plugins:
         enabled: false
