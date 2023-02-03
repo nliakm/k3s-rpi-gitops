@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: firefly-iii
-  namespace: default
+  namespace: firefly
 spec:
   interval: 5m
   chart:
@@ -38,7 +38,7 @@ spec:
       # -- Directly defined environment variables. Use this for non-secret configuration values.
       env:
         DB_CONNECTION: pgsql
-        DB_HOST: firefly-firefly-db
+        DB_HOST: firefly-db
         DB_PORT: "5432"
         DB_DATABASE: firefly
         DB_USERNAME: firefly
