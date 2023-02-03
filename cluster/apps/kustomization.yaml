@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - argocd
   - default
+  - firefly
   - flux-system
   - kube-system
   - monitoring
