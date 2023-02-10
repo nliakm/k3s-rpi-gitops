@@ -36,7 +36,13 @@ spec:
           - flux-system
       title: Start
       name: "you"
-      customApps: []
+      customApps:
+        - group: Applications
+          apps:
+            - name: Renovate
+              url: 'https://app.renovatebot.com/dashboard#github/nliakm/k3s-rpi-gitops'
+              icon: 'mdi:format-paint'
+              info: Renavotate Dashboard
       globalBookmarks:
         group: Tech
         bookmarks:
