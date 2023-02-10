@@ -950,7 +950,7 @@ spec:
             secretName: sops-gpg
       initContainers:
         - name: import-gpg-key
-          image: argoproj/argocd:v2.5.10
+          image: argoproj/argocd:v2.6.1
           command: ["gpg", "--import", "/deploy-gpg-key/sops.asc"]
           env:
             - name: GNUPGHOME
