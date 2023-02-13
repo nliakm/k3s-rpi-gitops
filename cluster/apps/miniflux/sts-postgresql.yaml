@@ -32,7 +32,10 @@ spec:
         - name: POSTGRES_USER
           value: miniflux
         - name: POSTGRES_PASSWORD
-          value: secret
+          valueFrom:
+            secretKeyRef:
+              key: postgres-password
+              name: miniflux-secrets
         - name: POSTGRES_DB
           value: miniflux
         livenessProbe:

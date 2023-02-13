@@ -55,7 +55,10 @@ spec:
             memory: 64Mi
         env:
           - name: DATABASE_URL
-            value: "postgres://miniflux-postgresql:secret@miniflux-postgresql/miniflux?sslmode=disable"
+            valueFrom:
+              secretKeyRef:
+                key: database_url
+                name: miniflux-secrets
           - name: RUN_MIGRATIONS
             value: "1"
           - name: BASE_URL
