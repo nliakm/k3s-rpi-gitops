@@ -4,7 +4,7 @@ resources:
   - namespace.yaml
   - serviceaccount.yaml
   - sts-postgresql.yaml
-  - deployment.yaml
   - service-db.yaml
+  - deployment.yaml
   - service-app.yaml
   - ingressroute.yaml
