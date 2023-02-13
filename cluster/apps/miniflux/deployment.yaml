@@ -59,14 +59,19 @@ spec:
           - name: RUN_MIGRATIONS
             value: "1"
           - name: BASE_URL
-            value: https://miniflux.${SECRET_DOMAIN}
+            valueFrom:
+              secretKeyRef:
+                name: miniflux-secrets
+                key: base_url
           - name: CREATE_ADMIN
             value: "1"
           - name: ADMIN_USERNAME
             valueFrom:
               secretKeyRef:
+                name: miniflux-secrets
                 key: username
           - name: ADMIN_PASSWORD
             valueFrom:
               secretKeyRef:
+                name: miniflux-secrets
                 key: password
