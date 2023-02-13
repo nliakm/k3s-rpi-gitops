@@ -70,7 +70,7 @@ spec:
         terminationMessagePolicy: File
         volumeMounts:
         - mountPath: "/data/"
-          name: data
+          name: miniflux-db
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       serviceAccount: miniflux
