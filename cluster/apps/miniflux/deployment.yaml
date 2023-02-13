@@ -1,0 +1,58 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: miniflux
+  namespace: miniflux
+  labels:
+    app: miniflux
+    environment: production
+    tier: frontend
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: miniflux
+      environment: production
+  template:
+    metadata:  
+      labels:
+        app: miniflux
+        tier: frontend
+        environment: production
+    spec:
+      restartPolicy: Always
+      serviceAccount: miniflux
+      serviceAccountName: miniflux
+      containers:
+      - name: miniflux
+        image: miniflux/miniflux:2.0.42
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 8080
+            protocol: TCP
+            name: http
+        livenessProbe:
+          failureThreshold: 3
+          exec:
+            command:
+              - /usr/bin/miniflux
+              - -healthcheck
+              - auto
+          periodSeconds: 30
+        readinessProbe:
+          exec:
+            command:
+              - /usr/bin/miniflux
+              - -healthcheck
+              - auto
+          periodSeconds: 30
+        resources:
+          requests:
+            cpu: 250m
+            memory: 64Mi
+        env:
+          - name: DATABASE_URL
+            value: "postgres://miniflux-postgresql:secret@db/miniflux?sslmode=disable"

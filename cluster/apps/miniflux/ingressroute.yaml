@@ -1,0 +1,37 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    hajimari.io/enable: "true"
+    hajimari.io/icon: "bookmark-multiple"
+  name: miniflux
+  namespace: miniflux
+spec:
+  entryPoints:
+    - "websecure"
+  routes:
+    - match: Host(`miniflux.${SECRET_DOMAIN}`) && PathPrefix(`/`)
+      kind: Rule
+      middlewares:
+        - name: miniflux-headers
+      services:
+        - kind: Service
+          name: miniflux
+          namespace: miniflux
+          port: 8080
+  tls:
+    secretName: "tls-wildcard-secret"
+    domains:
+    - main: "*.${SECRET_DOMAIN}"
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: miniflux-headers
+  namespace: miniflux
+spec:
+  headers:
+    customResponseHeaders:
+      X-Frame-Options: ""
