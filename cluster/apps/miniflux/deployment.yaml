@@ -55,4 +55,18 @@ spec:
             memory: 64Mi
         env:
           - name: DATABASE_URL
-            value: "postgres://miniflux-postgresql:secret@db/miniflux?sslmode=disable"
+            value: "postgres://miniflux-postgresql:secret@miniflux-postgresql/miniflux?sslmode=disable"
+          - name: RUN_MIGRATIONS
+            value: "1"
+          - name: BASE_URL
+            value: https://miniflux.${SECRET_DOMAIN}
+          - name: CREATE_ADMIN
+            value: "1"
+          - name: ADMIN_USERNAME
+            valueFrom:
+              secretKeyRef:
+                key: username
+          - name: ADMIN_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: password
