@@ -29,13 +29,8 @@ spec:
       accessModes: ReadWriteOnce
       dataSize: 1Gi
       
-    backup:
-      # There are two possible backup destinations currently implemented, http and pvc
-      destination: pvc
-      pvc:
-        class: nfs-client
-        accessModes: ReadWriteOnce
-        dataSize: 1Gi
+    backup: {}
+    backupSchedule: {}
 
     configs:
       DBHOST: firefly-firefly-db
