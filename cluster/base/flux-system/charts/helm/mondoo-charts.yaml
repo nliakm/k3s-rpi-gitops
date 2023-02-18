@@ -6,13 +6,13 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m
-  #url: https://mondoohq.github.io/mondoo-operator
-  url: https://github.com/mondoohq/mondoo-operator
+  url: https://mondoohq.github.io/mondoo-operator
+  #url: https://github.com/mondoohq/mondoo-operator
   timeout: 3m
-  ref:
-    branch: main
-  ignore: |
-    # exclude all
-    /*
-    # include charts directory
-    !/charts/
+  # ref:
+  #   branch: main
+  # ignore: |
+  #   # exclude all
+  #   /*
+  #   # include charts directory
+  #   !/charts/
