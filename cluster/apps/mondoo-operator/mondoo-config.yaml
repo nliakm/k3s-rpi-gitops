@@ -10,3 +10,11 @@ spec:
     enable: true
   nodes:
     enable: true
+  admission:
+    enable: true
+    mode: permissive
+    replicas: 1
+    certificateProvisioning:
+      mode: cert-manager
+  scanner:
+    replicas: 1

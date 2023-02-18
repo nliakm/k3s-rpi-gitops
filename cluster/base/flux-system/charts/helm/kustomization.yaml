@@ -17,7 +17,7 @@ resources:
   - metrics-server-charts.yaml
   - minecraft-server-charts.yaml
   - minio-charts.yaml
-  #- mondoo-charts.yaml
+  - mondoo-charts.yaml
   - nfs-subdir-external-provisioner-charts.yaml
   - node-feature-discovery-charts.yaml
   - prometheus-community-charts.yaml

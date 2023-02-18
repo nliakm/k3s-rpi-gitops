@@ -8,6 +8,7 @@ resources:
   - flux-system
   - kube-system
   - miniflux
+  - mondoo-operator
   - monitoring
   - networking
   - pihole

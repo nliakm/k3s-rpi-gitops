@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: mondoo-operator
-      version: 0.4.2
+      version: 1.11.1
       sourceRef:
         kind: GitRepository
         name: mondoo-operator
@@ -20,7 +20,7 @@ spec:
       manager:
         image:
           repository: ghcr.io/mondoohq/mondoo-operator
-          tag: v1.11.1
+          tag: v1.11.1-arm
         resources:
           requests:
             cpu: 200m

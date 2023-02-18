@@ -21,3 +21,4 @@ resources:
   - ./charts/helm/firefly-iii-charts.yaml
   - ./charts/helm/pihole-charts.yaml
   - ./charts/helm/weave-gitops.yaml
+  - ./charts/helm/mondoo-charts.yaml
