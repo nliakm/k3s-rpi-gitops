@@ -4,5 +4,5 @@ resources:
   - cert-manager
   - traefik
   - prometheus
-  - mondoo-operator
+#  - mondoo-operator
 #  - metallb
