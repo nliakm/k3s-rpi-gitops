@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - hydroponics-dashboard-cm.yaml
   - nas-dashboard-cm.yaml
-  - pihole-dashboard-cm.yaml
+#  - pihole-dashboard-cm.yaml
