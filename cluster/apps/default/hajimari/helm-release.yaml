@@ -44,6 +44,10 @@ spec:
               url: 'https://app.renovatebot.com/dashboard#github/nliakm/k3s-rpi-gitops'
               icon: 'mdi:format-paint'
               info: Renavotate Dashboard
+            - name: Mondoo
+              url: 'https://console.mondoo.com'
+              icon: 'mdi:security'
+              info: Mondoo Dashboard
       globalBookmarks:
         group: Tech
         bookmarks:
