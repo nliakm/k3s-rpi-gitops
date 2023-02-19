@@ -24,6 +24,7 @@ spec:
     image:
       repository: "pihole/pihole"
       tag: "2023.02.2"
+      pullPolicy: Always
     admin:
       existingSecret: "pihole-secrets"
       passwordKey: "ADMIN_PASSWORD" 
@@ -336,3 +337,16 @@ spec:
         - hosts:
           - "pihole.${SECRET_DOMAIN}"
           secretName: "tls-wildcard-secret"
+    monitoring:
+      podMonitor:
+        enabled: true
+      sidecar:
+        enabled: true
+        port: 9617
+        image:
+          repository: ekofr/pihole-exporter
+          tag: v0.3.0
+          pullPolicy: IfNotPresent
+        resources:
+          limits:
+            memory: 128Mi
