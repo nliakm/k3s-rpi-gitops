@@ -145,12 +145,9 @@ spec:
 
       # -- Resource limits and requests for the application controller pods
       resources:
-       limits:
-         cpu: 500m
-         memory: 512Mi
        requests:
-         cpu: 100m
-         memory: 200Mi
+         cpu: 150m
+         memory: 250Mi
 
       serviceAccount:
         # -- Create a service account for the application controller
@@ -372,11 +369,8 @@ spec:
 
       # -- Resource limits and requests for dex
       resources:
-       limits:
-         cpu: 50m
-         memory: 64Mi
        requests:
-         cpu: 10m
+         cpu: 15m
          memory: 32Mi
       pdb:
         # -- Labels to be added to Dex server pdb
@@ -433,12 +427,9 @@ spec:
 
       # -- Resource limits and requests for redis
       resources:
-       limits:
-         cpu: 50m
-         memory: 32Mi
        requests:
-         cpu: 4m
-         memory: 6Mi
+         cpu: 5m
+         memory: 8Mi
       service:
         # -- Redis service annotations
         annotations: {}
@@ -1020,11 +1011,8 @@ spec:
         timeoutSeconds: 1
       # -- Resource limits and requests for the repo server pods
       resources:
-       limits:
-         cpu: 50m
-         memory: 128Mi
        requests:
-         cpu: 3m
+         cpu: 25m
          memory: 50Mi
       ## Repo server service configuration
       service:
@@ -1251,12 +1239,9 @@ spec:
       # choice for the user. This also increases chances charts run on environments with little
       # resources, such as Minikube. If you do want to specify resources, uncomment the following
       # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-        limits:
-          cpu: 50m
-          memory: 128Mi
         requests:
-          cpu: 1m
-          memory: 30Mi
+          cpu: 25m
+          memory: 50Mi
 
       # -- [Node selector]
       nodeSelector: {}
