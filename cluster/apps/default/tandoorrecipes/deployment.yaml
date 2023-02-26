@@ -52,8 +52,11 @@ spec:
         imagePullPolicy: Always
         resources:
           requests:
-            cpu: 250m
+            cpu: 5m
             memory: 64Mi
+          limits:
+            cpu: 100m
+            memory: 128Mi
         command:
         - sh
         - -c
@@ -89,8 +92,11 @@ spec:
             name: gunicorn
         resources:
           requests:
-            cpu: 250m
-            memory: 64Mi
+            cpu: 1m
+            memory: 8Mi
+          limits:
+            cpu: 50m
+            memory: 16Mi
         volumeMounts:
           - mountPath: /media
             name: media
@@ -133,8 +139,11 @@ spec:
           periodSeconds: 30
         resources:
           requests:
-            cpu: 250m
+            cpu: 5m
             memory: 64Mi
+          limits:
+            cpu: 100m
+            memory: 128Mi
         volumeMounts:
           - mountPath: /opt/recipes/mediafiles
             name: media
