@@ -27,6 +27,10 @@ spec:
       createCluserRole: true
       createSecret: false
       username: admin
+    resources:
+      requests:
+        cpu: 100m
+        memory: 50Mi
     ingress:
       enabled: true
       className: "traefik"
