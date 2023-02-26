@@ -53,11 +53,8 @@ spec:
       create: true
       annotations: {}
       name:
-    resources: {}
-      # limits:
-      #  cpu: 100m
-      #  memory: 128Mi
-      # requests:
-      #  cpu: 100m
-      #  memory: 128Mi
+    resources:
+      requests:
+       cpu: 5m
+       memory: 15Mi
     labels: {}
