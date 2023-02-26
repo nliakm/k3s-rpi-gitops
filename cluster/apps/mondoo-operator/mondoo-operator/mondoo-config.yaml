@@ -4,9 +4,13 @@ metadata:
   name: mondoo-client
   namespace: mondoo-operator
 spec:
-  mondooCredsSecretRef:
+  mondooTokenSecretRef:
+    name: mondoo-token
+  mondooCredsSecretRef: 
     name: mondoo-client
   kubernetesResources:
+    enable: true
+  consoleIntegration:
     enable: true
   nodes:
     enable: true
@@ -14,7 +18,9 @@ spec:
     enable: true
     mode: permissive
     replicas: 1
+    serviceAccountName: mondoo-operator-webhook
     certificateProvisioning:
       mode: cert-manager
   scanner:
+    serviceAccountName: mondoo-operator-k8s-resources-scanning
     replicas: 1

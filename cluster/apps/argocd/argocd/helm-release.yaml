@@ -144,13 +144,13 @@ spec:
       priorityClassName: ""
 
       # -- Resource limits and requests for the application controller pods
-      resources: {}
-      #  limits:
-      #    cpu: 500m
-      #    memory: 512Mi
-      #  requests:
-      #    cpu: 250m
-      #    memory: 256Mi
+      resources:
+       limits:
+         cpu: 500m
+         memory: 512Mi
+       requests:
+         cpu: 100m
+         memory: 200Mi
 
       serviceAccount:
         # -- Create a service account for the application controller
@@ -371,13 +371,13 @@ spec:
       servicePortMetrics: 5558
 
       # -- Resource limits and requests for dex
-      resources: {}
-      #  limits:
-      #    cpu: 50m
-      #    memory: 64Mi
-      #  requests:
-      #    cpu: 10m
-      #    memory: 32Mi
+      resources:
+       limits:
+         cpu: 50m
+         memory: 64Mi
+       requests:
+         cpu: 10m
+         memory: 32Mi
       pdb:
         # -- Labels to be added to Dex server pdb
         labels: {}
@@ -432,13 +432,13 @@ spec:
         automountServiceAccountToken: false
 
       # -- Resource limits and requests for redis
-      resources: {}
-      #  limits:
-      #    cpu: 200m
-      #    memory: 128Mi
-      #  requests:
-      #    cpu: 100m
-      #    memory: 64Mi
+      resources:
+       limits:
+         cpu: 50m
+         memory: 32Mi
+       requests:
+         cpu: 4m
+         memory: 6Mi
       service:
         # -- Redis service annotations
         annotations: {}
@@ -1019,13 +1019,13 @@ spec:
         # -- Number of seconds after which the [probe] times out
         timeoutSeconds: 1
       # -- Resource limits and requests for the repo server pods
-      resources: {}
-      #  limits:
-      #    cpu: 50m
-      #    memory: 128Mi
-      #  requests:
-      #    cpu: 10m
-      #    memory: 64Mi
+      resources:
+       limits:
+         cpu: 50m
+         memory: 128Mi
+       requests:
+         cpu: 3m
+         memory: 50Mi
       ## Repo server service configuration
       service:
         # -- Repo server service annotations
@@ -1246,17 +1246,17 @@ spec:
         name: ""
 
       # -- Resource limits and requests for the controller pods.
-      resources: {}
+      resources:
       # We usually recommend not to specify default resources and to leave this as a conscious
       # choice for the user. This also increases chances charts run on environments with little
       # resources, such as Minikube. If you do want to specify resources, uncomment the following
       # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-      # limits:
-      #   cpu: 100m
-      #   memory: 128Mi
-      # requests:
-      #   cpu: 100m
-      #   memory: 128Mi
+        limits:
+          cpu: 50m
+          memory: 128Mi
+        requests:
+          cpu: 1m
+          memory: 30Mi
 
       # -- [Node selector]
       nodeSelector: {}
