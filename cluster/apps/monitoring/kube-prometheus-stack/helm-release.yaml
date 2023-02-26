@@ -75,7 +75,11 @@ spec:
         inhibit_rules:
           - source_matchers: [severity="critical"]
             target_matchers: [severity="warning"]
-            equal: ["alertname", "namespace"]
+            equal: ["alertname", "namespace"]      
+      resources:
+        requests:
+          memory: 30Mi
+          cpu: 5m
       ingress:
         enabled: true
         pathType: Prefix
@@ -175,13 +179,10 @@ spec:
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
         retention: 21d
-        # resources:
-        #   requests:
-        #     cpu: 100m
-        #     memory: 128Mi
-        #   limits:
-        #     memory: 1Gi
-        #     cpu: 1500m
+        resources:
+          requests:
+            cpu: 300m
+            memory: 1Gi
         enableAdminAPI: true
         walCompression: true
         storageSpec:

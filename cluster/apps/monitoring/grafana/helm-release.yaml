@@ -102,13 +102,10 @@ spec:
         repository: quay.io/kiwigrid/k8s-sidecar
         tag: 1.22.3
       imagePullPolicy: IfNotPresent
-      resources: {}
-      limits:
-        cpu: 100m
-        memory: 100Mi
+      resources:
       requests:
-        cpu: 50m
-        memory: 50Mi
+        cpu: 10m
+        memory: 70Mi
       enableUniqueFilenames: false
       dashboards:
         enabled: true
@@ -159,8 +156,5 @@ spec:
       configmap.reloader.stakater.com/reload: "grafana"
     resources:
       requests:
-        cpu: 75m
-        memory: 128Mi
-      limits:
-        memory: 512Mi
-
+        cpu: 8m
+        memory: 80Mi

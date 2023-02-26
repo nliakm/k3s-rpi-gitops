@@ -23,8 +23,8 @@ spec:
           imagePullPolicy: IfNotPresent
           resources:
             requests:
-              cpu: 50m
-              memory: 250Mi
+              cpu: 1m
+              memory: 8Mi
           ports:
             - name: http
               protocol: TCP
