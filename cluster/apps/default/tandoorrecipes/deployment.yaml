@@ -53,10 +53,7 @@ spec:
         resources:
           requests:
             cpu: 5m
-            memory: 64Mi
-          limits:
-            cpu: 100m
-            memory: 128Mi
+            memory: 84Mi
         command:
         - sh
         - -c
@@ -94,9 +91,6 @@ spec:
           requests:
             cpu: 1m
             memory: 8Mi
-          limits:
-            cpu: 50m
-            memory: 16Mi
         volumeMounts:
           - mountPath: /media
             name: media
@@ -139,11 +133,8 @@ spec:
           periodSeconds: 30
         resources:
           requests:
-            cpu: 5m
+            cpu: 50m
             memory: 64Mi
-          limits:
-            cpu: 100m
-            memory: 128Mi
         volumeMounts:
           - mountPath: /opt/recipes/mediafiles
             name: media
