@@ -33,7 +33,10 @@ spec:
     hostNetwork: true
     # -- When hostNetwork is true set dnsPolicy to ClusterFirstWithHostNet
     dnsPolicy: ClusterFirstWithHostNet
-
+    resources:
+      requests:
+        cpu: 20m
+        memory: 235Mi
     ingress:
       main:
         enabled: true
@@ -86,7 +89,11 @@ spec:
         fsGroup: 1001
       containerSecurityContext:
         enabled: true
-        runAsUser: 1001        
+        runAsUser: 1001
+      resources:
+        requests:
+          memory: 25Mi
+          cpu: 5m
     metrics:
       enabled: true
       serviceMonitor:
