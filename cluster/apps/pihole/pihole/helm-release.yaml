@@ -24,7 +24,7 @@ spec:
     image:
       repository: "pihole/pihole"
       tag: "2023.02.2"
-      pullPolicy: Always
+      pullPolicy: IfNotPresent
     admin:
       existingSecret: "pihole-secrets"
       passwordKey: "ADMIN_PASSWORD"
