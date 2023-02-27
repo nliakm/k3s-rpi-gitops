@@ -370,7 +370,7 @@ spec:
       # -- Resource limits and requests for dex
       resources:
        requests:
-         cpu: 15m
+         cpu: 5m
          memory: 32Mi
       pdb:
         # -- Labels to be added to Dex server pdb
@@ -1240,7 +1240,7 @@ spec:
       # resources, such as Minikube. If you do want to specify resources, uncomment the following
       # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
         requests:
-          cpu: 25m
+          cpu: 5m
           memory: 50Mi
 
       # -- [Node selector]
