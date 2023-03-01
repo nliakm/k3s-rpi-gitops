@@ -397,7 +397,7 @@ spec:
         # -- Redis repository
         repository: public.ecr.aws/docker/library/redis
         # -- Redis tag
-        tag: 7.0.8-alpine
+        tag: 7.0.9-alpine
         # -- Redis imagePullPolicy
         imagePullPolicy: IfNotPresent
 
