@@ -25,6 +25,8 @@ spec:
             requests:
               cpu: 1m
               memory: 8Mi
+            limits:
+              memory: 16Mi
           ports:
             - name: http
               protocol: TCP

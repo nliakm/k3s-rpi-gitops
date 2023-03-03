@@ -33,6 +33,8 @@ spec:
       requests:
         cpu: 2m
         memory: 16Mi
+      limits:
+        memory: 32Mi
     serviceMonitor:
       enabled: true
       defaults:

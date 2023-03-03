@@ -183,6 +183,8 @@ spec:
           requests:
             cpu: 300m
             memory: 1Gi
+          limits:
+            memory: 2Gi
         enableAdminAPI: true
         walCompression: true
         storageSpec:
