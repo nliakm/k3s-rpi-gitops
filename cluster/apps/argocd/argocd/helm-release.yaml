@@ -145,9 +145,12 @@ spec:
 
       # -- Resource limits and requests for the application controller pods
       resources:
-       requests:
-         cpu: 150m
-         memory: 250Mi
+        requests:
+          cpu: 150m
+          memory: 250Mi
+        limits:
+          memory: 400MI
+
 
       serviceAccount:
         # -- Create a service account for the application controller
@@ -369,9 +372,12 @@ spec:
 
       # -- Resource limits and requests for dex
       resources:
-       requests:
-         cpu: 5m
-         memory: 32Mi
+        requests:
+          cpu: 5m
+          memory: 32Mi
+        limits:
+          memory: 128Mi
+
       pdb:
         # -- Labels to be added to Dex server pdb
         labels: {}
@@ -427,9 +433,11 @@ spec:
 
       # -- Resource limits and requests for redis
       resources:
-       requests:
-         cpu: 5m
-         memory: 8Mi
+        requests:
+          cpu: 5m
+          memory: 5Mi
+        limits:
+          memory: 64Mi
       service:
         # -- Redis service annotations
         annotations: {}
@@ -582,13 +590,12 @@ spec:
         # -- Number of seconds after which the [probe] times out
         timeoutSeconds: 1
       # -- Resource limits and requests for the Argo CD server
-      resources: {}
-      #  limits:
-      #    cpu: 100m
-      #    memory: 128Mi
-      #  requests:
-      #    cpu: 50m
-      #    memory: 64Mi
+      resources:
+        requests:
+          cpu: 7m
+          memory: 32Mi
+        limits:
+          memory: 128Mi
 
       ## Certificate configuration
       certificate:
@@ -1011,9 +1018,11 @@ spec:
         timeoutSeconds: 1
       # -- Resource limits and requests for the repo server pods
       resources:
-       requests:
-         cpu: 25m
-         memory: 50Mi
+        requests:
+          cpu: 25m
+          memory: 50Mi
+        limits:
+          memory: 128Mi
       ## Repo server service configuration
       service:
         # -- Repo server service annotations
@@ -1241,7 +1250,9 @@ spec:
       # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
         requests:
           cpu: 5m
-          memory: 50Mi
+          memory: 40Mi
+        limits:
+          memory: 80Mi
 
       # -- [Node selector]
       nodeSelector: {}
