@@ -55,6 +55,9 @@ spec:
       name:
     resources:
       requests:
-       cpu: 5m
-       memory: 15Mi
+        cpu: 5m
+        memory: 13Mi
+      limits:
+        memory: 32Mi
+      
     labels: {}
