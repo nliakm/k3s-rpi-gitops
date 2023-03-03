@@ -31,5 +31,7 @@ spec:
         - "9.9.9.9"
     resources:
       requests:
-        cpu: 15m
+        cpu: 5m
         memory: 60Mi
+      limits:
+        memory: 128Mi
