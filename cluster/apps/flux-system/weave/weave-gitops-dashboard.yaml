@@ -31,6 +31,8 @@ spec:
       requests:
         cpu: 100m
         memory: 50Mi
+      limits:
+        memory: 100Mi
     ingress:
       enabled: true
       className: "traefik"
