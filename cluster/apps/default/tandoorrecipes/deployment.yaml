@@ -91,6 +91,8 @@ spec:
           requests:
             cpu: 1m
             memory: 8Mi
+          limits:
+            memory: 32Mi
         volumeMounts:
           - mountPath: /media
             name: media
@@ -135,6 +137,8 @@ spec:
           requests:
             cpu: 50m
             memory: 64Mi
+          limits:
+            memory: 128Mi
         volumeMounts:
           - mountPath: /opt/recipes/mediafiles
             name: media

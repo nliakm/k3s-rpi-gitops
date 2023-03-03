@@ -35,8 +35,10 @@ spec:
     dnsPolicy: ClusterFirstWithHostNet
     resources:
       requests:
-        cpu: 20m
+        cpu: 10m
         memory: 235Mi
+      limits:
+        memory: 512Mi
     ingress:
       main:
         enabled: true
@@ -93,7 +95,10 @@ spec:
       resources:
         requests:
           memory: 25Mi
-          cpu: 5m
+          cpu: 40m
+        limits:
+          memory: 75Mi
+        
     metrics:
       enabled: true
       serviceMonitor:
