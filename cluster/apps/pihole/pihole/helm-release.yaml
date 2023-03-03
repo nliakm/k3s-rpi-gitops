@@ -30,8 +30,10 @@ spec:
       passwordKey: "ADMIN_PASSWORD"
     resources:
       requests:
-       cpu: 10m
-       memory: 128Mi
+        cpu: 10m
+        memory: 90Mi
+      limits:
+        memory: 160Mi
     DNS1: "208.67.222.222"
     #DNS2: "1.1.1.1"
     DNS2: "2620:119:35::35"
@@ -351,3 +353,9 @@ spec:
           repository: ekofr/pihole-exporter
           tag: v0.3.0
           pullPolicy: IfNotPresent
+        resources:
+          requests:
+            memory: 14Mi
+            cpu: 2m
+          limits:
+            memory: 32Mi
