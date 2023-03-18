@@ -22,9 +22,9 @@ spec:
       name: recipes-postgresql
       namespace: default
     spec:
-      containers:      
+      containers:
       - name: recipes-db
-        image: postgres:14.3-alpine3.15
+        image: postgres:15.2-alpine3.17
         imagePullPolicy: IfNotPresent      
         env:
         - name: PGDATA
