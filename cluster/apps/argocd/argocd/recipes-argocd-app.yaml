@@ -16,6 +16,8 @@ spec:
     targetRevision: develop
     helm:
       values:
-        - secretRef:
-            name: recipes-helm-secrets
-            key: helm-values
+        valueFrom:
+          secretKeyRef:
+          - secretRef:
+              name: recipes-helm-secrets
+              key: helm-values
