@@ -16,8 +16,10 @@ spec:
     targetRevision: develop
     helm:
       values:
-        valueFrom:
-          secretKeyRef:
-          - secretRef:
-              name: recipes-helm-secrets
-              key: helm-values
+        - configMapRef:
+            name: myconfigmap
+        # valueFrom:
+        #   secretKeyRef:
+        #   - secretRef:
+        #       name: recipes-helm-secrets
+        #       key: helm-values
