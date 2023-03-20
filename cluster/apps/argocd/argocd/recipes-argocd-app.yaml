@@ -1,0 +1,21 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: recipes-gitops-helm
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    name: recipes-gitops-helm
+spec:
+  project: recipes-gitops-helm
+  source:
+    repoURL: 'https://github.com/nliakm/recipes.git'
+    path: helm-charts/recipes
+    targetRevision: develop
+    helm:
+      values:
+        - secretRef:
+            name: recipes-helm-secrets
+            key: helm-values
