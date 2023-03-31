@@ -44,9 +44,7 @@ spec:
       grafana_net:
         url: https://grafana.net
       auth.anonymous:
-        enabled: true
-        org_id: 1
-        org_role: Viewer
+        enabled: false
       auth.ldap:
         enabled: true
         allow_sign_up: true
