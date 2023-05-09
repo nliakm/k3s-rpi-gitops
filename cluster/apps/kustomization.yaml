@@ -13,4 +13,5 @@ resources:
   - monitoring
   - networking
   - pihole
+  - scraang
   - system-upgrade
