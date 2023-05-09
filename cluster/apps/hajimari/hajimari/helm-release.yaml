@@ -73,7 +73,7 @@ spec:
                 pathType: Prefix
         tls:
           - hosts:
-              - "*.${SECRET_DOMAIN}"
+              - "start.${SECRET_DOMAIN}"
             secretName: "tls-wildcard-secret"
     persistence:
       data:
