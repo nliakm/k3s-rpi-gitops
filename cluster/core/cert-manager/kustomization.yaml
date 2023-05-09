@@ -4,6 +4,7 @@ resources:
   - helm-release.yaml
   - letsencrypt-production.yaml
   - secret.sops.yaml
+  - letsencrypt-wildcard.yaml
   # - selfsigned-cluster-issuer.yaml
   # - selfsigned-issuer.yaml
   # - selfsigned-ca.yaml
