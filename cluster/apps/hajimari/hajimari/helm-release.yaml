@@ -35,6 +35,7 @@ spec:
           - argocd
           - flux-system
           - miniflux
+          - scraang
       title: Start
       name: "you"
       customApps:
