@@ -23,7 +23,7 @@ spec:
     replicaCount: 1
     image:
       repository: "pihole/pihole"
-      tag: "2023.03.1"
+      tag: "2023.05.2"
       pullPolicy: IfNotPresent
     admin:
       existingSecret: "pihole-secrets"
