@@ -910,24 +910,6 @@ spec:
       autoscaling:
         # -- Enable Horizontal Pod Autoscaler ([HPA]) for the repo server
         enabled: false
-        # -- Minimum number of replicas for the repo server [HPA]
-        minReplicas: 1
-        # -- Maximum number of replicas for the repo server [HPA]
-        maxReplicas: 5
-        # -- Average CPU utilization percentage for the repo server [HPA]
-        targetCPUUtilizationPercentage: 50
-        # -- Average memory utilization percentage for the repo server [HPA]
-        targetMemoryUtilizationPercentage: 50
-      image:
-        # -- Repository to use for the repo server
-        # @default -- `""` (defaults to global.image.repository)
-        repository: "" # defaults to global.image.repository
-        # -- Tag to use for the repo server
-        # @default -- `""` (defaults to global.image.tag)
-        tag: "" # defaults to global.image.tag
-        # -- Image pull policy for the repo server
-        # @default -- `""` (defaults to global.image.imagePullPolicy)
-        imagePullPolicy: "" # IfNotPresent
 
       ##### KSOPS CONFIGURATION #####
       # Set the XDG_CONFIG_HOME env variable to allow kustomize to detect the plugin
@@ -960,7 +942,7 @@ spec:
             - mountPath: /gnupg-home
               name: gnupg-home      
         - name: install-ksops
-          image: viaductoss/ksops:v4.2.1-arm64
+          image: viaductoss/ksops:v4.1.1-arm64
           command: ["/bin/sh", "-c"]
           args:
             - echo "Installing KSOPS...";
@@ -991,32 +973,6 @@ spec:
       # -- Configures the repo server port
       containerPort: 8081
 
-      ## Readiness and liveness probes for default backend
-      ## Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
-      ##
-      readinessProbe:
-        # -- Minimum consecutive failures for the [probe] to be considered failed after having succeeded
-        failureThreshold: 3
-        # -- Number of seconds after the container has started before [probe] is initiated
-        initialDelaySeconds: 10
-        # -- How often (in seconds) to perform the [probe]
-        periodSeconds: 30
-        # -- Minimum consecutive successes for the [probe] to be considered successful after having failed
-        successThreshold: 1
-        # -- Number of seconds after which the [probe] times out
-        timeoutSeconds: 1
-      livenessProbe:
-        # -- Minimum consecutive failures for the [probe] to be considered failed after having succeeded
-        failureThreshold: 3
-        # -- Number of seconds after the container has started before [probe] is initiated
-        initialDelaySeconds: 10
-        # -- How often (in seconds) to perform the [probe]
-        periodSeconds: 10
-        # -- Minimum consecutive successes for the [probe] to be considered successful after having failed
-        successThreshold: 1
-        # -- Number of seconds after which the [probe] times out
-        timeoutSeconds: 1
-      # -- Resource limits and requests for the repo server pods
       resources:
         requests:
           cpu: 25m
@@ -1103,29 +1059,6 @@ spec:
         - secrets
         verbs:
         - get
-      # Init container to copy argocd binary
-      copyutil:
-        # -- Resource limits and requests for the copyutil initContainer
-        resources: {}
-        #  limits:
-        #    cpu: 50m
-        #    memory: 64Mi
-        #  requests:
-        #    cpu: 10m
-        #    memory: 32Mi
-      pdb:
-        # -- Labels to be added to Repo server pdb
-        labels: {}
-        # -- Annotations to be added to Repo server pdb
-        annotations: {}
-
-        # -- Deploy a Poddisruptionbudget for the Repo server
-        enabled: false
-        # minAvailable: 1
-        # maxUnavailable: 0
-
-      # -- Secrets with credentials to pull images from a private registry
-      imagePullSecrets: []
 
     ## Argo Configs
     configs:
