@@ -1,0 +1,29 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: scraang-gitops-helm
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    name: scraang-gitops-helm
+spec:
+  project: scraang
+  source:
+    repoURL: 'https://github.com/nliakm/scraang.git'
+    path: base/k8s/helm
+    targetRevision: main
+    helm:
+      valueFiles:
+        - ../environments/scraang.yaml
+      parameters:
+        - name: flask.image.tag
+          value: latest
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: scraang
+  syncPolicy:
+    automated:
+      prune: true
+
