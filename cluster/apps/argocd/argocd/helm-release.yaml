@@ -106,7 +106,7 @@ spec:
       # -- Resource limits and requests for dex
       resources:
         requests:
-          cpu: 5m
+          cpu: 8m
           memory: 32Mi
         limits:
           memory: 128Mi
