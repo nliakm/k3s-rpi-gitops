@@ -93,13 +93,6 @@ spec:
       # -- Dex name
       name: dex-server
 
-      image:
-        # -- Dex image repository
-        repository: ghcr.io/dexidp/dex
-        # -- Dex image tag
-        tag: v2.36.0
-
-
       # # -- Additional volumeMounts to the dex main container
       # volumeMounts:
       #   - name: static-files
