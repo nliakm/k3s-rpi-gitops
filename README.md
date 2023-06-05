@@ -23,6 +23,9 @@ The following components will be installed in the [k3s](https://k3s.io/) cluster
 - [grafana](https://github.com/grafana/helm-charts/tree/main/charts/grafana) - Webdashboard to visualize prometheus metrics
 - [home-assistant](https://www.home-assistant.io/) - Open source home automation platform
 - [tandoorrecipes](https://tandoor.dev/) - recipe manager that allows management of digital recipes
+- [pi-hole](https://pi-hole.net/) - a DNS sinkhole that protects your devices from unwanted content without installing any client-side software
+- [Argo CD](https://argo-cd.readthedocs.io/en/stable/) - a declarative, GitOps continuous delivery tool for Kubernetes
+- [Miniflux](https://miniflux.app/) - a minimalist and opinionated feed reader
 
 For provisioning the following tools will be used:
 
@@ -267,6 +270,24 @@ kubectl --kubeconfig=./provision/kubeconfig get pods -n flux-system
 # source-controller-7d6875bcb4-zqw9f         1/1     Running   0          1h
 ```
 ## Post installation
+
+### Upgrade kubernetes version
+Update the `channel` spec of `cluster/apps/system-upgrade-system-upgrade-controller/server-plan.yaml` and `cluster/apps/system-upgrade-system-upgrade-controller/agent-plan.yaml` to the desired version.
+
+### Upgrade tigera-operator
+1. Download the v<UPDATE_VERSION> operator manifest.
+```
+curl https://raw.githubusercontent.com/projectcalico/calico/v<UPDATE_VERSION>/manifests/tigera-operator.yaml -O
+```
+
+2. Use the following command to initiate an upgrade.
+
+```
+kubectl replace -f tigera-operator.yaml
+```
+https://docs.tigera.io/calico/latest/operations/upgrading/kubernetes-upgrade#upgrading-an-installation-that-uses-the-operator
+
+
 
 ### helpful commands
  **TODO**
