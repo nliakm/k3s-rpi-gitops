@@ -12,7 +12,7 @@ resources:
 #  - mondoo-operator
   - monitoring
   - networking
-  - rocketchat
+#  - rocketchat
   - pihole
   - scraang
   - system-upgrade
