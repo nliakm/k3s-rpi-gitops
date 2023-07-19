@@ -21,6 +21,7 @@ spec:
       namespace: nfs-system
   values:
     mongodb:
+      useStatefulSet: true
       auth:
         rootPassword: rocketchatroot
         usernames:
@@ -44,6 +45,12 @@ spec:
         size: 1Gi
 
       volumePermissions: { enabled: true }
+
+    persistence:
+      enabled: true
+      storageClass: "nfs-client"
+      accessMode: ReadWriteOnce
+      size: 1Gi
 
     resources:
       requests:
