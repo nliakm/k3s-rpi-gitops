@@ -21,6 +21,15 @@ spec:
       namespace: nfs-system
   values:
     mongodb:
+      auth:
+        rootPassword: rocketchatroot
+        usernames:
+          - rocketchat
+        passwords:
+          - rocketchat
+        databases:
+          - rocketchat
+
       persistence:
         enabled: true
         ## mongodb data Persistent Volume Storage Class
