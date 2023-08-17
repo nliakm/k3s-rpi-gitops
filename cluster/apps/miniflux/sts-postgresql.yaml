@@ -24,7 +24,7 @@ spec:
     spec:
       containers:      
       - name: miniflux-db
-        image: postgres:15.2-alpine3.17
+        image: postgres:15.4-alpine3.17
         imagePullPolicy: IfNotPresent      
         env:
         - name: PGDATA
