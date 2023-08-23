@@ -16,6 +16,9 @@ spec:
     targetRevision: 1.0.6
     helm:
       valuesObject:
+        image:
+          repository: monica
+          tag: 4.0.0-fpm-alpine
         ingress:
           enabled: true
           className: traefik
