@@ -14,7 +14,7 @@ spec:
     chart: monica
     repoURL: 'https://github.com/nliakm/helm-charts.git'
     helm:
-      values:
+      valuesObject:
         ingress:
           enabled: true
           className: traefik
