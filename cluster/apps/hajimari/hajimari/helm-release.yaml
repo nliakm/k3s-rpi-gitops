@@ -31,6 +31,7 @@ spec:
         matchNames:
           - default
           - networking
+          - monica
           - monitoring
           - argocd
           - flux-system
