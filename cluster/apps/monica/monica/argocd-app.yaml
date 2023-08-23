@@ -12,7 +12,8 @@ spec:
   project: monica
   source:
     chart: monica
-    repoURL: 'https://github.com/nliakm/helm-charts.git'
+    repoURL: 'https://nliakm.github.io/helm-charts'
+    targetRevision: 1.0.6
     helm:
       valuesObject:
         ingress:
