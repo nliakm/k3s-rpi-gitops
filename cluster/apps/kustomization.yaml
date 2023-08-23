@@ -9,10 +9,10 @@ resources:
   - flux-system
   - kube-system
   - miniflux
+  - monica
 #  - mondoo-operator
   - monitoring
   - networking
-#  - rocketchat
   - pihole
   - scraang
   - system-upgrade

@@ -1,0 +1,81 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: monica
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    name: monica
+spec:
+  project: monica
+  source:
+    chart: monica
+    repoURL: 'https://github.com/nliakm/helm-charts.git'
+    helm:
+      values:
+        ingress:
+          enabled: true
+          className: traefik
+          annotations:
+            hajimari.io/enable: "true"
+            hajimari.io/icon: "account-group"
+            hajimari.io/group: "monica"
+            traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+            cert-manager.io/cluster-issuer: "letsencrypt-production"
+            cert-manager.io/private-key-secret-name: "root-secret"
+          tls:
+            - secretName: monica-tls-secret
+              hosts:
+                - "monica.${SECRET_DOMAIN}"
+        monica:
+          host: "monica.${SECRET_DOMAIN}"
+        # nginx:
+        #   ## You need to set an fpm version of the image for monica if you want to use nginx!
+        #   enabled: false
+        #   image:
+        #     repository: nginx
+        #     tag: alpine
+        #     pullPolicy: IfNotPresent
+
+        #   config:
+        #     # This generates the default nginx config
+        #     default: true
+        #     # custom: |-
+        #     #     worker_processes  1;..
+
+        #   resources: {}
+
+
+        ##
+        ## Internal database configuration (SQLite)
+        ##
+        internalDatabase:
+          enabled: true
+          ## Database fullpath file
+          name: /var/www/html/database/monica.sqlite
+
+
+        ## Enable persistence using Persistent Volume Claims
+        ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
+        ##
+        persistence:
+          # monica storage (/var/www/html/storage)
+          enabled: true
+          annotations: {}
+          storageClass: nfs-client
+
+          accessMode: ReadWriteOnce
+          size: 4Gi
+
+        resources: 
+          limits:
+            cpu: 200m
+            memory: 256Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: monica
