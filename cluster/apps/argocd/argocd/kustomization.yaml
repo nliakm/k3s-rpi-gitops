@@ -7,3 +7,4 @@ resources:
   # - recipes-helm-secrets.sops.yaml
   # - recipes-argocd-app.yaml
   - scraang-argocd-app.yaml
+  - argocd-image-updater.yaml
