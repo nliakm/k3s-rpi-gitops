@@ -41,7 +41,7 @@ spec:
       replicas: 1
 
       # -- Deploy the application controller as a StatefulSet instead of a Deployment, this is required for HA capability.
-      enableStatefulSet: true
+      enableStatefulSet: false
 
       # -- Resource limits and requests for the application controller pods
       resources:
