@@ -89,11 +89,6 @@ spec:
             prometheus: kube-prometheus-stack
           namespace: monitoring
 
-      ## Enable if you would like to grant rights to Argo CD to deploy to the local Kubernetes cluster.
-      clusterAdminAccess:
-        # -- Enable RBAC for local cluster deployments
-        enabled: true
-
     ## Dex
     dex:
       # -- Enable dex
