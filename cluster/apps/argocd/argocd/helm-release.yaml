@@ -40,9 +40,6 @@ spec:
       # If changing the number of replicas you must pass the number as `ARGOCD_CONTROLLER_REPLICAS` as an environment variable
       replicas: 1
 
-      # -- Deploy the application controller as a StatefulSet instead of a Deployment, this is required for HA capability.
-      enableStatefulSet: false
-
       # -- Resource limits and requests for the application controller pods
       resources:
         requests:
