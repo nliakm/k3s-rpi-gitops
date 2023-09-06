@@ -36,10 +36,6 @@ spec:
       # -- Application controller name string
       name: application-controller
 
-      # -- The number of application controller pods to run.
-      # If changing the number of replicas you must pass the number as `ARGOCD_CONTROLLER_REPLICAS` as an environment variable
-      replicas: 1
-
       # -- Resource limits and requests for the application controller pods
       resources:
         requests:
@@ -228,8 +224,7 @@ spec:
     repoServer:
       # -- Repo server name
       name: repo-server
-      # -- The number of repo server pods to run
-      replicas: 1
+
       autoscaling:
         # -- Enable Horizontal Pod Autoscaler ([HPA]) for the repo server
         enabled: false
