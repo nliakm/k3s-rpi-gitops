@@ -316,7 +316,7 @@ spec:
 
     applicationSet:
       # -- Enable Application Set controller
-      enabled: true
+      enabled: false
 
       # -- Application Set controller name string
       name: applicationset-controller
