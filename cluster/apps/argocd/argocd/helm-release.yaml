@@ -101,15 +101,15 @@ spec:
       # -- Dex name
       name: dex-server
 
-      # # -- Additional volumeMounts to the dex main container
-      volumeMounts:
-        - name: static-files
-          mountPath: /shared
+      # # # -- Additional volumeMounts to the dex main container
+      # volumeMounts:
+      #   - name: static-files
+      #     mountPath: /shared
 
-      # # -- Additional volumes to the dex pod
-      volumes:
-        - name: static-files
-          emptyDir: {}
+      # # # -- Additional volumes to the dex pod
+      # volumes:
+      #   - name: static-files
+      #     emptyDir: {}
 
       # -- Resource limits and requests for dex
       resources:
