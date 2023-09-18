@@ -28,7 +28,7 @@ spec:
       serviceAccountName: miniflux
       containers:
       - name: miniflux
-        image: miniflux/miniflux:2.0.47
+        image: miniflux/miniflux:2.0.48
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 8080
