@@ -22,6 +22,7 @@ spec:
       registry: docker.io
       repository: bitnami/postgresql
       tag: 14.9.0
+      debug: true
     global:
       postgresql:
         auth:
