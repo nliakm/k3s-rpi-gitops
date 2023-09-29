@@ -32,15 +32,15 @@ spec:
           secretKeys:
             adminPasswordKey: "postgres-password"
             userPasswordKey: "user-password"
-      primary:
-        resources:
-          requests:
-            cpu: 15m
-            memory: 50Mi
-          limits:
-            memory: 200Mi
-        persistence:
-          size: 10Gi
-          storageClass: "nfs-client"
-        initdb:
-          scriptsSecret: "initdb-script"
+    primary:
+      resources:
+        requests:
+          cpu: 15m
+          memory: 50Mi
+        limits:
+          memory: 200Mi
+      persistence:
+        size: 10Gi
+        storageClass: "nfs-client"
+      initdb:
+        scriptsSecret: initdb-script
