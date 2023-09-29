@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - argocd
   - default
+  - database
   - hajimari
  # - firefly
   - flux-system
