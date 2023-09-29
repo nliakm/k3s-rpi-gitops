@@ -4,8 +4,6 @@ resources:
   - namespace.yaml
   - miniflux-secrets.sops.yaml
   - serviceaccount.yaml
-  - sts-postgresql.yaml
-  - service-db.yaml
   - deployment.yaml
   - service-app.yaml
   - ingressroute.yaml
