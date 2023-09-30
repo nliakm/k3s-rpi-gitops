@@ -157,4 +157,4 @@ spec:
         cpu: 8m
         memory: 80Mi
       limits:
-        memory: 128Mi
+        memory: 256Mi
