@@ -67,7 +67,7 @@ spec:
         type: hostPath
         hostPath: /path/to/device
     postgresql:
-      enabled: true
+      enabled: false
       debug: true
       image:
         repository: postgres
