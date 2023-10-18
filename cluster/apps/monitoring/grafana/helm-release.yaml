@@ -97,7 +97,7 @@ spec:
     - grafana-worldmap-panel
     sidecar:
       image:
-        repository: quay.io/kiwigrid/k8s-sidecar
+        repository: kiwigrid/k8s-sidecar
         tag: 1.25.2
       imagePullPolicy: IfNotPresent
       resources:
