@@ -71,7 +71,7 @@ spec:
       debug: true
       image:
         repository: postgres
-        tag: '14.9'
+        tag: '14.10'
       postgresqlUsername: home-assistant
       postgresqlDatabase: home-assistant
       postgresqlPassword: ${HASS_POSTGRESQL_PASSWORD}
