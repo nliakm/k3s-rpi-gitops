@@ -297,7 +297,6 @@ spec:
     # networking config
     serviceDns:
       type: LoadBalancer
-      port: 5053
       annotations:
         metallb.universe.tf/allow-shared-ip: pihole-svc
       loadBalancerIP: 192.168.178.202
