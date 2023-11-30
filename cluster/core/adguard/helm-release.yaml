@@ -122,17 +122,12 @@ spec:
       dns:
         bind_hosts:
         - '0.0.0.0'
+        port: 53
         bootstrap_dns:
         - '9.9.9.10'
         - '149.112.112.10'
-        - '2620:fe::10'
-        - '2620:fe::fe:10'
         upstream_dns:
         - '1.1.1.1'
-        dns64_prefixes:
-        - '1234::/64'
-        upstream_timeout: 1s
-        use_dns64: true
       http:
         pprof:
           enabled: true
@@ -140,14 +135,6 @@ spec:
         address: '0.0.0.0:3000'
       log:
         verbose: true
-      users: []
-      auth_attempts: 5
-      block_auth_min: 15
-      http_proxy: ""
-      language: ""
-      theme: auto
-      debug_pprof: false
-      web_session_ttl: 720
       filters:
         - enabled: true
           url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt
@@ -157,4 +144,3 @@ spec:
           url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_2.txt
           name: AdAway Default Blocklist
           id: 2
-      whitelist_filters: []
