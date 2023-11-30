@@ -141,7 +141,7 @@ spec:
         - '0.0.0.0:3000'
         secure_addresses: []
         timeout: 5s
-        force_https: true
+        force_https: false
       log:
         verbose: true
       users: []
