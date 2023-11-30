@@ -99,7 +99,7 @@ spec:
       # @default -- See [values.yaml](./values.yaml)
       config:
         enabled: true
-        retain: true
+        retain: false
         mountPath: /opt/adguardhome/conf
         storageClass: "nfs-client"
         accessMode: ReadWriteOnce
