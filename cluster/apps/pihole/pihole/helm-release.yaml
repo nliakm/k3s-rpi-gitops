@@ -329,6 +329,15 @@ spec:
     persistentVolumeClaim:
       enabled: true
       existingClaim: pihole-pvc
+    doh:
+      enabled: true
+      name: "cloudflared"
+      repository: "crazymax/cloudflared"
+      tag: "2023.10.0"
+      pullPolicy: IfNotPresent
+      envVars:
+        TUNNEL_DNS_UPSTREAM: "https://1.1.1.2/dns-query,https://1.0.0.2/dns-query"
+
     ingress:
       enabled: true
       annotations:
