@@ -98,12 +98,12 @@ spec:
       # -- Configure config persistence settings for the chart under this key.
       # @default -- See [values.yaml](./values.yaml)
       config:
-        enabled: false
+        enabled: true
         retain: true
         mountPath: /opt/adguardhome/conf
-        # storageClass: ""
-        # accessMode: ReadWriteOnce
-        # size: 4Gi
+        storageClass: "nfs-client"
+        accessMode: ReadWriteOnce
+        size: 1Gi
       # -- Configure data persistence settings for the chart under this key.
       # @default -- See [values.yaml](./values.yaml)
       data:
