@@ -1,0 +1,164 @@
+
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: adguard-home
+  namespace: adguard
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: adguard-home
+      version: 0.3.15
+      sourceRef:
+        kind: HelmRepository
+        name: gabe565-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    # This chart inherits from our common library chart. You can check the default values/options here:
+    # https://github.com/bjw-s/helm-charts/blob/a081de5/charts/library/common/values.yaml
+    image:
+      # -- Image repository
+      repository: adguard/adguardhome
+      # -- Image pull policy
+      pullPolicy: IfNotPresent
+      # -- Image tag
+      tag: v0.107.41
+
+    env:
+      # -- Set the container timezone
+      TZ: UTC
+
+    service:
+      # -- Configures settings for the main service.
+      # @default -- See [values.yaml](./values.yaml)
+      main:
+        ports:
+          http:
+            port: 3000
+      # -- Configures settings for the TCP DNS service.
+      # @default -- See [values.yaml](./values.yaml)
+      dns-tcp:
+        enabled: true
+        type: LoadBalancer
+        loadBalancerIP: 192.168.178.203
+        externalTrafficPolicy: Local
+        annotations:
+          metallb.universe.tf/allow-shared-ip: adguard-home
+        ports:
+          dns-tcp:
+            enabled: true
+            port: 53
+          dns-over-tls:
+            enabled: true
+            port: 853
+      # -- Configures settings for the UDP DNS service.
+      # @default -- See [values.yaml](./values.yaml)
+      dns-udp:
+        enabled: true
+        type: LoadBalancer
+        loadBalancerIP: 192.168.178.203
+        externalTrafficPolicy: Local
+        annotations:
+          metallb.universe.tf/allow-shared-ip: adguard-home
+        ports:
+          dns-udp:
+            enabled: true
+            protocol: UDP
+            port: 53
+          dns-over-quic:
+            enabled: true
+            protocol: UDP
+            port: 784
+
+    ingress:
+      # -- Enable and configure ingress settings for the chart under this key.
+      # @default -- See [values.yaml](./values.yaml)
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: traefik
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "shield-check-outline"
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          cert-manager.io/private-key-secret-name: "root-secret"        
+        hosts:
+          - host: "adguard.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+        tls:
+          - secretName: "tls-wildcard-secret"
+            hosts:
+              - "adguard.${SECRET_DOMAIN}"
+
+    persistence:
+      # -- Configure config persistence settings for the chart under this key.
+      # @default -- See [values.yaml](./values.yaml)
+      config:
+        enabled: false
+        retain: true
+        mountPath: /opt/adguardhome/conf
+        # storageClass: ""
+        # accessMode: ReadWriteOnce
+        # size: 4Gi
+      # -- Configure data persistence settings for the chart under this key.
+      # @default -- See [values.yaml](./values.yaml)
+      data:
+        enabled: false
+        retain: true
+        mountPath: /opt/adguardhome/work
+        # storageClass: ""
+        # accessMode: ReadWriteOnce
+        # size: 4Gi
+
+    # -- Default AdGuard Home config file.
+    #    This will only be copied if an existing config does not exist.
+    #    [[ref]](https://github.com/AdguardTeam/AdGuardHome/wiki/Configuration)
+    # @default -- See [values.yaml](./values.yaml)
+    config: |
+      dns:
+        addresses:
+        - '0.0.0.0:53'
+        bootstrap_dns:
+        - '9.9.9.10'
+        - '149.112.112.10'
+        - '2620:fe::10'
+        - '2620:fe::fe:10'
+        upstream_dns:
+        - '1.1.1.1'
+        dns64_prefixes:
+        - '1234::/64'
+        upstream_timeout: 1s
+        use_dns64: true
+      http:
+        pprof:
+          enabled: true
+          port: 6060
+        addresses:
+        - '0.0.0.0:3000'
+        secure_addresses: []
+        timeout: 5s
+        force_https: true
+      log:
+        verbose: true
+      users: []
+      auth_attempts: 5
+      block_auth_min: 15
+      http_proxy: ""
+      language: ""
+      theme: auto
+      debug_pprof: false
+      web_session_ttl: 720
+      filters:
+        - enabled: true
+          url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt
+          name: AdGuard DNS filter
+          id: 1
+        - enabled: false
+          url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_2.txt
+          name: AdAway Default Blocklist
+          id: 2
+      whitelist_filters: []
