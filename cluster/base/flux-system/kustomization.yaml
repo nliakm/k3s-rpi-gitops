@@ -23,4 +23,4 @@ resources:
   - ./charts/helm/weave-gitops.yaml
   - ./charts/helm/mondoo-charts.yaml
   - ./charts/helm/rocketchat-charts.yaml
-  - ./charts/helm/gabe565-charts.yaml
+  - ./charts/helm/nliakm-charts.yaml

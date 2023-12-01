@@ -10,138 +10,70 @@ spec:
   chart:
     spec:
       chart: adguard-home
-      version: 0.3.15
+      version: 0.0.1
       sourceRef:
         kind: HelmRepository
-        name: gabe565-charts
+        name: nliakm-charts
         namespace: flux-system
       interval: 5m
   values:
-    # This chart inherits from our common library chart. You can check the default values/options here:
-    # https://github.com/bjw-s/helm-charts/blob/a081de5/charts/library/common/values.yaml
     image:
-      # -- Image repository
       repository: adguard/adguardhome
-      # -- Image pull policy
-      pullPolicy: IfNotPresent
-      # -- Image tag
       tag: v0.107.41
+      pullPolicy: IfNotPresent
 
-    env:
-      # -- Set the container timezone
-      TZ: UTC
+    # Number of replicas to be deployed
+    replicaCount: 1
 
-    service:
-      # -- Configures settings for the main service.
-      # @default -- See [values.yaml](./values.yaml)
-      main:
-        ports:
-          http:
-            port: 3000
-      # -- Configures settings for the TCP DNS service.
-      # @default -- See [values.yaml](./values.yaml)
-      dns-tcp:
-        enabled: true
-        type: LoadBalancer
-        loadBalancerIP: 192.168.178.203
-        externalTrafficPolicy: Local
-        annotations:
-          metallb.universe.tf/allow-shared-ip: adguard-home
-        ports:
-          dns-tcp:
-            enabled: true
-            port: 53
-          dns-over-tls:
-            enabled: true
-            port: 853
-      # -- Configures settings for the UDP DNS service.
-      # @default -- See [values.yaml](./values.yaml)
-      dns-udp:
-        enabled: true
-        type: LoadBalancer
-        loadBalancerIP: 192.168.178.203
-        externalTrafficPolicy: Local
-        annotations:
-          metallb.universe.tf/allow-shared-ip: adguard-home
-        ports:
-          dns-udp:
-            enabled: true
-            protocol: UDP
-            port: 53
-          dns-over-quic:
-            enabled: true
-            protocol: UDP
-            port: 784
-
-    ingress:
-      # -- Enable and configure ingress settings for the chart under this key.
-      # @default -- See [values.yaml](./values.yaml)
-      main:
-        enabled: true
-        annotations:
-          kubernetes.io/ingress.class: traefik
-          hajimari.io/enable: "true"
-          hajimari.io/icon: "shield-check-outline"
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
-          cert-manager.io/private-key-secret-name: "root-secret"        
-        hosts:
-          - host: "adguard.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-        tls:
-          - secretName: "tls-wildcard-secret"
-            hosts:
-              - "adguard.${SECRET_DOMAIN}"
+    adminPanelEnabled: true
 
     persistence:
-      # -- Configure config persistence settings for the chart under this key.
-      # @default -- See [values.yaml](./values.yaml)
-      config:
-        enabled: true
-        retain: false
-        mountPath: /opt/adguardhome/conf
-        storageClass: "nfs-client"
-        accessMode: ReadWriteOnce
-        size: 1Gi
-      # -- Configure data persistence settings for the chart under this key.
-      # @default -- See [values.yaml](./values.yaml)
-      data:
-        enabled: false
-        retain: true
-        mountPath: /opt/adguardhome/work
-        # storageClass: ""
-        # accessMode: ReadWriteOnce
-        # size: 4Gi
+      enabled: false
+      
+    ingress:
+      enabled: true
+      className: traefik
+      hostName: "adguardhome.${SECRET_DOMAIN}"
+      PathType: Prefix
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+        hajimari.io/enable: "true"
+        hajimari.io/icon: shield-check-outline
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      tls:
+         - secretName: adguardhome-tls
+           hosts:
+             - "adguardhome.${SECRET_DOMAIN}"
 
-    # -- Default AdGuard Home config file.
-    #    This will only be copied if an existing config does not exist.
-    #    [[ref]](https://github.com/AdguardTeam/AdGuardHome/wiki/Configuration)
-    # @default -- See [values.yaml](./values.yaml)
-    config: |
-      bind_host: 0.0.0.0
-      bind_port: 80
+      resources:
+        requests:
+          cpu: 125m
+          memory: 64Mi
+        limits:
+          cpu: 250m
+          memory: 512Mi
+
+    config:
+      http:
+        pprof:
+          port: 6060
+          enabled: false
+        address: 0.0.0.0:80
+        session_ttl: 720h
       users: []
       auth_attempts: 5
       block_auth_min: 15
       http_proxy: ""
       language: ""
       theme: auto
-      debug_pprof: false
-      web_session_ttl: 720
       dns:
         bind_hosts:
           - 0.0.0.0
         port: 53
         anonymize_client_ip: false
-        protection_enabled: true
-        blocking_mode: default
-        blocking_ipv4: ""
-        blocking_ipv6: ""
-        blocked_response_ttl: 10
-        parental_block_host: family-block.dns.adguard.com
-        safebrowsing_block_host: standard-block.dns.adguard.com
         ratelimit: 20
+        ratelimit_subnet_len_ipv4: 24
+        ratelimit_subnet_len_ipv6: 56
         ratelimit_whitelist: []
         refuse_any: true
         upstream_dns:
@@ -152,6 +84,7 @@ spec:
           - 149.112.112.10
           - 2620:fe::10
           - 2620:fe::fe:10
+        fallback_dns: []
         all_servers: false
         fastest_addr: false
         fastest_timeout: 1s
@@ -179,17 +112,7 @@ spec:
         handle_ddr: true
         ipset: []
         ipset_file: ""
-        filtering_enabled: true
-        filters_update_interval: 24
-        parental_enabled: false
-        safesearch_enabled: false
-        safebrowsing_enabled: false
-        safebrowsing_cache_size: 1048576
-        safesearch_cache_size: 1048576
-        parental_cache_size: 1048576
-        cache_time: 30
-        rewrites: []
-        blocked_services: []
+        bootstrap_prefer_ipv6: false
         upstream_timeout: 10s
         private_networks: []
         use_private_ptr_resolvers: true
@@ -214,15 +137,15 @@ spec:
         private_key_path: ""
         strict_sni_check: false
       querylog:
-        enabled: true
-        file_enabled: true
+        ignored: []
         interval: 2160h
         size_memory: 1000
-        ignored: []
-      statistics:
         enabled: true
-        interval: 1
+        file_enabled: true
+      statistics:
         ignored: []
+        interval: 24h
+        enabled: true
       filters:
         - enabled: true
           url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt
@@ -251,6 +174,36 @@ spec:
           lease_duration: 86400
           ra_slaac_only: false
           ra_allow_slaac: false
+      filtering:
+        blocking_ipv4: ""
+        blocking_ipv6: ""
+        blocked_services:
+          schedule:
+            time_zone: UTC
+          ids: []
+        protection_disabled_until: null
+        safe_search:
+          enabled: false
+          bing: true
+          duckduckgo: true
+          google: true
+          pixabay: true
+          yandex: true
+          youtube: true
+        blocking_mode: default
+        parental_block_host: family-block.dns.adguard.com
+        safebrowsing_block_host: standard-block.dns.adguard.com
+        rewrites: []
+        safebrowsing_cache_size: 1048576
+        safesearch_cache_size: 1048576
+        parental_cache_size: 1048576
+        cache_time: 30
+        filters_update_interval: 24
+        blocked_response_ttl: 10
+        filtering_enabled: true
+        parental_enabled: false
+        safebrowsing_enabled: false
+        protection_enabled: true
       clients:
         runtime_sources:
           whois: true
@@ -259,15 +212,16 @@ spec:
           dhcp: true
           hosts: true
         persistent: []
-      log_file: ""
-      log_max_backups: 0
-      log_max_size: 100
-      log_max_age: 3
-      log_compress: false
-      log_localtime: false
-      verbose: false
+      log:
+        file: ""
+        max_backups: 0
+        max_size: 100
+        max_age: 3
+        compress: false
+        local_time: false
+        verbose: false
       os:
         group: ""
         user: ""
         rlimit_nofile: 0
-      schema_version: 17
+      schema_version: 27
