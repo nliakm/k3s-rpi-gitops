@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: adguard-home
-      version: 0.0.3
+      version: 0.0.4
       sourceRef:
         kind: HelmRepository
         name: nliakm-charts
@@ -126,19 +126,16 @@ spec:
         serve_http3: false
         use_http3_upstreams: false
       tls:
-        enabled: false
-        server_name: ""
+        enabled: true
+        server_name: "adguardhome.${SECRET_DOMAIN}"
         force_https: false
         port_https: 443
         port_dns_over_tls: 853
         port_dns_over_quic: 853
         port_dnscrypt: 0
-        dnscrypt_config_file: ""
-        allow_unencrypted_doh: false
-        certificate_chain: ""
-        private_key: ""
-        certificate_path: ""
-        private_key_path: ""
+        allow_unencrypted_doh: true
+        certificate_path: "/opt/adguardhome/certificates/tls.crt"
+        private_key_path: "/opt/adguardhome/certificates/tls.key"
         strict_sni_check: false
       querylog:
         ignored: []
@@ -160,7 +157,25 @@ spec:
           name: AdAway Default Blocklist
           id: 2
       whitelist_filters: []
-      user_rules: []
+      user_rules:
+      - "192.168.178.201 monica.${SECRET_DOMAIN}"
+      - "192.168.178.201 adguardhome.${SECRET_DOMAIN}"
+      - "192.168.178.201 nas.${SECRET_DOMAIN}"
+      - "192.168.178.201 alert-manager.${SECRET_DOMAIN}"
+      - "192.168.178.201 grafana.${SECRET_DOMAIN}"
+      - "192.168.178.201 hass.${SECRET_DOMAIN}"
+      - "192.168.178.201 prometheus.${SECRET_DOMAIN}"
+      - "192.168.178.201 rezepte.${SECRET_DOMAIN}"
+      - "192.168.178.201 traefik.${SECRET_DOMAIN}"
+      - "192.168.178.201 start.${SECRET_DOMAIN}"
+      - "192.168.178.201 router.${SECRET_DOMAIN}"
+      - "192.168.178.201 zwave.${SECRET_DOMAIN}"
+      - "192.168.178.201 scraang.${SECRET_DOMAIN}"
+      - "192.168.178.201 scraang-dev.${SECRET_DOMAIN}"
+      - "192.168.178.201 argocd.${SECRET_DOMAIN}"
+      - "192.168.178.201 pihole.${SECRET_DOMAIN}"
+      - "192.168.178.201 weave.${SECRET_DOMAIN}"
+      - "192.168.178.201 miniflux.${SECRET_DOMAIN}"
       dhcp:
         enabled: false
         interface_name: ""
