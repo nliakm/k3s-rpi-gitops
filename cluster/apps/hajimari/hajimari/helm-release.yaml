@@ -26,7 +26,7 @@ spec:
     env:
       TZ: Europe/Berlin
     hajimari:
-      defaultEnable: false
+      defaultEnable: true
       namespaceSelector:
         matchNames:
           - default
@@ -37,6 +37,9 @@ spec:
           - flux-system
           - miniflux
           - scraang
+          - pihole
+          - adguard
+          - home-assistant
       title: Start
       name: "you"
       customApps:
