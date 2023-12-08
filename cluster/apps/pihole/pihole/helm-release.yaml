@@ -21,6 +21,7 @@ spec:
       namespace: nfs-system      
   values:
     replicaCount: 1
+    maxUnavailable: 0
     image:
       repository: "pihole/pihole"
       tag: "2023.11.0"
@@ -300,11 +301,6 @@ spec:
       annotations:
         metallb.universe.tf/allow-shared-ip: pihole-svc
       loadBalancerIP: 192.168.178.202
-    # serviceWeb:
-    #   type: LoadBalancer
-    #   annotations:
-    #     metallb.universe.tf/allow-shared-ip: pihole-svc
-    #   loadBalancerIP: 192.168.178.201
     privileged: true
     dnsmasq:
       customDnsEntries:
@@ -324,6 +320,9 @@ spec:
         - address=/pihole.${SECRET_DOMAIN}/192.168.178.201
         - address=/weave.${SECRET_DOMAIN}/192.168.178.201
         - address=/miniflux.${SECRET_DOMAIN}/192.168.178.201
+        - address=/adguardhome.${SECRET_DOMAIN}/192.168.178.201
+        - address=/monica.${SECRET_DOMAIN}/192.168.178.201
+        - address=/weave.${SECRET_DOMAIN}/192.168.178.201
     serviceDhcp:
       enabled: false
     persistentVolumeClaim:
