@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: adguard-home
-      version: 0.0.4
+      version: 0.0.5
       sourceRef:
         kind: HelmRepository
         name: nliakm-charts
@@ -45,9 +45,7 @@ spec:
         hajimari.io/icon: shield-check-outline
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
       tls:
-         - secretName: adguardhome-tls
-           hosts:
-             - "adguardhome.${SECRET_DOMAIN}"
+        secretName: adguardhome-tls
 
       resources:
         requests:
