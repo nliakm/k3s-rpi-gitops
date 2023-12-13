@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: adguard-home
-      version: 0.0.5
+      version: 0.0.6
       sourceRef:
         kind: HelmRepository
         name: nliakm-charts
@@ -47,13 +47,13 @@ spec:
       tls:
         secretName: adguardhome-tls
 
-      resources:
-        requests:
-          cpu: 125m
-          memory: 64Mi
-        limits:
-          cpu: 250m
-          memory: 512Mi
+    resources:
+      requests:
+        cpu: 125m
+        memory: 64Mi
+      limits:
+        cpu: 250m
+        memory: 512Mi
 
     config:
       http:
