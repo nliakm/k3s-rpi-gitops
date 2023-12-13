@@ -4,3 +4,4 @@ resources:
   - postgresql-credentials.sops.yaml
   - initdb-script-secret.sops.yaml
   - helm-release.yaml
+  - helm-release-16.yaml
