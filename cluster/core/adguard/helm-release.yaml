@@ -65,7 +65,7 @@ spec:
         address: 0.0.0.0:80
         session_ttl: 720h
       users:
-        name: admin
+      - name: admin
         password: ${ADGUARD_ADMIN_PASS}
       auth_attempts: 5
       block_auth_min: 15
