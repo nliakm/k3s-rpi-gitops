@@ -66,37 +66,9 @@ spec:
         enabled: false
         type: hostPath
         hostPath: /path/to/device
+    # External PostgreSQL db configured inside configuration.yaml
     postgresql:
       enabled: false
-      debug: true
-      image:
-        repository: postgres
-        tag: '14.10'
-      postgresqlUsername: home-assistant
-      postgresqlDatabase: home-assistant
-      postgresqlPassword: ${HASS_POSTGRESQL_PASSWORD}
-      postgresqlDataDir: "/data/pgdata"
-      persistence:
-        enabled: true
-        storageClass: "nfs-client"
-        size: 8Gi
-        mountPath: "/data/"
-      shmVolume:
-        enabled: false
-      volumePermissions:
-        enabled: false
-      podSecurityContext:
-        enabled: true
-        fsGroup: 1001
-      containerSecurityContext:
-        enabled: true
-        runAsUser: 1001
-      resources:
-        requests:
-          memory: 25Mi
-          cpu: 40m
-        limits:
-          memory: 75Mi
         
     metrics:
       enabled: true
