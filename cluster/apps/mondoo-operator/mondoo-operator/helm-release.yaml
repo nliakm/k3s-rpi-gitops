@@ -20,7 +20,7 @@ spec:
       manager:
         image:
           repository: ghcr.io/mondoohq/mondoo-operator
-          tag: v1.19.2-arm
+          tag: v1.19.3-arm
         resources:
           requests:
             cpu: 200m
