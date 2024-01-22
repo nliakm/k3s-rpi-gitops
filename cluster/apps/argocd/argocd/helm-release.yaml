@@ -1,5 +1,5 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: argocd
@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://argoproj.github.io/argo-helm/
       chart: argo-cd
-      version: 5.51.6
+      version: 5.53.5
       sourceRef:
         kind: HelmRepository
         name: argocd-charts
@@ -22,7 +22,7 @@ spec:
         # -- If defined, a repository applied to all Argo CD deployments
         repository: quay.io/argoproj/argocd
         # -- Overrides the global Argo CD image tag whose default is the chart appVersion
-        tag: "v2.9.3"
+        tag: "v2.9.5"
         # -- If defined, a imagePullPolicy applied to all Argo CD deployments
         imagePullPolicy: IfNotPresent
 
@@ -121,7 +121,7 @@ spec:
         # -- Redis repository
         repository: public.ecr.aws/docker/library/redis
         # -- Redis tag
-        tag: 7.2.3-alpine
+        tag: 7.2.4-alpine
         # -- Redis imagePullPolicy
         imagePullPolicy: IfNotPresent
 
