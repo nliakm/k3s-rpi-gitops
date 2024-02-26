@@ -29,6 +29,9 @@ spec:
       GF_EXPLORE_ENABLED: true
       GF_PANELS_DISABLE_SANITIZE_HTML: true
       GF_LOG_FILTERS: rendering:debug
+    serviceAccount:
+      create: true
+      autoMount: true
     grafana.ini:
       server:
         root_url: "https://grafana.${SECRET_DOMAIN}"
