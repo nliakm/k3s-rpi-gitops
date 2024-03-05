@@ -22,7 +22,7 @@ spec:
         # -- If defined, a repository applied to all Argo CD deployments
         repository: quay.io/argoproj/argocd
         # -- Overrides the global Argo CD image tag whose default is the chart appVersion
-        tag: "v2.10.2"
+        tag: "v2.10.1"
         # -- If defined, a imagePullPolicy applied to all Argo CD deployments
         imagePullPolicy: IfNotPresent
 
@@ -199,26 +199,16 @@ spec:
         # -- Enable an ingress resource for the Argo CD server
         enabled: true
         ingressClassName: "traefik"
+        hostname: "argocd.${SECRET_DOMAIN}"
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"        
           hajimari.io/enable: "true"
           hajimari.io/icon: "sitemap"
           hajimari.io/appName: "argocd"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-        hosts:
-          - "argocd.${SECRET_DOMAIN}"
-        # -- List of ingress paths
-        paths:
-          - /
-        # -- Ingress path type. One of `Exact`, `Prefix` or `ImplementationSpecific`
+        path: /
         pathType: Prefix
-        tls:
-          - hosts:
-              - "argocd.${SECRET_DOMAIN}"
-            secretName: "argocd-tls-secret"
-        # -- Uses `server.service.servicePortHttps` instead `server.service.servicePortHttp`
-        https: true
-
+        tls: true
 
     ## Repo Server
     repoServer:
