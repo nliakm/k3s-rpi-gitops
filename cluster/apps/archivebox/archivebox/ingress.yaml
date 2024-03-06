@@ -15,7 +15,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-  - host: "archivebox.{SECRET_DOMAIN}"
+  - host: "archivebox.${SECRET_DOMAIN}"
     http:
       paths:
       - backend:
@@ -27,5 +27,5 @@ spec:
         pathType: Prefix
   tls:
   - hosts:
-    - "archivebox.{SECRET_DOMAIN}"
+    - "archivebox.${SECRET_DOMAIN}"
     secretName: archivebox-server-tls
