@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: archivebox
+  namespace: archivebox
+spec:
+  selector:
+    matchLabels:
+      app: archivebox
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: archivebox
+    spec:
+      initContainers:
+      - name: init-archivebox
+        image: archivebox/archivebox
+        args: ['init']
+        volumeMounts:
+          - mountPath: /data
+            name: archivebox
+      containers:
+        - name: archivebox
+          args: ["server", "--quick-init", "0.0.0.0:8000"]
+          image: archivebox/archivebox
+          ports:
+            - containerPort: 8000
+              protocol: TCP
+              name: http
+          env:
+            - name: ALLOWED_HOSTS
+              value: "*"
+            - name: ADMIN_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: archivebox-secrets
+                  key: username
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: archivebox-secrets
+                  key: password
+          resources:
+            requests:
+              cpu: 25m
+              memory: 64Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+          volumeMounts:
+            - mountPath: /data
+              name: archivebox
+      restartPolicy: Always
+      volumes:
+        - name: archivebox
+          persistentVolumeClaim:
+            claimName: archivebox
