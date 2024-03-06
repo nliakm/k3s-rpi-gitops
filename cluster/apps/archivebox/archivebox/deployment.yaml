@@ -9,7 +9,7 @@ spec:
       app: archivebox
   replicas: 1
   strategy:
-    type: Recreate
+    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -31,6 +31,8 @@ spec:
               protocol: TCP
               name: http
           env:
+            - name: TIMEOUT
+              value: "180"
             - name: ALLOWED_HOSTS
               value: "*"
             - name: ADMIN_USERNAME
