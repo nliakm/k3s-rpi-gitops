@@ -2,17 +2,17 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - archivebox
+  # - archivebox
   - argocd
   - default
   - database
   - hajimari
- # - firefly
+  # - firefly
   - flux-system
   - kube-system
   - miniflux
   - monica
-#  - mondoo-operator
+  # - mondoo-operator
   - monitoring
   - networking
   - pihole
