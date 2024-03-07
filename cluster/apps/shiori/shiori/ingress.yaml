@@ -23,7 +23,7 @@ spec:
             name: shiori
             port:
               number: 8080
-        path: /shiori
+        path: /
         pathType: Prefix
   tls:
   - hosts:
