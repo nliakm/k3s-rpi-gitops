@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: adguard/adguardhome
-      tag: v0.107.44
+      tag: v0.107.45
       pullPolicy: IfNotPresent
 
     # Number of replicas to be deployed
