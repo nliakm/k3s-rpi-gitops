@@ -27,7 +27,7 @@ spec:
         ports:
         - containerPort: 8080
         volumeMounts:
-          - mountPath: /data
+          - mountPath: /srv/shiori
             name: shiori
         env:
         - name: SHIORI_DIR
