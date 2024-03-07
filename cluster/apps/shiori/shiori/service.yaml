@@ -4,6 +4,8 @@ kind: Service
 metadata:
   name: shiori
   namespace: shiori
+  labels:
+    app: shiori
 spec:
   ports:
     - name: http
