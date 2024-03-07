@@ -40,7 +40,7 @@ spec:
           - pihole
           - adguard
           - home-assistant
-          - archivebox
+          - shiori
       title: Start
       name: "you"
       customApps:

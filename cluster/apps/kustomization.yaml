@@ -17,4 +17,5 @@ resources:
   - networking
   - pihole
   - scraang
+  - shiori
   - system-upgrade

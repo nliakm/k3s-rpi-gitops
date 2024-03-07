@@ -1,0 +1,31 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    hajimari.io/appName: shiori
+    hajimari.io/enable: "true"
+    hajimari.io/icon: archive-search
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  labels:
+    app: shiori
+  name: shiori
+  namespace: shiori
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: "shiori.${SECRET_DOMAIN}"
+    http:
+      paths:
+      - backend:
+          service:
+            name: shiori
+            port:
+              number: 8080
+        path: /shiori
+        pathType: Prefix
+  tls:
+  - hosts:
+    - "shiori.${SECRET_DOMAIN}"
+    secretName: shiori-server-tls
