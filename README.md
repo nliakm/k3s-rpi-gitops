@@ -277,7 +277,7 @@ Update the `channel` spec of `cluster/apps/system-upgrade-system-upgrade-control
 ### Upgrade tigera-operator
 1. Download the v<UPDATE_VERSION> operator manifest.
 ```
-curl https://raw.githubusercontent.com/projectcalico/calico/v<UPDATE_VERSION>/manifests/tigera-operator.yaml -O
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/<VERSION>/manifests/tigera-operator.yaml
 ```
 
 2. Use the following command to initiate an upgrade.
