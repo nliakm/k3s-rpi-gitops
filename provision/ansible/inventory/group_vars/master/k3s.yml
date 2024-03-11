@@ -31,8 +31,9 @@ k3s_server:
   kubelet-arg:
     # Enables the kubelet to gracefully evict pods during a node shutdown
     - "feature-gates=GracefulNodeShutdown=true"
-    # Allow k8s services to contain TCP and UDP on the same port
-    - "feature-gates=MixedProtocolLBService=true"
+    ## REMOVED in 1.28!!! Allow k8s services to contain TCP and UDP on the same port
+    # - "feature-gates=MixedProtocolLBService=true"
+
   # Required to monitor kube-controller-manager with kube-prometheus-stack
   kube-controller-manager-arg:
     - "bind-address=0.0.0.0"
