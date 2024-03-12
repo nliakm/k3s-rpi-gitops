@@ -60,7 +60,7 @@ spec:
           spec:
             - alert: ArgoAppNotSynced
               expr: |
-                argocd_app_info{sync_status!="Synced"} == 1
+                argocd_app_info{sync_status!="Synced",name!="monica-helm"} == 1
               for: 1h
               labels:
                 severity: warning
