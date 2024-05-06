@@ -101,7 +101,7 @@ spec:
     sidecar:
       image:
         repository: kiwigrid/k8s-sidecar
-        tag: 1.26.1
+        tag: 1.26.2
       imagePullPolicy: IfNotPresent
       resources:
       requests:
