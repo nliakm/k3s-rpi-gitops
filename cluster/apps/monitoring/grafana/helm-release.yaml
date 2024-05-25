@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://grafana.github.io/helm-charts
       chart: grafana
-      version: 7.3.7
+      version: 7.3.11
       sourceRef:
         kind: HelmRepository
         name: grafana-charts
@@ -101,7 +101,7 @@ spec:
     sidecar:
       image:
         repository: kiwigrid/k8s-sidecar
-        tag: 1.26.1
+        tag: 1.27.2
       imagePullPolicy: IfNotPresent
       resources:
       requests:

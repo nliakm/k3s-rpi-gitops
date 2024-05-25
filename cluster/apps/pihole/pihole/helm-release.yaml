@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://mojo2600.github.io/pihole-kubernetes/
       chart: pihole
-      version: 2.22.0
+      version: 2.23.0
       sourceRef:
         kind: HelmRepository
         name: pihole-charts
@@ -24,7 +24,7 @@ spec:
     maxUnavailable: 0
     image:
       repository: "pihole/pihole"
-      tag: "2024.02.2"
+      tag: "2024.05.0"
       pullPolicy: IfNotPresent
     admin:
       existingSecret: "pihole-secrets"
@@ -335,7 +335,7 @@ spec:
       tag: "2023.10.0"
       pullPolicy: IfNotPresent
       envVars:
-        TUNNEL_DNS_UPSTREAM: "https://1.1.1.2/dns-query,https://1.0.0.2/dns-query"
+        TUNNEL_DNS_UPSTREAM: "https://1.1.1.1/dns-query,https://9.9.9.9/dns-query"
 
     ingress:
       enabled: true

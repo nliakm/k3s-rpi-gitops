@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://argoproj.github.io/argo-helm/
       chart: argo-cd
-      version: 6.7.3
+      version: 6.11.1
       sourceRef:
         kind: HelmRepository
         name: argocd-charts
@@ -22,7 +22,7 @@ spec:
         # -- If defined, a repository applied to all Argo CD deployments
         repository: quay.io/argoproj/argocd
         # -- Overrides the global Argo CD image tag whose default is the chart appVersion
-        tag: "v2.10.5"
+        tag: "v2.11.2"
         # -- If defined, a imagePullPolicy applied to all Argo CD deployments
         imagePullPolicy: IfNotPresent
 
@@ -121,7 +121,7 @@ spec:
         # -- Redis repository
         repository: public.ecr.aws/docker/library/redis
         # -- Redis tag
-        tag: 7.2.4-alpine
+        tag: 7.2.5-alpine
         # -- Redis imagePullPolicy
         imagePullPolicy: IfNotPresent
 

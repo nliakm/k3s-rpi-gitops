@@ -21,8 +21,8 @@ spec:
             claimName: shiori
       containers:
       - name: shiori
-        image: ghcr.io/go-shiori/shiori:latest
-        command: ["/usr/bin/shiori", "serve", "--webroot", "/shiori"]
+        image: ghcr.io/go-shiori/shiori:v1.6.3
+        command: ["/usr/bin/shiori", "serve", "--webroot", "/"]
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -33,7 +33,7 @@ spec:
         - name: SHIORI_DIR
           value: /srv/shiori
         - name: HTTP_ROOT_PATH
-          value: "/shiori"
+          value: "/"
         resources:
           requests:
             cpu: 20m
