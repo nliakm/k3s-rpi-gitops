@@ -22,6 +22,12 @@ spec:
         - name: kube-vip
           image: ghcr.io/kube-vip/kube-vip:v0.7.2
           imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: 64Mi
+            requests:
+              cpu: 7m
+              memory: 14Mi          
           args:
             - manager
           env:
