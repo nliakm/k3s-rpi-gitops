@@ -17,6 +17,8 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    controller:
+      strategy: RollingUpdate
     image:
       repository: ghcr.io/home-assistant/home-assistant
       tag: 2024.6.1
