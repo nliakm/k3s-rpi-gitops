@@ -250,7 +250,7 @@ spec:
             - mountPath: /gnupg-home
               name: gnupg-home      
         - name: install-ksops
-          image: viaductoss/ksops:v4.1.1-arm64
+          image: viaductoss/ksops:v4.3.2-arm64
           command: ["/bin/sh", "-c"]
           args:
             - echo "Installing KSOPS...";
