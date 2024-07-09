@@ -27,6 +27,7 @@ spec:
       create: true
       rules:
         kubernetesResources: false
+        kubeProxy: false
     additionalPrometheusRulesMap:
       rule-name:
         groups:
