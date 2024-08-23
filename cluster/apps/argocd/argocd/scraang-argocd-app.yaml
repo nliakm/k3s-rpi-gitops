@@ -21,9 +21,9 @@ spec:
         - name: flask.image.tag
           value: latest
         - name: flask.maxStoreDistance
-          value: "6000"
+          value: "7500"
         - name: scraper.marketNames
-          value: REWE,Penny-Markt,EDEKA,Aldi Nord,GLOBUS          
+          value: REWE,Penny-Markt,Aldi Nord,Edeka,Netto Marken-Discount,GLOBUS
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: scraang
