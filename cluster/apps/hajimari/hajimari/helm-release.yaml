@@ -35,6 +35,7 @@ spec:
           - monitoring
           - argocd
           - flux-system
+          - linkding
           - miniflux
           - scraang
           - pihole

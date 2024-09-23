@@ -10,6 +10,7 @@ resources:
   # - firefly
   - flux-system
   - kube-system
+  - linkding
   - miniflux
   - monica
   # - mondoo-operator
