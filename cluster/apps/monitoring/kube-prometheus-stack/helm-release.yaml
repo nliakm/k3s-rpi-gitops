@@ -195,9 +195,3 @@ spec:
               resources:
                 requests:
                   storage: 10Gi
-        additionalScrapeConfigs:
-          - job_name: "node-exporter"
-            honor_timestamps: true
-            static_configs:
-              - targets:
-                  - "${PIHOLE_SERVER}:9100"
