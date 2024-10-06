@@ -21,7 +21,7 @@ spec:
             claimName: shiori
       containers:
       - name: shiori
-        image: ghcr.io/go-shiori/shiori:v1.7.0
+        image: ghcr.io/go-shiori/shiori:v1.7.1
         command: ["/usr/bin/shiori", "serve", "--webroot", "/"]
         imagePullPolicy: Always
         ports:
