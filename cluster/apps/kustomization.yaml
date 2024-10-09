@@ -8,7 +8,7 @@ resources:
   - database
   - hajimari
   # - firefly
-  - flux-system
+  # - flux-system
   - kube-system
   - linkding
   - miniflux
