@@ -4,6 +4,8 @@
 # (bool) Specify if a host (or host group) are part of the control plane
 k3s_control_node: false
 
+k3s_become: true
+
 # (dict) k3s settings for all worker nodes
 k3s_agent:
   node-ip: "{{ ansible_host }}"
