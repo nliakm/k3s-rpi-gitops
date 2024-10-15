@@ -48,6 +48,7 @@ spec:
         url: https://grafana.net
       auth.anonymous:
         enabled: false
+        hide_version: true
       auth.ldap:
         enabled: true
         allow_sign_up: true
