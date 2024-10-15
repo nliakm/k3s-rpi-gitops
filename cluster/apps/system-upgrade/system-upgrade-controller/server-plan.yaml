@@ -7,7 +7,8 @@ metadata:
 spec:
   serviceAccountName: system-upgrade
   concurrency: 1
-  channel: https://update.k3s.io/v1-release/channels/v1.29
+  # Also update provision/ansible/inventory/group_vars/kubernetes/k3s.yml
+  channel: https://update.k3s.io/v1-release/channels/v1.30
   cordon: true
   nodeSelector:
     matchExpressions:
