@@ -318,11 +318,13 @@ spec:
         - address=/scraang-dev.${SECRET_DOMAIN}/192.168.178.201
         - address=/argocd.${SECRET_DOMAIN}/192.168.178.201
         - address=/pihole.${SECRET_DOMAIN}/192.168.178.201
-        - address=/weave.${SECRET_DOMAIN}/192.168.178.201
         - address=/miniflux.${SECRET_DOMAIN}/192.168.178.201
         - address=/adguardhome.${SECRET_DOMAIN}/192.168.178.201
         - address=/monica.${SECRET_DOMAIN}/192.168.178.201
         - address=/weave.${SECRET_DOMAIN}/192.168.178.201
+        - address=/linkding.${SECRET_DOMAIN}/192.168.178.201    
+        - address=/shiori.${SECRET_DOMAIN}/192.168.178.201
+        - address=/wger.${SECRET_DOMAIN}/192.168.178.201
     serviceDhcp:
       enabled: false
     persistentVolumeClaim:
