@@ -21,7 +21,7 @@ spec:
       namespace: nfs-system      
   values:
     app:
-      timezone: "Etc/Berlin"
+      timezone: "Europe/Berlin"
       global:
         replicas: 1
         image:
