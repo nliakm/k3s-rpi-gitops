@@ -42,6 +42,7 @@ spec:
           - adguard
           - home-assistant
           - shiori
+          - wger
       title: Start
       name: "you"
       customApps:
