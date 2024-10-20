@@ -42,10 +42,10 @@ spec:
         storageClass: "nfs-client"
         size: 1Gi
     ingress:
-      main:
+      ingress-actual:
         enabled: true
         primary: true
-        required: true
+        namespace: actual
         annotations:
           hajimari.io/enable: "true"
           hajimari.io/icon: "piggy-bank-outline"
@@ -61,5 +61,4 @@ spec:
             certificateIssuer: "letsencrypt-production"
           traefik:
             enabled: true
-            entrypoints:
-              - websecure      
+ 
