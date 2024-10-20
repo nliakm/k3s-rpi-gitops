@@ -46,13 +46,10 @@ spec:
         enabled: true
         primary: true
         required: true
-        labels: {}
         annotations:
           hajimari.io/enable: "true"
           hajimari.io/icon: "piggy-bank-outline"
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          cert-manager.io/cluster-issuer: "letsencrypt-production"        
-        ingressClassName: "traefik"
+        #ingressClassName: "traefik"
         hosts:
           - host: "actual.${SECRET_DOMAIN}"
             paths:
@@ -60,5 +57,11 @@ spec:
                 pathType: Prefix
         tls:
          - certificateIssuer: "letsencrypt-production"
-           hosts:
-             - "actual.${SECRET_DOMAIN}"
+        integrations:
+          certManager:
+            enabled: true
+            certificateIssuer: "letsencrypt-production"
+          traefik:
+            enabled: true
+            entrypoints:
+              - websecure      
