@@ -39,10 +39,9 @@ spec:
           - miniflux
           - scraang
           - pihole
-          - adguard
           - home-assistant
           - shiori
-          - wger
+          - actual
       title: Start
       name: "you"
       customApps:
