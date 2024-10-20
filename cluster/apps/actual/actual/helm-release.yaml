@@ -61,4 +61,6 @@ spec:
             certificateIssuer: "letsencrypt-production"
           traefik:
             enabled: true
+            enableFixedMiddlewares: false
+
  
