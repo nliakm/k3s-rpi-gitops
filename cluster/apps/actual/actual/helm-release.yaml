@@ -54,10 +54,7 @@ spec:
           - host: "actual.${SECRET_DOMAIN}"
             paths:
               - path: /
-                pathType: Prefix
-                overrideService:
-                  name: actualserver
-                  port: 10293                
+                pathType: Prefix              
         integrations:
           certManager:
             enabled: true
