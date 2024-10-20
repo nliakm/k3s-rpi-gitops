@@ -31,6 +31,8 @@ spec:
     workload:
       workload-actualserver:
         enabled: true
+        primary: true
+        type: Deployment
         podOptions:
           nodeSelector:
             kubernetes.io/arch: "arm64"
