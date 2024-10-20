@@ -55,6 +55,9 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+                overrideService:
+                  name: actualserver
+                  port: 10293                
         integrations:
           certManager:
             enabled: true
