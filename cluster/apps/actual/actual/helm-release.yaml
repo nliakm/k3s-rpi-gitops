@@ -28,14 +28,6 @@ spec:
       requests:
         cpu: 50m
         memory: 128Mi
-    workload:
-      workload-actualserver:
-        enabled: true
-        primary: true
-        type: Deployment
-        podOptions:
-          nodeSelector:
-            kubernetes.io/arch: "arm64"
     persistence:
       server-files:
         enabled: true
@@ -70,5 +62,16 @@ spec:
           traefik:
             enabled: true
             enableFixedMiddlewares: false
-
- 
+  postRenderers:
+    - kustomize:
+        patches:
+          - patch: |-
+              apiVersion: apps/v1
+              kind: Deployment
+              metadata:
+                name: actualserver
+              spec:
+                template:
+                  spec:
+                    nodeselector:
+                      kubernetes.io/arch: arm64
