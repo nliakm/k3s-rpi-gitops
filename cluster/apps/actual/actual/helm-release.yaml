@@ -28,6 +28,10 @@ spec:
       requests:
         cpu: 50m
         memory: 128Mi
+    workload:
+      workload-actualserver:
+        podSpec:
+          nodeSelector: {}
     persistence:
       server-files:
         enabled: true
