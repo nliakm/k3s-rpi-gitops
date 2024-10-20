@@ -69,7 +69,8 @@ spec:
               apiVersion: apps/v1
               kind: Deployment
               metadata:
-                name: actualserver
+                  name: actualserver
+                  namespace: actual
               spec:
                 template:
                   spec:
