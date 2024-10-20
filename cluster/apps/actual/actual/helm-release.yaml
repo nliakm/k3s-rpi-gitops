@@ -55,8 +55,6 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
-        tls:
-         - certificateIssuer: "letsencrypt-production"
         integrations:
           certManager:
             enabled: true
