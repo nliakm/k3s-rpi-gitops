@@ -27,5 +27,6 @@ resources:
   - rocketchat-charts.yaml
   - stakater-charts.yaml
   - traefik-charts.yaml
+  - truecharts-charts.yaml
   - weaveworks-kured-charts.yaml
   - weave-gitops.yaml

@@ -1,0 +1,65 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: actualserver
+  namespace: actual
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://argoproj.github.io/argo-helm/
+      chart: actualserver
+      version: 12.7.1
+      sourceRef:
+        kind: HelmRepository
+        name: truecharts-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: ghcr.io/actualbudget/actual-server
+      pullPolicy: IfNotPresent
+      tag: 24.10.1@sha256:83fc0d37cd31a71124763570ce66ca358a5064afbd94b2d1b3f9988b7c639b5c
+    resources:
+      limits:
+        cpu: 250m
+        memory: 512Mi
+      requests:
+        cpu: 50m
+        memory: 128Mi
+    persistence:
+      server-files:
+        enabled: true
+        type: pvc
+        mountPath: /data/server-files
+        storageClass: "nfs-client"
+        size: 1Gi
+      user-files:
+        enabled: true
+        type: pvc
+        mountPath: /data/user-files
+        storageClass: "nfs-client"
+        size: 1Gi
+    ingress:
+      main:
+        enabled: true
+        primary: true
+        required: true
+        labels: {}
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "piggy-bank-outline"
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          cert-manager.io/cluster-issuer: "letsencrypt-production"        
+        ingressClassName: "traefik"
+        hosts:
+          - host: "actual.${SECRET_DOMAIN}"
+            paths:
+                path: /
+                pathType: Prefix
+        tls:
+         - secretName: actual-server-tls
+           certificateIssuer: "letsencrypt-production"
+           hosts:
+             - "actual.${SECRET_DOMAIN}"

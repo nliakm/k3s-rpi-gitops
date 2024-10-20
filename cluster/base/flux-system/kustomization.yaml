@@ -24,3 +24,4 @@ resources:
   - ./charts/helm/mondoo-charts.yaml
   - ./charts/helm/rocketchat-charts.yaml
   - ./charts/helm/nliakm-charts.yaml
+  - ./charts/helm/truecharts-charts.yaml
