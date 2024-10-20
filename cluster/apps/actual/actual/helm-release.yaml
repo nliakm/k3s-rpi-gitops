@@ -56,10 +56,9 @@ spec:
         hosts:
           - host: "actual.${SECRET_DOMAIN}"
             paths:
-                path: /
+              - path: /
                 pathType: Prefix
         tls:
-         - secretName: actual-server-tls
-           certificateIssuer: "letsencrypt-production"
+         - certificateIssuer: "letsencrypt-production"
            hosts:
              - "actual.${SECRET_DOMAIN}"
