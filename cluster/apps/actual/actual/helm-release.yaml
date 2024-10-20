@@ -74,5 +74,5 @@ spec:
               spec:
                 template:
                   spec:
-                    nodeselector:
+                    nodeSelector:
                       kubernetes.io/arch: arm64
